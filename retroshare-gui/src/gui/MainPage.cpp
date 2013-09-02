@@ -1,7 +1,7 @@
 #include <iostream>
 #include <retroshare-gui/mainpage.h>
 #include <QGraphicsBlurEffect>
-#include <QPushButton>
+#include <QAbstractButton>
 #include <QGraphicsDropShadowEffect>
 
 MainPage::MainPage(QWidget *parent , Qt::WindowFlags flags ) : QWidget(parent, flags) 
@@ -9,6 +9,23 @@ MainPage::MainPage(QWidget *parent , Qt::WindowFlags flags ) : QWidget(parent, f
 	help_browser = NULL ;
 }
 
+class MyTextBrowser: public QTextBrowser
+{
+	public:
+		MyTextBrowser(QWidget *parent,QAbstractButton *bt)
+			: QTextBrowser(parent),button(bt)
+		{
+		}
+
+		virtual void	mousePressEvent ( QMouseEvent* )
+		{
+			hide() ;
+			button->setChecked(false) ;
+		}
+
+	protected:
+		QAbstractButton *button ;
+};
 
 void MainPage::showHelp(bool b) 
 {
@@ -23,11 +40,11 @@ void MainPage::showHelp(bool b)
 		help_browser->hide() ;
 }
 
-void MainPage::registerHelpButton(QPushButton *button,const QString& help_html_txt)
+void MainPage::registerHelpButton(QAbstractButton *button,const QString& help_html_txt)
 {
 	if(help_browser == NULL)
 	{
-		help_browser = new QTextBrowser(this) ;
+		help_browser = new MyTextBrowser(this,button) ;
 
 		QGraphicsDropShadowEffect * effect = new QGraphicsDropShadowEffect(help_browser) ;
 		effect->setBlurRadius(30.0);

@@ -127,9 +127,6 @@ private slots:
 
     //void newsFeedChanged(int count);
 
-//    void recommendFriends();
- //   void servicePermission();
-
 signals:
     void notifyGroupChat(const QString&,const QString&) ;
 

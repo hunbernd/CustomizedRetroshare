@@ -465,6 +465,7 @@ void NotifyQt::notifyChatLobbyTimeShift(int shift)
 
 void NotifyQt::handleChatLobbyTimeShift(int /*shift*/)
 {
+	return ; // we say nothing. The help dialog of lobbies explains this already.
 	static bool already = false ;
 
 	if(!already)
@@ -774,6 +775,14 @@ void NotifyQt::UpdateGUI()
 
 			switch(type)
 			{
+				case RS_POPUP_ENCRYPTED_MSG:
+					soundManager->play(SOUND_MESSAGE_ARRIVED);
+
+					if (popupflags & RS_POPUP_MSG)
+					{
+						toaster = new Toaster(new MessageToaster(std::string(), tr("Unknown title"), QString("[%1]").arg(tr("Encrypted message"))));
+					}
+					break;
 				case RS_POPUP_MSG:
 					soundManager->play(SOUND_MESSAGE_ARRIVED);
 
@@ -924,6 +933,9 @@ void NotifyQt::testToaster(uint notifyFlags, /*RshareSettings::enumToasterPositi
 
 		switch(type)
 		{
+			case RS_POPUP_ENCRYPTED_MSG:
+				toaster = new Toaster(new MessageToaster(std::string(), tr("Unknown title"), QString("[%1]").arg(tr("Encrypted message"))));
+				break;
 			case RS_POPUP_MSG:
 				toaster = new Toaster(new MessageToaster(id, title, message));
 				break;

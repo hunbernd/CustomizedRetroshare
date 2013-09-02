@@ -63,6 +63,9 @@
 #define IMAGE_WIKI              ":/images/wikibook_32.png"
 #define IMAGE_POSTED            ":/images/posted_32.png"
 #define IMAGE_GXSCHANNELS       ":/images/channels.png"
+#define IMAGE_IDENTITY          ":/images/identity/user-identity_32.png"
+#define IMAGE_CIRCLES           ":/images/user/agt_forum24.png"
+
 
 /** Constructor */
 ApplicationWindow::ApplicationWindow(QWidget* parent, Qt::WFlags flags)
@@ -95,12 +98,12 @@ ApplicationWindow::ApplicationWindow(QWidget* parent, Qt::WFlags flags)
 
     IdDialog *idDialog = NULL;
     ui.stackPages->add(idDialog = new IdDialog(ui.stackPages),
-                      createPageAction(QIcon(IMAGE_LIBRARY), tr("Identities"), grp));
+                      createPageAction(QIcon(IMAGE_IDENTITY), tr("Identities"), grp));
 
 #ifdef RS_USE_CIRCLES
     CirclesDialog *circlesDialog = NULL;
     ui.stackPages->add(circlesDialog = new CirclesDialog(ui.stackPages),
-                      createPageAction(QIcon(IMAGE_LIBRARY), tr("Circles"), grp));
+                      createPageAction(QIcon(IMAGE_CIRCLES ), tr("Circles"), grp));
 #endif
 
 #ifdef RS_USE_PHOTOSHARE

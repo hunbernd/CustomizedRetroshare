@@ -1065,10 +1065,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Create Channel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1397,7 +1393,15 @@ Double click lobbies to enter and chat.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Chat Lobbies&lt;/h1&gt;                              		  &lt;p&gt;Chat lobbies are distributed chat rooms, and work pretty much like IRC.                                      		  They allow you to talk anonymously with tons of people without the need to make friends.&lt;/p&gt;                    		  &lt;p&gt;A chat lobby can be public (you friends see it) or private (your friends can&apos;t see it, unless you           		  invite them with &lt;img src=&quot;:/images/add_24x24.png&quot; width=12/&gt;). Once you have been invited to a private lobby, you will be able to see it when your friends   		  are using it.&lt;/p&gt;                                                                                               		  &lt;p&gt;The list at left shows                                                                                     		  chat lobbies your friends are participating into. You can either                                 		  &lt;ul&gt;                                                                                                            			  &lt;li&gt;Right click to create a new chat lobby&lt;/li&gt;                                                              		     &lt;li&gt;Double click a chat lobby to enter, chat, and show it to your friends&lt;/li&gt;                      		  &lt;/ul&gt; 		  &lt;/p&gt;                                      		</source>
+        <source> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Chat Lobbies&lt;/h1&gt;                              		  &lt;p&gt;Chat lobbies are distributed chat rooms, and work pretty much like IRC.                                      		  They allow you to talk anonymously with tons of people without the need to make friends.&lt;/p&gt;                    		  &lt;p&gt;A chat lobby can be public (you friends see it) or private (your friends can&apos;t see it, unless you           		  invite them with &lt;img src=&quot;:/images/add_24x24.png&quot; width=12/&gt;). Once you have been invited to a private lobby, you will be able to see it when your friends   		  are using it.&lt;/p&gt;                                                                                               		  &lt;p&gt;The list at left shows                                                                                     		  chat lobbies your friends are participating into. You can either                                 		  &lt;ul&gt;                                                                                                            			  &lt;li&gt;Right click to create a new chat lobby&lt;/li&gt;                                                              		     &lt;li&gt;Double click a chat lobby to enter, chat, and show it to your friends&lt;/li&gt;                      		  &lt;/ul&gt; 		  Note: For the chat lobbies to work properly, your computer needs be on time.  So check your system clock!		  &lt;/p&gt;                                      		</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Chat lobbies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2619,6 +2623,34 @@ Some services (Discovery, anonymous routing) can be switched off globally, which
     </message>
     <message>
         <source>Direct source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recommend many friends to each others</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Friend Recommendations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Message:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recommend friends</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select at least one friend for recommendation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select at least one friend as recipient.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4258,6 +4290,10 @@ p, li { white-space: pre-wrap; }
         <source>GB</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>File Never Seen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DetailsDialog</name>
@@ -5077,10 +5113,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Create Forum</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5539,38 +5571,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Recommend many friends to each others</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Service permissions matrix</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FriendRecommendDialog</name>
-    <message>
-        <source>Friend Recommendations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Message:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Recommend friends</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please select at least one friend for recommendation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please select at least one friend as recipient.</source>
+        <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5616,10 +5617,6 @@ p, li { white-space: pre-wrap; }
     <name>FriendsDialog</name>
     <message>
         <source>Friends</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5715,23 +5712,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Friend Recommendations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Choose Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset font to default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Service permissions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6543,6 +6528,10 @@ p, li { white-space: pre-wrap; }
         <source>Private Key Available</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Display</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GuiExprElement</name>
@@ -6627,10 +6616,6 @@ p, li { white-space: pre-wrap; }
     <name>GxsChannelDialog</name>
     <message>
         <source>Channels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6738,6 +6723,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Channel Admins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Channel Admins</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7127,10 +7120,6 @@ before you can comment</source>
     <name>GxsForumsDialog</name>
     <message>
         <source>Forums</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7774,6 +7763,14 @@ p, li { white-space: pre-wrap; }
         <source>Anonymous Id</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Create new Identity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Identity</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IdEditDialog</name>
@@ -7835,6 +7832,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Unknown real name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create New Identity</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8128,6 +8129,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The file link is malformed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ServicePermissions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Service permissions matrix</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9185,19 +9194,11 @@ Do you want to save message ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search Friends</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add a Friend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share files for your friends</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9245,6 +9246,10 @@ Do you want to save message ?</source>
     </message>
     <message>
         <source>Hide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encrypted message</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9527,6 +9532,10 @@ Right-click and select &apos;make friend&apos; to be able to connect.</source>
         <source>Only show people you trusted</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Send Message</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkPage</name>
@@ -9775,6 +9784,14 @@ Right-click and select &apos;make friend&apos; to be able to connect.</source>
     </message>
     <message>
         <source>This is a test.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encrypted message</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10411,10 +10428,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>/\</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>\/</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10444,6 +10457,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vote Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vote Down</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10483,10 +10504,6 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This Year</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New Topic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10539,6 +10556,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please create or choose a Signing Id before Voting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create New Topic</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10995,11 +11016,6 @@ Characters &lt;b&gt;&quot;,|,/,\,&amp;lt;,&amp;gt;,*,?&lt;/b&gt; will be replace
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The collection file %1 could not be opened.
-Reported error is: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Deny friend</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11142,6 +11158,13 @@ Reported error is: %2</source>
     </message>
     <message>
         <source>Secured tunnel is working. You can talk!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The collection file %1 could not be opened.
+Reported error is: 
+
+%2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11512,6 +11535,12 @@ Characters &lt;b&gt;&quot;,|,/,\,&amp;lt;,&amp;gt;,*,?&lt;/b&gt; will be replace
     </message>
     <message>
         <source>Create collection file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This file contains the string &quot;%1&quot; and is therefore an invalid collection file. 
+
+If you believe it is correct, remove the corresponding line from the file and re-open it with Retroshare.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -13203,10 +13232,6 @@ Try to be patient!</source>
     </message>
     <message>
         <source>UserID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File Never Seen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

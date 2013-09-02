@@ -45,6 +45,7 @@
 #include "util/DateTime.h"
 
 #include <retroshare/rspeers.h>
+#include <retroshare/rsmsgs.h>
 #include <retroshare/rsforums.h>
 
 #include <algorithm>
@@ -117,7 +118,6 @@ ForumsDialog::ForumsDialog(QWidget *parent)
     connect( ui.forumTreeWidget, SIGNAL( treeCustomContextMenuRequested( QPoint ) ), this, SLOT( forumListCustomPopupMenu( QPoint ) ) );
     connect( ui.threadTreeWidget, SIGNAL( customContextMenuRequested( QPoint ) ), this, SLOT( threadListCustomPopupMenu( QPoint ) ) );
 
-	connect(ui.newForumButton, SIGNAL(clicked()), this, SLOT(newforum()));
     connect(ui.newmessageButton, SIGNAL(clicked()), this, SLOT(createmessage()));
     connect(ui.newthreadButton, SIGNAL(clicked()), this, SLOT(createthread()));
 
@@ -162,7 +162,11 @@ ForumsDialog::ForumsDialog(QWidget *parent)
     headerItem->setText(COLUMN_THREAD_READ, "");
 
     /* Initialize group tree */
-    ui.forumTreeWidget->initDisplayMenu(ui.displayButton);
+    QToolButton *newForumButton = new QToolButton(this);
+    newForumButton->setIcon(QIcon(":/images/new_forum16.png"));
+    newForumButton->setToolTip(tr("Create Forum"));
+    connect(newForumButton, SIGNAL(clicked()), this, SLOT(newforum()));
+    ui.forumTreeWidget->addToolButton(newForumButton);
 
     /* create forum tree */
     yourForums = ui.forumTreeWidget->addCategoryItem(tr("My Forums"), QIcon(IMAGE_FOLDER), true);
@@ -1594,13 +1598,22 @@ void ForumsDialog::replytomessage()
     if (rsPeers->getPeerName(msgInfo.srcId) !="")
     {
         MessageComposer *nMsgDialog = MessageComposer::newMsg();
-        nMsgDialog->setTitleText(QString::fromStdWString(msgInfo.title), MessageComposer::REPLY);
 
-        nMsgDialog->setQuotedMsg(QString::fromStdWString(msgInfo.msg), buildReplyHeader(msgInfo));
-        nMsgDialog->addRecipient(MessageComposer::TO, msgInfo.srcId, false);
+		  	std::string hash ;
+			std::string mGpgId = msgInfo.srcId;
 
-        nMsgDialog->show();
-        nMsgDialog->activateWindow();
+			if(rsMsgs->getDistantMessageHash(mGpgId,hash))
+			{
+				nMsgDialog->addRecipient(MessageComposer::TO, hash, mGpgId);
+
+				nMsgDialog->setTitleText(QString::fromStdWString(msgInfo.title), MessageComposer::REPLY);
+				nMsgDialog->setQuotedMsg(QString::fromStdWString(msgInfo.msg), buildReplyHeader(msgInfo));
+
+				//nMsgDialog->addRecipient(MessageComposer::TO, msgInfo.srcId, false);
+
+				nMsgDialog->show();
+				nMsgDialog->activateWindow();
+			}
 
         /* window will destroy itself! */
     }

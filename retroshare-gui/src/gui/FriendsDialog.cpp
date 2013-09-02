@@ -51,9 +51,7 @@
 #include "util/misc.h"
 #include "util/HandleRichText.h"
 #include "util/DateTime.h"
-//#include "FriendRecommendDialog.h"
 #include "FriendsDialog.h"
-//#include "ServicePermissionDialog.h"
 #include "NetworkView.h"
 #include "NetworkDialog.h"
 
@@ -88,12 +86,6 @@ FriendsDialog::FriendsDialog(QWidget *parent)
     connect( ui.actionSet_your_Personal_Message, SIGNAL(triggered()), this, SLOT(statusmessage()));
     connect( ui.addfileButton, SIGNAL(clicked() ), this , SLOT(addExtraFile()));
     connect( ui.actionAdd_Friend, SIGNAL(triggered()), this, SLOT(addFriend()));
-	 connect( ui.actionFriendRecommendations, SIGNAL(triggered()), this, SLOT(recommendFriends()));
-    connect( ui.actionServicePermission, SIGNAL(triggered()), this, SLOT(servicePermission()));
-    connect( ui.filter_lineEdit, SIGNAL(textChanged(QString)), ui.friendList, SLOT(filterItems(QString)));
-
-    ui.filter_lineEdit->setPlaceholderText(tr("Search")) ;
-    ui.filter_lineEdit->showFilterIcon();
 
     ui.avatar->setFrameType(AvatarWidget::STATUS_FRAME);
     ui.avatar->setOwnId();
@@ -174,8 +166,6 @@ FriendsDialog::FriendsDialog(QWidget *parent)
 //    menu->addAction(ui.actionAdd_Friend);
 //    menu->addAction(ui.actionAdd_Group);
 //    menu->addAction(ui.actionCreate_new_Chat_lobby);
-//    menu->addAction(ui.actionFriendRecommendations);
-//    menu->addAction(ui.actionServicePermission);
 //
 //    menu->addSeparator();
 //    menu->addAction(ui.actionSet_your_Avatar);
@@ -194,7 +184,6 @@ FriendsDialog::FriendsDialog(QWidget *parent)
     ui.splitter_2->setSizes(sizes);
 
     loadmypersonalstatus();
-    ui.displayButton->setMenu(ui.friendList->createDisplayMenu());
 
     // load settings
     RsAutoUpdatePage::lockAllEvents();

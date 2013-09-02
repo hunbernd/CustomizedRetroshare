@@ -76,67 +76,9 @@
        </spacer>
       </item>
       <item>
-       <widget class="QToolButton" name="displayButton">
+       <widget class="QToolButton" name="helpButton">
         <property name="focusPolicy">
          <enum>Qt::NoFocus</enum>
-        </property>
-        <property name="toolTip">
-         <string>Display</string>
-        </property>
-        <property name="icon">
-         <iconset resource="images.qrc">
-          <normaloff>:/images/looknfeel.png</normaloff>:/images/looknfeel.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>16</height>
-         </size>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::InstantPopup</enum>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="newChannelButton">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::NoFocus</enum>
-        </property>
-        <property name="toolTip">
-         <string>Create Channel</string>
-        </property>
-        <property name="icon">
-         <iconset resource="images.qrc">
-          <normaloff>:/images/add_channel24.png</normaloff>:/images/add_channel24.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>16</height>
-         </size>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="helpButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string/>
         </property>
         <property name="icon">
          <iconset resource="images.qrc">
@@ -145,7 +87,7 @@
         <property name="checkable">
          <bool>true</bool>
         </property>
-        <property name="flat">
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
@@ -166,7 +108,7 @@
        </sizepolicy>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QFrame" name="headFrame">
@@ -312,7 +254,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>625</width>
+            <width>513</width>
             <height>16</height>
            </rect>
           </property>
@@ -355,9 +297,7 @@
    </property>
   </action>
   <zorder>splitter</zorder>
-  <zorder>treeWidget</zorder>
   <zorder>titleBarFrame</zorder>
-  <zorder>treeWidget</zorder>
  </widget>
  <customwidgets>
   <customwidget>

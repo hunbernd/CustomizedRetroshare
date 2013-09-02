@@ -67,15 +67,9 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="helpButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string/>
+       <widget class="QToolButton" name="helpButton">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
         </property>
         <property name="icon">
          <iconset resource="images.qrc">
@@ -84,7 +78,7 @@
         <property name="checkable">
          <bool>true</bool>
         </property>
-        <property name="flat">
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
@@ -102,57 +96,6 @@
        <property name="spacing">
         <number>2</number>
        </property>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="LineEditClear" name="filter_lineEdit"/>
-         </item>
-         <item>
-          <widget class="QToolButton" name="displayButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>30</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>32</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>Display</string>
-           </property>
-           <property name="icon">
-            <iconset resource="images.qrc">
-             <normaloff>:/images/looknfeel.png</normaloff>:/images/looknfeel.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>32</width>
-             <height>16</height>
-            </size>
-           </property>
-           <property name="popupMode">
-            <enum>QToolButton::InstantPopup</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
        <item>
         <widget class="FriendList" name="friendList" native="true">
          <property name="sizePolicy">
@@ -273,8 +216,18 @@
             <property name="text">
              <string/>
             </property>
+            <property name="icon">
+             <iconset resource="images.qrc">
+              <normaloff>:/images/edit_16.png</normaloff>:/images/edit_16.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
             <property name="autoRaise">
              <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::NoArrow</enum>
             </property>
            </widget>
           </item>
@@ -871,15 +824,6 @@
     <string>Create new Chat lobby</string>
    </property>
   </action>
-  <action name="actionFriendRecommendations">
-   <property name="icon">
-    <iconset resource="images.qrc">
-     <normaloff>:/images/user/invite24.png</normaloff>:/images/user/invite24.png</iconset>
-   </property>
-   <property name="text">
-    <string>Friend Recommendations</string>
-   </property>
-  </action>
   <action name="actionChooseFont">
    <property name="text">
     <string>Choose Font</string>
@@ -890,18 +834,8 @@
     <string>Reset font to default</string>
    </property>
   </action>
-  <action name="actionServicePermission">
-   <property name="text">
-    <string>Service permissions</string>
-   </property>
-  </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>LineEditClear</class>
-   <extends>QLineEdit</extends>
-   <header>gui/common/LineEditClear.h</header>
-  </customwidget>
   <customwidget>
    <class>LinkTextBrowser</class>
    <extends>QTextBrowser</extends>

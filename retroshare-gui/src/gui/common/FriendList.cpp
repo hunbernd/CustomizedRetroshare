@@ -33,8 +33,6 @@
 #include "gui/chat/ChatDialog.h"
 //#include "gui/chat/CreateLobbyDialog.h"
 #include "gui/common/AvatarDefs.h"
-#include "gui/ServicePermissionDialog.h"
-#include "gui/FriendRecommendDialog.h"
 
 #include "gui/connect/ConfCertDialog.h"
 #include "gui/connect/ConnectFriendWizard.h"
@@ -61,8 +59,8 @@
 #define IMAGE_REMOVEFRIEND       ":/images/remove_user24.png"
 #define IMAGE_EXPORTFRIEND       ":/images/user/friend_suggestion16.png"
 #define IMAGE_ADDFRIEND          ":/images/user/add_user16.png"
-#define IMAGE_FRIENDINFO         ":/images/peerdetails_16x16.png"
-#define IMAGE_CHAT               ":/images/chat.png"
+#define IMAGE_FRIENDINFO         ":/images/info16.png"
+#define IMAGE_CHAT               ":/images/chat_24.png"
 #define IMAGE_MSG                ":/images/mail_new.png"
 #define IMAGE_CONNECT            ":/images/connect_friend.png"
 #define IMAGE_COPYLINK           ":/images/copyrslink.png"
@@ -71,7 +69,6 @@
 #define IMAGE_REMOVE             ":/images/delete.png"
 #define IMAGE_EXPAND             ":/images/edit_add24.png"
 #define IMAGE_COLLAPSE           ":/images/edit_remove24.png"
-#define IMAGE_PERMISSIONS        ":/images/admin-16.png"
 /* Images for Status icons */
 #define IMAGE_AVAILABLE          ":/images/user/identityavaiblecyan24.png"
 #define IMAGE_CONNECT2           ":/images/reload24.png"
@@ -156,6 +153,11 @@ FriendList::FriendList(QWidget *parent) :
     connect(ui->actionSortPeersAscendingOrder, SIGNAL(triggered()), this, SLOT(sortPeersAscendingOrder()));
     connect(ui->actionSortPeersDescendingOrder, SIGNAL(triggered()), this, SLOT(sortPeersDescendingOrder()));
 
+    connect(ui->filterLineEdit, SIGNAL(textChanged(QString)), this, SLOT(filterItems(QString)));
+
+    ui->filterLineEdit->setPlaceholderText(tr("Search")) ;
+    ui->filterLineEdit->showFilterIcon();
+
     initializeHeader(false);
 
     ui->peerTreeWidget->sortItems(COLUMN_NAME, Qt::AscendingOrder);
@@ -170,12 +172,29 @@ FriendList::FriendList(QWidget *parent) :
     // http://bugreports.qt.nokia.com/browse/QTBUG-8270
     QShortcut *Shortcut = new QShortcut(QKeySequence(Qt::Key_Delete), ui->peerTreeWidget, 0, 0, Qt::WidgetShortcut);
     connect(Shortcut, SIGNAL(activated()), this, SLOT(removefriend()));
+
+    /* Initialize display menu */
+    createDisplayMenu();
 }
 
 FriendList::~FriendList()
 {
     delete ui;
     delete(m_compareRole);
+}
+
+void FriendList::addToolButton(QToolButton *toolButton)
+{
+    if (!toolButton) {
+        return;
+    }
+
+    /* Initialize button */
+    toolButton->setAutoRaise(true);
+    toolButton->setIconSize(ui->displayButton->iconSize());
+    toolButton->setFocusPolicy(ui->displayButton->focusPolicy());
+
+    ui->titleBarFrame->layout()->addWidget(toolButton);
 }
 
 void FriendList::processSettings(bool bLoad)
@@ -509,30 +528,16 @@ void FriendList::peerTreeWidgetCostumPopupMenu()
 
     contextMnu.addSeparator();
 
-    contextMnu.addAction(QIcon(IMAGE_EXPAND), tr("Recommend many friends to each others"), this, SLOT(recommendFriends()));
-    contextMnu.addAction(QIcon(IMAGE_PERMISSIONS), tr("Service permissions matrix"), this, SLOT(servicePermission()));
-
-    contextMnu.addSeparator();
-
     contextMnu.addAction(QIcon(IMAGE_EXPAND), tr("Expand all"), ui->peerTreeWidget, SLOT(expandAll()));
     contextMnu.addAction(QIcon(IMAGE_COLLAPSE), tr("Collapse all"), ui->peerTreeWidget, SLOT(collapseAll()));
 
     contextMnu.exec(QCursor::pos());
 }
+
 void FriendList::createNewGroup()
 {
     CreateGroup createGrpDialog ("", this);
     createGrpDialog.exec();
-}
-
-void FriendList::recommendFriends()
-{
-	FriendRecommendDialog::showYourself();
-}
-void FriendList::servicePermission()
-{
-	ServicePermissionDialog dlg;
-	dlg.exec();
 }
 
 void FriendList::updateDisplay()
@@ -1965,7 +1970,7 @@ void FriendList::addPeerToExpand(const std::string &gpgId)
     openPeers->insert(gpgId);
 }
 
-QMenu *FriendList::createDisplayMenu()
+void FriendList::createDisplayMenu()
 {
     QMenu *displayMenu = new QMenu(this);
     connect(displayMenu, SIGNAL(aboutToShow()), this, SLOT(updateMenu()));
@@ -1993,7 +1998,7 @@ QMenu *FriendList::createDisplayMenu()
 //    group->addAction(ui->actionSortByLastContact);
 //    group->addAction(ui->actionSortByIP);
 
-    return displayMenu;
+    ui->displayButton->setMenu(displayMenu);
 }
 
 void FriendList::updateMenu()
