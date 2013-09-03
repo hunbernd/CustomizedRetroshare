@@ -381,7 +381,7 @@ void ChatLobbyDialog::updateParticipantsList()
 
             std::string nickName;
             rsMsgs->getNickNameForChatLobby(lobbyId, nickName);
-            if (participant.toStdString()==nickName) widgetitem->setIcon(COLUMN_ICON, QIcon(":/images/yellowled.png"));
+            if (participant.toStdString()==nickName) widgetitem->setIcon(COLUMN_ICON, QIcon(":/images/blueled.png"));
 
 
             QTime qtLastAct=QTime(0,0,0).addSecs(now-tLastAct);
