@@ -19,6 +19,8 @@ void CupCake::tick()
     log("begin tick", 0);
 
     refreshlobbies();
+    refreshchannels();
+    refreshforums();
 
     log("end tick", 0);
 }
@@ -48,6 +50,24 @@ void CupCake::log(std::string msg, int loglevel)
 
 void CupCake::refreshchannels()
 {
+    log("begin channels refresh", 0);
+    if (!rsChannels) {
+            return;
+    }
+
+    std::list<ChannelInfo> channelList;
+    std::list<ChannelInfo>::iterator it;
+    rsChannels->getChannelList(channelList);
+    for(it = channelList.begin(); it != channelList.end(); it++) {
+        uint32_t flags = it->channelFlags;
+        if(!(flags & (RS_DISTRIB_SUBSCRIBED | RS_DISTRIB_ADMIN)))
+        {
+            std::string cn(it->channelName.begin(), it->channelName.end());
+            log("Subscribing to channel: " + cn, 1);
+            rsChannels->channelSubscribe(it->channelId, true, false);
+        }
+    }
+    log("end channels refresh", 0);
 }
 
 void CupCake::refreshlobbies()
@@ -71,7 +91,9 @@ void CupCake::refreshlobbies()
                 log("Subscribed to lobby: " + it->lobby_name, 1);
             }
             else
+            {
                 log("Failed to subscribe to lobby: " + it->lobby_name, 2);
+            }
         }
     }
     log("end lobbies refresh", 0);
@@ -79,7 +101,24 @@ void CupCake::refreshlobbies()
 
 void CupCake::refreshforums()
 {
+    log("begin forums refresh", 0);
+    if (!rsForums) {
+            return;
+    }
 
+    std::list<ForumInfo> forumList;
+    std::list<ForumInfo>::iterator it;
+    rsForums->getForumList(forumList);
+    for(it = forumList.begin(); it != forumList.end(); it++) {
+        uint32_t flags = it->subscribeFlags;
+        if(!(flags & (RS_DISTRIB_SUBSCRIBED | RS_DISTRIB_ADMIN)))
+        {
+            std::string fn(it->forumName.begin(), it->forumName.end());
+            log("Subscribing to forum: " + fn, 1);
+            rsForums->forumSubscribe(it->forumId, true);
+        }
+    }
+    log("end forums refresh", 0);
 }
 
 const std::string CupCake::currentDateTime()
