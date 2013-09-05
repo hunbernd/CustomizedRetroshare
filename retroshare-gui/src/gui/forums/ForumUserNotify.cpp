@@ -93,11 +93,14 @@ QIcon ForumUserNotify::getMainIcon(bool hasNew)
 
 unsigned int ForumUserNotify::getNewCount()
 {
+/*
 	unsigned int newMessageCount = 0;
 	unsigned int unreadMessageCount = 0;
 	rsForums->getMessageCount("", newMessageCount, unreadMessageCount);
 
 	return newMessageCount;
+*/
+    return 0;
 }
 
 void ForumUserNotify::iconClicked()

@@ -93,11 +93,14 @@ QIcon ChannelUserNotify::getMainIcon(bool hasNew)
 
 unsigned int ChannelUserNotify::getNewCount()
 {
+/*
 	unsigned int newMessageCount = 0;
 	unsigned int unreadMessageCount = 0;
 	rsChannels->getMessageCount("", newMessageCount, unreadMessageCount);
 
 	return newMessageCount;
+*/
+    return 0;
 }
 
 void ChannelUserNotify::iconClicked()

@@ -547,7 +547,8 @@ void ChannelFeed::updateMessageSummaryList(const std::string &channelId)
 				unsigned int unreadMessageCount = 0;
 				rsChannels->getMessageCount(childId, newMessageCount, unreadMessageCount);
 
-				treeWidget->setUnreadCount(childItem, unreadMessageCount);
+                                //treeWidget->setUnreadCount(childItem, unreadMessageCount);
+                                treeWidget->setUnreadCount(childItem, 0);
 
 				if (channelId.empty() == false) {
 					/* Calculate only this channel */

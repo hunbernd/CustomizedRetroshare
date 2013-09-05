@@ -1715,7 +1715,8 @@ void ForumsDialog::updateMessageSummaryList(std::string forumId)
                 unsigned int unreadMessageCount = 0;
                 rsForums->getMessageCount(childId, newMessageCount, unreadMessageCount);
 
-                ui.forumTreeWidget->setUnreadCount(childItem, unreadMessageCount);
+                //ui.forumTreeWidget->setUnreadCount(childItem, unreadMessageCount);
+                ui.forumTreeWidget->setUnreadCount(childItem, 0);
 
                 if (forumId.empty() == false) {
                     /* Calculate only this forum */

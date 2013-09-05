@@ -5,6 +5,9 @@ CupCake::CupCake()
     checkInterval = 30;
     maxFriends = 10;
     minloglevel = 0;
+    forumstat = 0;
+    chatstat = 0;
+    channelstat = 0;
     ofs.open("Cupcake.log");
     log("start", 1);
     //ticksUntilLobbieIsCreated = 60;
@@ -21,6 +24,7 @@ void CupCake::tick()
     refreshlobbies();
     refreshchannels();
     refreshforums();
+    //printstatistics();
 
     log("end tick", 0);
 }
@@ -66,6 +70,17 @@ void CupCake::refreshchannels()
             log("Subscribing to channel: " + cn, 1);
             rsChannels->channelSubscribe(it->channelId, true, false);
         }
+    }    
+    //statistics
+    unsigned int mcount, ucount, count;
+    count = channelList.size();
+    rsChannels->getMessageCount("", mcount, ucount);
+    if(channelstat != (count + mcount + ucount))
+    {
+        channelstat = count + mcount + ucount;
+        std::stringstream ss;
+        ss << "Channel count: " << count << ", new messages: " << mcount << ", unread messages: " << ucount;
+        log(ss.str(), 1);
     }
     log("end channels refresh", 0);
 }
@@ -96,6 +111,16 @@ void CupCake::refreshlobbies()
             }
         }
     }
+    //statistics
+    unsigned int count;
+    count = visibleLobbies.size();
+    if(chatstat != count)
+    {
+        chatstat = count;
+        std::stringstream ss;
+        ss << "Chat lobby count: " << count;
+        log(ss.str(), 1);
+    }
     log("end lobbies refresh", 0);
 }
 
@@ -118,6 +143,17 @@ void CupCake::refreshforums()
             rsForums->forumSubscribe(it->forumId, true);
         }
     }
+    //statistics
+    unsigned int mcount, ucount, count;
+    count = forumList.size();
+    rsForums->getMessageCount("", mcount, ucount);
+    if(forumstat != (count + mcount + ucount))
+    {
+        forumstat = count + mcount + ucount;
+        std::stringstream ss;
+        ss << "Forum count: " << count << ", new messages: " << mcount << ", unread messages: " << ucount;
+        log(ss.str(), 1);
+    }
     log("end forums refresh", 0);
 }
 
@@ -132,6 +168,7 @@ const std::string CupCake::currentDateTime()
     strftime(buf, sizeof(buf), "%Y-%m-%d %X", &tstruct);
     return buf;
 }
+
 
 /*
 CupCake::createOrRejoinLobby()

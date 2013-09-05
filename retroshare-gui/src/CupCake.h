@@ -17,6 +17,7 @@
 #include <retroshare/rspeers.h>
 #include <QObject>
 #include <ctime>
+#include<sstream>
 
 #include <retroshare/rsmsgs.h>
 #include <retroshare/rschannels.h>
@@ -48,6 +49,10 @@ private:
     void refreshlobbies();
     void refreshforums();
     void refreshchannels();
+//    void printstatistics();
+    unsigned int forumstat;
+    unsigned int channelstat;
+    unsigned int chatstat;
 
 };
 
