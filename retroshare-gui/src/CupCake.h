@@ -19,6 +19,7 @@
 #include <ctime>
 
 #include <retroshare/rsmsgs.h>
+#include "gui/chat/ChatDialog.h"
 
 class CupCake : public QObject
 {

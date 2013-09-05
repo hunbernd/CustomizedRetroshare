@@ -17,21 +17,24 @@ void CupCake::tick()
 {
     log("begin tick");
 
-    std::string lobbinames("");
-    std::list<ChatLobbyInfo> lobbies;
-    rsMsgs->getChatLobbyList(lobbies);
-    for (std::list<ChatLobbyInfo>::const_iterator it = lobbies.begin(); it != lobbies.end();++it) {
-            lobbinames += (it->lobby_name) + ";";
-    }
-    log("Lobbinames: " + lobbinames);
-
-    std::string visiblelobbinames("");
+    ChatLobbyId lid;
+    std::string vpid;
     std::vector<VisibleChatLobbyRecord> visibleLobbies;
     rsMsgs->getListOfNearbyChatLobbies(visibleLobbies);
     for (std::vector<VisibleChatLobbyRecord>::const_iterator it = visibleLobbies.begin(); it != visibleLobbies.end();++it) {
-            visiblelobbinames += (it->lobby_name) + ";";
+        lid = it->lobby_id;
+        //check if we are subcribed
+        if(!rsMsgs->getVirtualPeerId(lid, vpid))
+        {
+            //join
+            rsMsgs->joinVisibleChatLobby(lid);
+            log("Subscribing to lobby: " + it->lobby_name);
+            if(rsMsgs->getVirtualPeerId(lid, vpid))
+                ChatDialog::chatFriend(vpid,false);
+            else
+                log("Failed to subscribe: " + it->lobby_name);
+        }
     }
-    log("Visible lobbinames: " + visiblelobbinames);
 
     log("end tick");
 }
@@ -97,3 +100,21 @@ CupCake::createOrRejoinLobby()
     }
 }
 */
+
+/*
+    std::string lobbinames("");
+    std::list<ChatLobbyInfo> lobbies;
+    rsMsgs->getChatLobbyList(lobbies);
+    for (std::list<ChatLobbyInfo>::const_iterator it = lobbies.begin(); it != lobbies.end();++it) {
+            lobbinames += (it->lobby_name) + ";";
+    }
+    log("Lobbinames: " + lobbinames);
+
+    std::string visiblelobbinames("");
+    std::vector<VisibleChatLobbyRecord> visibleLobbies;
+    rsMsgs->getListOfNearbyChatLobbies(visibleLobbies);
+    for (std::vector<VisibleChatLobbyRecord>::const_iterator it = visibleLobbies.begin(); it != visibleLobbies.end();++it) {
+            visiblelobbinames += (it->lobby_name) + ";";
+    }
+    log("Visible lobbinames: " + visiblelobbinames);
+ */
