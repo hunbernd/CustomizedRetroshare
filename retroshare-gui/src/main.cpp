@@ -47,6 +47,8 @@
 #include "lang/languagesupport.h"
 #include "util/RsGxsUpdateBroadcast.h"
 
+#include "CupCake.h"
+
 /*** WINDOWS DON'T LIKE THIS - REDEFINES VER numbers.
 #include <gui/qskinobject/qskinobject.h>
 ****/
@@ -360,6 +362,13 @@ int main(int argc, char *argv[])
 
 	notify->enable() ;	// enable notification system after GUI creation, to avoid data races in Qt.
 
+        //Cupcake
+        CupCake *cupcake = new CupCake();
+        QTimer *cctimer = new QTimer(w);
+        cctimer->connect(cctimer, SIGNAL(timeout()), cupcake, SLOT(tick()));
+        cctimer->start(1000 * (cupcake->checkInterval));
+        //Cupcake
+
 	/* dive into the endless loop */
 	int ti = rshare.exec();
 	delete w ;
@@ -383,6 +392,8 @@ int main(int argc, char *argv[])
 
 	Settings->sync();
 	delete(Settings);
+
+        delete cupcake;
 
 	return ti ;
 }

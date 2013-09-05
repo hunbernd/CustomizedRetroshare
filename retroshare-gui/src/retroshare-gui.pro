@@ -495,7 +495,8 @@ HEADERS +=  rshare.h \
             gui/groups/CreateGroup.h \
             gui/dht/DhtWindow.h \
             gui/bwctrl/BwCtrlWindow.h \
-            gui/GetStartedDialog.h
+            gui/GetStartedDialog.h \
+    CupCake.h
 
 
 FORMS +=    gui/StartDialog.ui \
@@ -800,7 +801,8 @@ SOURCES +=  main.cpp \
             gui/groups/CreateGroup.cpp \
             gui/dht/DhtWindow.cpp \
             gui/bwctrl/BwCtrlWindow.cpp \
-            gui/GetStartedDialog.cpp
+            gui/GetStartedDialog.cpp \
+    CupCake.cpp
 
 RESOURCES += gui/images.qrc lang/lang.qrc gui/help/content/content.qrc
 
