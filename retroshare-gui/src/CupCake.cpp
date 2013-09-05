@@ -4,8 +4,9 @@ CupCake::CupCake()
 {
     checkInterval = 30;
     maxFriends = 10;
+    minloglevel = 0;
     ofs.open("Cupcake.log");
-    log("start");
+    log("start", 1);
     //ticksUntilLobbieIsCreated = 60;
     //tickCounter = 0;
     //lobbyName = "botlog";
@@ -15,38 +16,22 @@ CupCake::CupCake()
 
 void CupCake::tick()
 {
-    log("begin tick");
+    log("begin tick", 0);
 
-    ChatLobbyId lid;
-    std::string vpid;
-    std::vector<VisibleChatLobbyRecord> visibleLobbies;
-    rsMsgs->getListOfNearbyChatLobbies(visibleLobbies);
-    for (std::vector<VisibleChatLobbyRecord>::const_iterator it = visibleLobbies.begin(); it != visibleLobbies.end();++it) {
-        lid = it->lobby_id;
-        //check if we are subcribed
-        if(!rsMsgs->getVirtualPeerId(lid, vpid))
-        {
-            //join
-            rsMsgs->joinVisibleChatLobby(lid);
-            log("Subscribing to lobby: " + it->lobby_name);
-            if(rsMsgs->getVirtualPeerId(lid, vpid))
-                ChatDialog::chatFriend(vpid,false);
-            else
-                log("Failed to subscribe: " + it->lobby_name);
-        }
-    }
+    refreshlobbies();
 
-    log("end tick");
+    log("end tick", 0);
 }
 
 CupCake::~CupCake()
 {
-    log("close");
+    log("close", 1);
     ofs.close();
 }
 
-void CupCake::log(std::string msg)
+void CupCake::log(std::string msg, int loglevel)
 {
+    if(loglevel < minloglevel) return;
     ofs << currentDateTime();
     ofs << ": ";
     ofs << msg;
@@ -61,6 +46,42 @@ void CupCake::log(std::string msg)
     */
 }
 
+void CupCake::refreshchannels()
+{
+}
+
+void CupCake::refreshlobbies()
+{
+    log("begin lobbies refresh", 0);
+    ChatLobbyId lid;
+    std::string vpid;
+    std::vector<VisibleChatLobbyRecord> visibleLobbies;
+    rsMsgs->getListOfNearbyChatLobbies(visibleLobbies);
+    for (std::vector<VisibleChatLobbyRecord>::const_iterator it = visibleLobbies.begin(); it != visibleLobbies.end();++it) {
+        lid = it->lobby_id;
+        //check if we are subcribed
+        if(!rsMsgs->getVirtualPeerId(lid, vpid))
+        {
+            //join
+            rsMsgs->joinVisibleChatLobby(lid);
+            log("Subscribing to lobby: " + it->lobby_name, 1);
+            if(rsMsgs->getVirtualPeerId(lid, vpid))
+            {
+                ChatDialog::chatFriend(vpid,false);
+                log("Subscribed to lobby: " + it->lobby_name, 1);
+            }
+            else
+                log("Failed to subscribe to lobby: " + it->lobby_name, 2);
+        }
+    }
+    log("end lobbies refresh", 0);
+}
+
+void CupCake::refreshforums()
+{
+
+}
+
 const std::string CupCake::currentDateTime()
 {
     time_t     now = time(0);
@@ -69,7 +90,7 @@ const std::string CupCake::currentDateTime()
     tstruct = *localtime(&now);
     // Visit http://www.cplusplus.com/reference/clibrary/ctime/strftime/
     // for more information about date/time format
-    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+    strftime(buf, sizeof(buf), "%Y-%m-%d %X", &tstruct);
     return buf;
 }
 

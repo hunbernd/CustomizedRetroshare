@@ -28,7 +28,7 @@ class CupCake : public QObject
 public:
     CupCake();    
     ~CupCake();
-    void log(std::string msg);
+    void log(std::string msg, int loglevel);
     unsigned int checkInterval;
 
 public slots:
@@ -38,6 +38,15 @@ protected:
     unsigned int maxFriends;
     std::ofstream ofs;
     const std::string currentDateTime();
+    //0: repetitive, 1: info, 2: warning, 3: error
+    bool minloglevel;
+
+private:
+    void refreshlobbies();
+    void refreshforums();
+    void refreshchannels();
+
+};
 
 //    const unsigned int ticksUntilLobbieIsCreated;
 //    std::string lobbyName;
@@ -46,7 +55,5 @@ protected:
 //    unsigned int tickCounter;
 
 //    void createOrRejoinLobby();
-};
-
 
 #endif // CUPCAKE_H
