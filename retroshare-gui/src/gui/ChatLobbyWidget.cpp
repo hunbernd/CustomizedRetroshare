@@ -32,16 +32,16 @@
 #define TYPE_FOLDER       0
 #define TYPE_LOBBY        1
 
-#define IMAGE_CREATE      ""
-#define IMAGE_PUBLIC      ":/images/chat_x24.png"
-#define IMAGE_PRIVATE     ":/images/chat_red24.png"
-#define IMAGE_UNSUBSCRIBE   ""
-#define IMAGE_SUBSCRIBE   ""
-#define IMAGE_PEER_ENTERING  ":images/user/add_user24.png"
-#define IMAGE_PEER_LEAVING   ":images/user/remove_user24.png"
-#define IMAGE_TYPING		  ":images/typing.png" 
-#define IMAGE_MESSAGE	  ":images/chat.png" 
-#define IMAGE_AUTOSUBSCRIBE  ":images/accepted16.png"
+#define IMAGE_CREATE          ""
+#define IMAGE_PUBLIC          ":/images/chat_x24.png"
+#define IMAGE_PRIVATE         ":/images/chat_red24.png"
+#define IMAGE_SUBSCRIBE       ":/images/edit_add24.png"  
+#define IMAGE_UNSUBSCRIBE     ":/images/cancel.png"
+#define IMAGE_PEER_ENTERING   ":images/user/add_user24.png"
+#define IMAGE_PEER_LEAVING    ":images/user/remove_user24.png"
+#define IMAGE_TYPING		      ":images/typing.png" 
+#define IMAGE_MESSAGE	        ":images/chat.png" 
+#define IMAGE_AUTOSUBSCRIBE   ":images/accepted16.png"
 
 ChatLobbyWidget::ChatLobbyWidget(QWidget *parent, Qt::WFlags flags)
 	: RsAutoUpdatePage(5000, parent, flags)
@@ -128,11 +128,11 @@ ChatLobbyWidget::ChatLobbyWidget(QWidget *parent, Qt::WFlags flags)
 		" <h1><img width=\"32\" src=\":/images/64px_help.png\">&nbsp;&nbsp;Chat Lobbies</h1>                              \
 		  <p>Chat lobbies are distributed chat rooms, and work pretty much like IRC.                                      \
 		  They allow you to talk anonymously with tons of people without the need to make friends.</p>                    \
-		  <p>A chat lobby can be public (you friends see it) or private (your friends can't see it, unless you           \
+		  <p>A chat lobby can be public (your friends see it) or private (your friends can't see it, unless you           \
 		  invite them with <img src=\":/images/add_24x24.png\" width=12/>). Once you have been invited to a private lobby, you will be able to see it when your friends   \
 		  are using it.</p>                                                                                               \
 		  <p>The list at left shows                                                                                     \
-		  chat lobbies your friends are participating into. You can either                                 \
+		  chat lobbies your friends are participating in. You can either                                 \
 		  <ul>                                                                                                            \
 			  <li>Right click to create a new chat lobby</li>                                                              \
 		     <li>Double click a chat lobby to enter, chat, and show it to your friends</li>                      \
@@ -173,7 +173,7 @@ void ChatLobbyWidget::lobbyTreeWidgetCustomPopupMenu(QPoint)
         if (item->data(COLUMN_DATA, ROLE_AUTOSUBSCRIBE).toBool()) {
             contextMnu.addAction(QIcon(IMAGE_AUTOSUBSCRIBE), tr("Remove Auto Subscribe"), this, SLOT(autoSubscribeItem()));
         } else {
-            contextMnu.addAction(QIcon(IMAGE_UNSUBSCRIBE), tr("Add Auto Subscribe"), this, SLOT(autoSubscribeItem()));
+            contextMnu.addAction(QIcon(IMAGE_SUBSCRIBE), tr("Add Auto Subscribe"), this, SLOT(autoSubscribeItem()));
         }
 	}
 
@@ -351,15 +351,24 @@ void ChatLobbyWidget::updateDisplay()
 			}
 		}
 
-		if (item == NULL) {
-			item = new RSTreeWidgetItem(compareRole, TYPE_LOBBY);
-			item->setIcon(COLUMN_NAME, (lobby_item == publicLobbyItem) ? QIcon(IMAGE_PUBLIC) : QIcon(IMAGE_PRIVATE));
-			lobby_item->addChild(item);
-		}
-
 		bool subscribed = false;
 		if (rsMsgs->getVirtualPeerId(lobby.lobby_id, vpid)) {
 			subscribed = true;
+		}
+
+		QIcon icon;
+		if (item == NULL) {
+			item = new RSTreeWidgetItem(compareRole, TYPE_LOBBY);
+			icon = (lobby_item == publicLobbyItem) ? QIcon(IMAGE_PUBLIC) : QIcon(IMAGE_PRIVATE);
+			lobby_item->addChild(item);
+		} else {
+			if (item->data(COLUMN_DATA, ROLE_SUBSCRIBED).toBool() != subscribed) {
+				// Replace icon
+				icon = (lobby_item == publicLobbyItem) ? QIcon(IMAGE_PUBLIC) : QIcon(IMAGE_PRIVATE);
+			}
+		}
+		if (!icon.isNull()) {
+			item->setIcon(COLUMN_NAME, subscribed ? icon : icon.pixmap(lobbyTreeWidget->iconSize(), QIcon::Disabled));
 		}
 
         bool autoSubscribe = rsMsgs->getLobbyAutoSubscribe(lobby.lobby_id);
@@ -412,10 +421,19 @@ void ChatLobbyWidget::updateDisplay()
 			}
 		}
 
+		QIcon icon;
 		if (item == NULL) {
 			item = new RSTreeWidgetItem(compareRole, TYPE_LOBBY);
-			item->setIcon(COLUMN_NAME, (itemParent == publicLobbyItem) ? QIcon(IMAGE_PUBLIC) : QIcon(IMAGE_PRIVATE));
+			icon = (itemParent == publicLobbyItem) ? QIcon(IMAGE_PUBLIC) : QIcon(IMAGE_PRIVATE);
 			itemParent->addChild(item);
+		} else {
+			if (!item->data(COLUMN_DATA, ROLE_SUBSCRIBED).toBool()) {
+				// Replace icon
+				icon = (itemParent == publicLobbyItem) ? QIcon(IMAGE_PUBLIC) : QIcon(IMAGE_PRIVATE);
+			}
+		}
+		if (!icon.isNull()) {
+			item->setIcon(COLUMN_NAME, icon);
 		}
 
         bool autoSubscribe = rsMsgs->getLobbyAutoSubscribe(lobby.lobby_id);
