@@ -675,6 +675,45 @@ RsConfigKeyValueSet *RsGeneralConfigSerialiser::deserialiseKeyValueSet(void *dat
 /*************************************************************************/
 /*************************************************************************/
 /*************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
+
+RsPeerNetInformationsItem::~RsPeerNetInformationsItem()
+{
+    return;
+}
+
+void RsPeerNetInformationsItem::clear()
+{
+    pid.clear();
+    gpg_id.clear();
+    location.clear();
+    personnalInfo.clear();
+}
+
+std::ostream &RsPeerNetInformationsItem::print(std::ostream &out, uint16_t indent)
+{
+    printRsItemBase(out, "RsPeerNetInformationsItem", indent);
+    uint16_t int_Indent = indent + 2;
+
+    printIndent(out, int_Indent);
+    out << "PeerId: " << pid << std::endl;
+
+    printIndent(out, int_Indent);
+    out << "GPGid: " << gpg_id << std::endl;
+
+    printIndent(out, int_Indent);
+    out << "location: " << location << std::endl;
+
+    printIndent(out, int_Indent);
+    out << "PersonnalInfo: " << personnalInfo << std::endl;
+
+    printRsItemEnd(out, "RsPeerNetInformationsItem", indent);
+    return out;
+}
+
+/******************************************************************************/
+/******************************************************************************/
 
 RsPeerConfigSerialiser::~RsPeerConfigSerialiser()
 {
@@ -688,6 +727,7 @@ uint32_t    RsPeerConfigSerialiser::size(RsItem *i)
 	RsPeerNetItem *pni;
 	RsPeerGroupItem *pgi;
 	RsPeerServicePermissionItem *pri;
+    RsPeerNetInformationsItem *pnii;
 
 	if (NULL != (oldpni = dynamic_cast<RsPeerOldNetItem *>(i)))
 	{
@@ -709,6 +749,10 @@ uint32_t    RsPeerConfigSerialiser::size(RsItem *i)
 	{
 		return sizePermissions(pri);
 	}
+    else if (NULL != (pnii = dynamic_cast<RsPeerNetInformationsItem *>(i)))
+    {
+        return sizeInformations(pnii);
+    }
 
 	return 0;
 }
@@ -721,6 +765,7 @@ bool    RsPeerConfigSerialiser::serialise(RsItem *i, void *data, uint32_t *pktsi
 	RsPeerStunItem *psi;
 	RsPeerGroupItem *pgi;
 	RsPeerServicePermissionItem *pri;
+    RsPeerNetInformationsItem *pnii;
 
 	if (NULL != (oldpni = dynamic_cast<RsPeerOldNetItem *>(i)))
 	{
@@ -742,6 +787,10 @@ bool    RsPeerConfigSerialiser::serialise(RsItem *i, void *data, uint32_t *pktsi
 	{
 		return serialisePermissions(pri, data, pktsize);
 	}
+    else if (NULL != (pnii = dynamic_cast<RsPeerNetInformationsItem *>(i)))
+    {
+        return serialiseInformations(pnii, data, pktsize);
+    }
 
 	return false;
 }
@@ -776,6 +825,8 @@ RsItem *RsPeerConfigSerialiser::deserialise(void *data, uint32_t *pktsize)
 			return deserialiseGroup(data, pktsize);
 		case RS_PKT_SUBTYPE_PEER_PERMISSIONS:
 			return deserialisePermissions(data, pktsize);
+        case RS_PKT_SUBTYPE_PEER_INFORMATIONS:
+            return deserialiseInformations(data, pktsize);
 		default:
 			return NULL;
 	}
@@ -1684,10 +1735,136 @@ RsPeerServicePermissionItem *RsPeerConfigSerialiser::deserialisePermissions(void
 	return item;
 }
 
+/******************************************************************************/
+
+uint32_t RsPeerConfigSerialiser::sizeInformations(RsPeerNetInformationsItem *i)
+{
+    uint32_t s = 8; /* header */
+    s += GetTlvStringSize(i->pid); /* peerid */
+    s += GetTlvStringSize(i->gpg_id);
+    s += GetTlvStringSize(i->location);
+    s += GetTlvStringSize(i->personnalInfo);
+
+    return s;
+
+}
+
+bool RsPeerConfigSerialiser::serialiseInformations(RsPeerNetInformationsItem *item, void *data, uint32_t *size)
+{
+    uint32_t tlvsize = RsPeerConfigSerialiser::sizeInformations(item);
+    uint32_t offset = 0;
+
+#ifdef RSSERIAL_DEBUG
+    std::cerr << "RsPeerConfigSerialiser::serialiseInformations() tlvsize: " << tlvsize << std::endl;
+#endif
+
+    if(*size < tlvsize)
+    {
+#ifdef RSSERIAL_ERROR_DEBUG
+        std::cerr << "RsPeerConfigSerialiser::serialiseInformations() ERROR not enough space" << std::endl;
+#endif
+        return false; /* not enough space */
+    }
+
+    *size = tlvsize;
+
+    bool ok = true;
+
+    ok &= setRsItemHeader(data, tlvsize, item->PacketId(), tlvsize);
+
+#ifdef RSSERIAL_DEBUG
+    std::cerr << "RsPeerConfigSerialiser::serialiseInformations() Header: " << ok << std::endl;
+    std::cerr << "RsPeerConfigSerialiser::serialiseInformations() Header test: " << tlvsize << std::endl;
+#endif
+
+    /* skip the header */
+    offset += 8;
+
+    /* add mandatory parts first */
+    ok &= SetTlvString(data, tlvsize, &offset, TLV_TYPE_STR_PEERID, item->pid); /* Mandatory */
+    ok &= SetTlvString(data, tlvsize, &offset, TLV_TYPE_STR_GPGID, item->gpg_id); /* Mandatory */
+    ok &= SetTlvString(data, tlvsize, &offset, TLV_TYPE_STR_LOCATION, item->location); /* Mandatory */
+    ok &= SetTlvString(data, tlvsize, &offset, TLV_TYPE_STR_PERSOINFO, item->personnalInfo);
+
+    if(offset != tlvsize)
+    {
+        ok = false;
+#ifdef RSSERIAL_ERROR_DEBUG
+        std::cerr << "RsPeerConfigSerialiser::serialiseInformations() Size Error! " << std::endl;
+#endif
+    }
+
+    return ok;
+
+}
+
+RsPeerNetInformationsItem *RsPeerConfigSerialiser::deserialiseInformations(void *data, uint32_t *size)
+{
+    /* get the type and size */
+    uint32_t rstype = getRsItemId(data);
+    uint32_t rssize = getRsItemSize(data);
+
+    uint32_t offset = 0;
 
 
-/****************************************************************************/
+#ifdef RSSERIAL_DEBUG
+    std::cerr << "RsPeerConfigSerialiser::deserialiseInformations() rssize: " << rssize << std::endl;
+#endif
 
+    if ((RS_PKT_VERSION1 != getRsItemVersion(rstype)) ||
+        (RS_PKT_CLASS_CONFIG != getRsItemClass(rstype)) ||
+        (RS_PKT_TYPE_PEER_CONFIG  != getRsItemType(rstype)) ||
+        (RS_PKT_SUBTYPE_PEER_INFORMATIONS != getRsItemSubType(rstype)))
+    {
+#ifdef RSSERIAL_ERROR_DEBUG
+        std::cerr << "RsPeerConfigSerialiser::deserialiseInformations() ERROR Type" << std::endl;
+#endif
+        return NULL; /* wrong type */
+    }
+
+    if (*size < rssize)    /* check size */
+    {
+#ifdef RSSERIAL_ERROR_DEBUG
+        std::cerr << "RsPeerConfigSerialiser::deserialiseInformations() ERROR not enough data" << std::endl;
+#endif
+        return NULL; /* not enough data */
+    }
+
+    /* set the packet length */
+    *size = rssize;
+
+    bool ok = true;
+
+    RsPeerNetInformationsItem *item = new RsPeerNetInformationsItem();
+    item->clear();
+
+    /* skip the header */
+    offset += 8;
+
+    /* get mandatory parts first */
+    ok &= GetTlvString(data, rssize, &offset, TLV_TYPE_STR_PEERID, item->pid); /* Mandatory */
+    ok &= GetTlvString(data, rssize, &offset, TLV_TYPE_STR_GPGID, item->gpg_id); /* Mandatory */
+    ok &= GetTlvString(data, rssize, &offset, TLV_TYPE_STR_LOCATION, item->location); /* Mandatory */
+    ok &= GetTlvString(data, rssize, &offset, TLV_TYPE_STR_PERSOINFO, item->personnalInfo);
+
+
+    if (offset != rssize)
+    {
+#ifdef RSSERIAL_ERROR_DEBUG
+        std::cerr << "RsPeerConfigSerialiser::deserialiseInformations() ERROR size mismatch" << std::endl;
+#endif
+        /* error */
+        delete item;
+        return NULL;
+    }
+
+    return item;
+}
+
+
+/******************************************************************************/
+/* CACHE CONFIG                                                               */
+/******************************************************************************/
 
 RsCacheConfig::~RsCacheConfig()
 {

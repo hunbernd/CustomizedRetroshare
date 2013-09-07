@@ -1186,6 +1186,37 @@ bool    p3PeerMgrIMPL::setLocation(const std::string &id, const std::string &loc
         return changed;
 }
 
+
+bool    p3PeerMgrIMPL::setPersonnalInfo(const std::string &id, const std::string &personnalInfo)
+{
+        bool changed = false;
+
+        RsStackMutex stack(mPeerMtx); /****** STACK LOCK MUTEX *******/
+
+#ifdef PEER_DEBUG
+        std::cerr << "p3PeerMgrIMPL::setPersonnalInfo() called for id : " << id << "; with personnalInfo " << personnalInfo << std::endl;
+#endif
+        if (id == AuthSSL::getAuthSSL()->OwnId())
+        {
+			if (mOwnState.personnalInfo.compare(personnalInfo) != 0) {
+                mOwnState.personnalInfo = personnalInfo;
+                changed = true;
+            }
+            return changed;
+        }
+
+        /* check if it is a friend */
+        std::map<std::string, peerState>::iterator it;
+        if (mFriendList.end() != (it = mFriendList.find(id))) {
+            if (it->second.personnalInfo.compare(personnalInfo) != 0) {
+	            it->second.personnalInfo = personnalInfo;
+	            IndicateConfigChanged(); /**** INDICATE MSG CONFIG CHANGED! *****/
+                changed = true;
+            }
+        }
+        return changed;
+}
+
 bool    p3PeerMgrIMPL::setVisState(const std::string &id, uint32_t visState)
 {
 	{
@@ -1311,6 +1342,8 @@ bool p3PeerMgrIMPL::saveList(bool &cleanup, std::list<RsItem *>& saveData)
 
 	RsPeerNetItem *item = new RsPeerNetItem();
 	item->clear();
+    RsPeerNetInformationsItem *infoItem = new RsPeerNetInformationsItem();
+    infoItem->clear();
 
 	item->pid = getOwnId();
         item->gpg_id = mOwnState.gpg_id;
@@ -1355,21 +1388,26 @@ bool p3PeerMgrIMPL::saveList(bool &cleanup, std::list<RsItem *>& saveData)
 	{
 		item = new RsPeerNetItem();
 		item->clear();
+        infoItem = new RsPeerNetInformationsItem();
+        infoItem->clear();
 
-		item->pid = it->first;
-		item->gpg_id = (it->second).gpg_id;
-		item->location = (it->second).location;
+        item->pid = infoItem->pid = it->first;
+        item->gpg_id = infoItem->gpg_id = (it->second).gpg_id;
+        item->location = infoItem->location = (it->second).location;
 		item->netMode = (it->second).netMode;
 		item->visState = (it->second).visState;
 		item->lastContact = (it->second).lastcontact;
 		item->currentlocaladdr = (it->second).localaddr;
 		item->currentremoteaddr = (it->second).serveraddr;
 		item->dyndns = (it->second).dyndns;
+        infoItem->personnalInfo = (it->second).personnalInfo;
 		(it->second).ipAddrs.mLocal.loadTlv(item->localAddrList);
 		(it->second).ipAddrs.mExt.loadTlv(item->extAddrList);
 
 		saveData.push_back(item);
 		saveCleanupList.push_back(item);
+        saveData.push_back(infoItem);
+        saveCleanupList.push_back(infoItem);
 #ifdef PEER_DEBUG
 		std::cerr << "p3PeerMgrIMPL::saveList() Peer Config Item:" << std::endl;
 		item->print(std::cerr, 10);
@@ -1575,6 +1613,37 @@ bool  p3PeerMgrIMPL::loadList(std::list<RsItem *>& load)
 				}
 				else
 					std::cerr << "   " << sitem->pgp_ids[i] << " - Not a friend!" << std::endl;
+            delete(*it);
+
+            continue;
+        }
+        RsPeerNetInformationsItem *pniitem = dynamic_cast<RsPeerNetInformationsItem*>(*it) ;
+
+        if(pniitem)
+        {
+            if (pniitem->pid == ownId)
+            {
+#ifdef PEER_DEBUG
+                std::cerr << "p3PeerMgrIMPL::loadList() Own Informations Item:" << std::endl;
+                pniitem->print(std::cerr, 10);
+                std::cerr << std::endl;
+#endif
+                mOwnState.personnalInfo = pniitem->personnalInfo;
+            }
+            else
+            {
+#ifdef PEER_DEBUG
+                std::cerr << "p3PeerMgrIMPL::loadList() Peer Informations Item:" << std::endl;
+                pniitem->print(std::cerr, 10);
+                std::cerr << std::endl;
+#endif
+                /* ************* */
+                setPersonnalInfo(pniitem->pid,pniitem->personnalInfo);
+            }
+
+            delete(*it);
+
+            continue;
 		}
 
 		delete (*it);

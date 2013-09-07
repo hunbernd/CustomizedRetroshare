@@ -61,6 +61,7 @@ private slots:
     void showHelpDialog();
     /** Called when a child window requests the given help <b>topic</b>. */
     void showHelpDialog(const QString &topic);
+    void setPersonnalInfo();
 
 private:
     std::string mId;

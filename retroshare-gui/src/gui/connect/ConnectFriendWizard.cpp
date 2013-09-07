@@ -675,6 +675,10 @@ void ConnectFriendWizard::accept()
 			std::cerr << "ConnectFriendWizard::accept() : setting peerLocation." << std::endl;
 			rsPeers->setLocation(peerDetails.id, peerDetails.location);
 		}
+		if (!peerDetails.personnalInfo.empty()) {
+			std::cerr << "ConnectFriendWizard::accept() : setting personnalInfo." << std::endl;
+			rsPeers->setPersonnalInfo(peerDetails.id, peerDetails.personnalInfo);
+		}
 	}
 		
 	if (runProgressDialog)

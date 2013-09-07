@@ -243,7 +243,7 @@ bool p3Peers::haveSecretKey(const std::string& id)
 }
 
 /* There are too many dependancies of this function
- * to shift it immeidately
+ * to shift it immediately
  */
 
 bool	p3Peers::getPeerDetails(const std::string &id, RsPeerDetails &d)
@@ -310,6 +310,7 @@ bool	p3Peers::getPeerDetails(const std::string &id, RsPeerDetails &d)
 	d.dyndns        = ps.dyndns;
 	d.lastConnect	= ps.lastcontact;
 	d.connectPeriod = 0;
+	d.personnalInfo = ps.personnalInfo;
 
 	std::list<pqiIpAddress>::iterator it;
 	for(it = ps.ipAddrs.mLocal.mAddrs.begin(); 
@@ -841,6 +842,15 @@ p3Peers::setVisState(const std::string &id, uint32_t extVisState)
 	return mPeerMgr->setVisState(id, visState);
 }
 
+bool 	p3Peers::setPersonnalInfo(const std::string &id, const std::string &personnalInfo)
+{
+#ifdef P3PEERS_DEBUG
+        std::cerr << "p3Peers::setPersonnalInfo() " << id << std::endl;
+#endif
+
+        return mPeerMgr->setPersonnalInfo(id, personnalInfo);
+}
+
 //===========================================================================
 	/* Auth Stuff */
 std::string
@@ -1183,7 +1193,7 @@ RsPeerDetails::RsPeerDetails()
 	hasSignedMe(false),accept_connection(false),
 	state(0),localAddr(""),localPort(0),extAddr(""),extPort(0),netMode(0),visState(0),
 	lastConnect(0),connectState(0),connectStateString(""),connectPeriod(0),foundDHT(false), 
-	wasDeniedConnection(false), deniedTS(0)
+	wasDeniedConnection(false), deniedTS(0),personnalInfo("")
 {
 }
 
@@ -1230,6 +1240,7 @@ std::ostream &operator<<(std::ostream &out, const RsPeerDetails &detail)
 
 
 	out << " lastConnect:       " << detail.lastConnect;
+	out << " personnalInfo:" << detail.personnalInfo;
 	out << " connectPeriod:     " << detail.connectPeriod;
 	out << std::endl;
 

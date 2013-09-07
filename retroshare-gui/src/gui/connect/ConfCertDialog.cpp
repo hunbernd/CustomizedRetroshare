@@ -191,6 +191,7 @@ void ConfCertDialog::load()
         ui.avatar->setId(mId, false);
 
         ui.loc->setText(QString::fromUtf8(detail.location.c_str()));
+        ui.info->setText(QString::fromUtf8(detail.personnalInfo.c_str()));
         // Dont Show a timestamp in RS calculate the day
         ui.lastcontact->setText(DateTime::formatLongDateTime(detail.lastConnect));
 
@@ -433,6 +434,7 @@ void ConfCertDialog::applyDialog()
         bool localChanged = false;
         bool extChanged = false;
         bool dnsChanged = false;
+        bool persoInfoChange = false;
 
         /* set local address */
         if ((detail.localAddr != ui.localAddress->text().toStdString()) || (detail.localPort != ui.localPort -> value()))
@@ -444,6 +446,9 @@ void ConfCertDialog::applyDialog()
         if ((detail.dyndns != ui.dynDNS->text().toStdString()))
             dnsChanged = true;
 
+        if ((detail.personnalInfo != ui.info->text().toStdString()))
+            persoInfoChange = true;
+
         /* now we can action the changes */
         if (localChanged)
             rsPeers->setLocalAddress(mId, ui.localAddress->text().toStdString(), ui.localPort->value());
@@ -454,7 +459,10 @@ void ConfCertDialog::applyDialog()
         if (dnsChanged)
             rsPeers->setDynDNS(mId, ui.dynDNS->text().toStdString());
 
-        if(localChanged || extChanged || dnsChanged)
+        if (persoInfoChange)
+            rsPeers->setPersonnalInfo(mId,ui.info->text().toStdString());
+
+        if(localChanged || extChanged || dnsChanged || persoInfoChange)
             emit configChanged();
     }
 
@@ -513,3 +521,20 @@ void ConfCertDialog::showHelpDialog(const QString &topic)
 {
     HelpBrowser::showWindow(topic);
 }
+
+/** Set personnalInfo Property. */
+void ConfCertDialog::setPersonnalInfo()
+{
+    RsPeerDetails detail;
+    if (!rsPeers->getPeerDetails(mId, detail))
+    {
+        QMessageBox::information(this,
+                                 tr("RetroShare"),
+                                 tr("Error : cannot get peer details."));
+        close();
+        return;
+    }
+    detail.personnalInfo=ui.info->text().toStdString();
+    rsPeers->setPersonnalInfo(mId,detail.personnalInfo);
+}
+

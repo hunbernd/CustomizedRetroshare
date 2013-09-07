@@ -89,6 +89,7 @@ virtual	bool setExtAddress(const std::string &id, const std::string &addr, uint1
 virtual	bool setDynDNS(const std::string &id, const std::string &dyndns);
 virtual	bool setNetworkMode(const std::string &id, uint32_t netMode);
 virtual bool setVisState(const std::string &id, uint32_t mode); 
+virtual bool setPersonnalInfo(const std::string &id, const std::string &personnalInfo);
 
 virtual void getIPServersList(std::list<std::string>& ip_servers) ;
 virtual void allowServerIPDetermination(bool) ;

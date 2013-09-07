@@ -224,6 +224,7 @@ class RsPeerDetails
 	std::string		connectStateString; /* Additional string like ip address */
 	uint32_t		connectPeriod;
 	bool			foundDHT;
+    std::string     personnalInfo;
 
 	/* have we been denied */
 	bool			wasDeniedConnection;
@@ -316,6 +317,7 @@ class RsPeers
 		virtual	bool setDynDNS(const std::string &id, const std::string &addr) = 0;
 		virtual	bool setNetworkMode(const std::string &ssl_id, uint32_t netMode) 	= 0;
 		virtual bool setVisState(const std::string &ssl_id, uint32_t vis)		= 0;
+        virtual bool setPersonnalInfo(const std::string &ssl_id, const std::string &personalInfo) = 0;
 
 		virtual void getIPServersList(std::list<std::string>& ip_servers) = 0;
 		virtual void allowServerIPDetermination(bool) = 0;

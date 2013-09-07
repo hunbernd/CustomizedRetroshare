@@ -53,6 +53,7 @@ const uint8_t RS_PKT_SUBTYPE_PEER_STUN        = 0x02;
 const uint8_t RS_PKT_SUBTYPE_PEER_NET         = 0x03;     /* replacement for OLD_NET */
 const uint8_t RS_PKT_SUBTYPE_PEER_GROUP       = 0x04;
 const uint8_t RS_PKT_SUBTYPE_PEER_PERMISSIONS = 0x05;
+const uint8_t RS_PKT_SUBTYPE_PEER_INFORMATIONS = 0x06;
 
 	/* FILE CONFIG SUBTYPES */
 const uint8_t RS_PKT_SUBTYPE_FILE_TRANSFER = 0x01;
@@ -175,6 +176,25 @@ std::ostream &print(std::ostream &out, uint16_t indent = 0);
 	RsTlvPeerIdSet stunList;		  /* Mandatory */
 };
 
+class RsPeerNetInformationsItem: public RsItem
+{
+public:
+    RsPeerNetInformationsItem()
+        :RsItem(RS_PKT_VERSION1, RS_PKT_CLASS_CONFIG,
+                RS_PKT_TYPE_PEER_CONFIG,
+                RS_PKT_SUBTYPE_PEER_INFORMATIONS)
+    { return; }
+    virtual ~RsPeerNetInformationsItem();
+    virtual void clear();
+    std::ostream &print(std::ostream &out, uint16_t indent = 0);
+
+    /* networking information */
+    std::string pid;                          /* Mandatory */
+    std::string gpg_id;                       /* Mandatory */
+    std::string location;                     /* not Mandatory */
+    std::string personnalInfo;                /* not Mandatory */
+};
+
 class RsPeerConfigSerialiser: public RsSerialType
 {
 	public:
@@ -212,6 +232,10 @@ virtual	RsPeerGroupItem *    deserialiseGroup(void *data, uint32_t *size);
 virtual	uint32_t    sizePermissions(RsPeerServicePermissionItem *);
 virtual	bool        serialisePermissions  (RsPeerServicePermissionItem *item, void *data, uint32_t *size);
 virtual	RsPeerServicePermissionItem *    deserialisePermissions(void *data, uint32_t *size);
+
+    virtual	uint32_t    sizeInformations(RsPeerNetInformationsItem *);
+    virtual	bool        serialiseInformations  (RsPeerNetInformationsItem *item, void *data, uint32_t *size);
+    virtual	RsPeerNetInformationsItem *    deserialiseInformations(void *data, uint32_t *size);
 };
 
 /**************************************************************************/

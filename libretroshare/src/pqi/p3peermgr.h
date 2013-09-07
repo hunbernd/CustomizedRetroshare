@@ -101,6 +101,7 @@ class peerState
 
 	std::string location;
 	std::string name;
+	std::string personnalInfo;
 
 };
 
@@ -166,6 +167,8 @@ virtual bool    setLocation(const std::string &pid, const std::string &location)
 virtual bool    updateCurrentAddress(const std::string& id, const pqiIpAddress &addr) = 0;
 virtual bool    updateLastContact(const std::string& id) = 0;
 virtual bool    updateAddressList(const std::string& id, const pqiIpAddrSet &addrs) = 0;
+
+virtual bool    setPersonnalInfo(const std::string &pid, const std::string &personnalInfo) = 0;
 
 
 		// THIS MUST ONLY BE CALLED BY NETMGR!!!!
@@ -257,6 +260,8 @@ virtual bool    setLocation(const std::string &pid, const std::string &location)
 virtual bool    updateCurrentAddress(const std::string& id, const pqiIpAddress &addr);
 virtual bool    updateLastContact(const std::string& id);
 virtual bool    updateAddressList(const std::string& id, const pqiIpAddrSet &addrs);
+
+virtual bool    setPersonnalInfo(const std::string &id, const std::string &personnalInfo);
 
 
 		// THIS MUST ONLY BE CALLED BY NETMGR!!!!
