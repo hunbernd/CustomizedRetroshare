@@ -184,17 +184,46 @@ const std::string CupCake::currentDateTime()
     return buf;
 }
 
-void CupCake::processMessage(std::string pid, const ChatInfo &cinfo)
+void CupCake::processMessage(const ChatInfo &cinfo)
 {
+    //get message as plaintext
+    QTextEdit editor;
+    editor.setHtml(QString::fromStdWString(cinfo.msg));
+    QString msg = editor.toPlainText();
+
+    //log
     std::stringstream ss;
     ss << "New message:";
-    ss << " pid: " << pid;
     ss << " rsid: " << cinfo.rsid;
     ss << " peername: " << rsPeers->getPeerName(cinfo.rsid);
     ss << " nick: " << cinfo.peer_nickname;
-    std::string msg(cinfo.msg.begin(), cinfo.msg.end());
-    ss << " message: " << msg;
+    ss << " message: " << msg.toStdString();
     log(ss.str(), 0);
+
+    //auto answers
+    if(msg.startsWith(QString::fromStdString("ping"), Qt::CaseInsensitive))
+    {
+        log("Command received: ping, from: " + cinfo.peer_nickname + " vpid: " + cinfo.rsid, 1);
+        rsMsgs->sendPrivateChat(cinfo.rsid, (QString::fromStdString(cinfo.peer_nickname) + QString::fromStdString(": pong")).toStdWString());
+    }
+    if(msg.startsWith(QString::fromStdString("/help"), Qt::CaseInsensitive) || msg.startsWith(QString::fromStdString("!help"), Qt::CaseInsensitive))
+    {
+        log("Command received: /help, from: " + cinfo.peer_nickname + " vpid: " + cinfo.rsid, 1);
+        std::wstringstream ss;
+        ss << L"<pre>";
+        ss << L"/help             this message" << std::endl;
+        ss << L"!help             this message" << std::endl;
+        ss << L"ping" << std::endl;
+        ss << L"/echo message     repeats the message" << std::endl;
+        ss << L"</pre>";
+        rsMsgs->sendPrivateChat(cinfo.rsid, ss.str());
+    }
+    if(msg.startsWith(QString::fromStdString("/echo "), Qt::CaseInsensitive))
+    {
+        log("Command received: /echo, from: " + cinfo.peer_nickname + " vpid: " + cinfo.rsid, 1);
+        QString echo = msg.mid(QString::fromStdString("/echo ").length());
+        rsMsgs->sendPrivateChat(cinfo.rsid, echo.toStdWString());
+    }
 }
 
 /*

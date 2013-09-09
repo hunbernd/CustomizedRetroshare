@@ -18,6 +18,7 @@
 #include <QObject>
 #include <ctime>
 #include<sstream>
+#include <QTextEdit>
 
 #include <retroshare/rsmsgs.h>
 #include <retroshare/rschannels.h>
@@ -34,7 +35,7 @@ public:
     void log(std::string msg, int loglevel);
     static CupCake* getInstance();
     unsigned int checkInterval;
-    void processMessage(std::string pid, const ChatInfo &cinfo);
+    void processMessage(const ChatInfo &cinfo);
 
 public slots:
     void tick();

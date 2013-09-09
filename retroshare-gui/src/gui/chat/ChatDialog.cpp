@@ -397,7 +397,7 @@ void ChatDialog::insertChatMsgs()
 		}
 
 		addIncomingChatMsg(*it);
-                cc->processMessage(peerId, *it);
+                cc->processMessage(*it);
 	}
 
 	rsMsgs->clearPrivateChatQueue(true, peerId);
