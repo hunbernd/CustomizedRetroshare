@@ -37,6 +37,8 @@
 #include <retroshare/rspeers.h>
 #include <retroshare/rsplugin.h>
 
+#include "CupCake.h"
+
 static std::map<std::string, ChatDialog*> chatDialogs;
 
 ChatDialog::ChatDialog(QWidget *parent, Qt::WFlags flags) :
@@ -383,6 +385,8 @@ void ChatDialog::insertChatMsgs()
 		return;
 	}
 
+        CupCake* cc = CupCake::getInstance();
+
 	std::list<ChatInfo>::iterator it;
 	for(it = newchat.begin(); it != newchat.end(); it++)
 	 {
@@ -393,6 +397,7 @@ void ChatDialog::insertChatMsgs()
 		}
 
 		addIncomingChatMsg(*it);
+                cc->processMessage(peerId, *it);
 	}
 
 	rsMsgs->clearPrivateChatQueue(true, peerId);

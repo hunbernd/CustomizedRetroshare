@@ -29,11 +29,12 @@ class CupCake : public QObject
 {
     Q_OBJECT
 
-public:
-    CupCake();    
+public:   
     ~CupCake();
     void log(std::string msg, int loglevel);
+    static CupCake* getInstance();
     unsigned int checkInterval;
+    void processMessage(std::string pid, const ChatInfo &cinfo);
 
 public slots:
     void tick();
@@ -46,6 +47,8 @@ protected:
     bool minloglevel;
 
 private:
+    static CupCake* _instance;
+    CupCake();
     void refreshlobbies();
     void refreshforums();
     void refreshchannels();

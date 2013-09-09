@@ -363,7 +363,7 @@ int main(int argc, char *argv[])
 	notify->enable() ;	// enable notification system after GUI creation, to avoid data races in Qt.
 
         //Cupcake
-        CupCake *cupcake = new CupCake();
+        CupCake *cupcake = CupCake::getInstance();
         QTimer *cctimer = new QTimer(w);
         cctimer->connect(cctimer, SIGNAL(timeout()), cupcake, SLOT(tick()));
         cctimer->start(1000 * (cupcake->checkInterval));

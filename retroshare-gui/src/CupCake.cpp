@@ -1,5 +1,7 @@
 #include "CupCake.h"
 
+CupCake* CupCake::_instance = NULL;
+
 CupCake::CupCake()
 {
     checkInterval = 30;
@@ -17,6 +19,15 @@ CupCake::CupCake()
     //lid = 0;
 }
 
+CupCake* CupCake::getInstance()
+{
+    if(_instance == NULL)
+    {
+        _instance = new CupCake();
+    }
+    return _instance;
+}
+
 void CupCake::tick()
 {
     log("begin tick", 0);
@@ -24,7 +35,7 @@ void CupCake::tick()
     refreshlobbies();
     refreshchannels();
     refreshforums();
-    //printstatistics();
+
 
     log("end tick", 0);
 }
@@ -103,7 +114,11 @@ void CupCake::refreshlobbies()
             if(rsMsgs->getVirtualPeerId(lid, vpid))
             {
                 ChatDialog::chatFriend(vpid,false);
-                log("Subscribed to lobby: " + it->lobby_name, 1);
+                std::stringstream ss;
+                ss << "Subscribed to lobby: " << it->lobby_name;
+                ss << ", vpid: " << vpid;
+                ss << ", lid: " << it->lobby_id;
+                log(ss.str(), 1);
             }
             else
             {
@@ -169,6 +184,18 @@ const std::string CupCake::currentDateTime()
     return buf;
 }
 
+void CupCake::processMessage(std::string pid, const ChatInfo &cinfo)
+{
+    std::stringstream ss;
+    ss << "New message:";
+    ss << " pid: " << pid;
+    ss << " rsid: " << cinfo.rsid;
+    ss << " peername: " << rsPeers->getPeerName(cinfo.rsid);
+    ss << " nick: " << cinfo.peer_nickname;
+    std::string msg(cinfo.msg.begin(), cinfo.msg.end());
+    ss << " message: " << msg;
+    log(ss.str(), 0);
+}
 
 /*
 CupCake::createOrRejoinLobby()
