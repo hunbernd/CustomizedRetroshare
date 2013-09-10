@@ -264,18 +264,22 @@ void p3MsgService::checkSizeAndSendMessage(RsMsgItem *msg)
 		item->message = item->message.substr(0,MAX_STRING_SIZE) ;
 		msg->message = msg->message.substr(MAX_STRING_SIZE,msg->message.size()-MAX_STRING_SIZE) ;
 
+#ifdef DEBUG_DISTANT_MSG
 		std::cerr << "  Chopped off msg of size " << item->message.size() << std::endl;
+#endif
 
 		// Indicate that the message is to be continued.
 		//
 		item->msgFlags |= RS_MSG_FLAGS_PARTIAL ;
 
 		if(msg->msgFlags & RS_MSG_FLAGS_DISTANT)
-			sendPrivateMsgItem(msg) ;
+			sendPrivateMsgItem(item) ;
 		else
 			sendItem(item) ;
 	}
+#ifdef DEBUG_DISTANT_MSG
 	std::cerr << "  Chopped off msg of size " << msg->message.size() << std::endl;
+#endif
 
 	if(msg->msgFlags & RS_MSG_FLAGS_DISTANT)
 		sendPrivateMsgItem(msg) ;
@@ -591,7 +595,9 @@ bool    p3MsgService::loadList(std::list<RsItem*>& load)
 	}
 	if(!distant_messaging_set)
 	{
+#ifdef DEBUG_DISTANT_MSG
 		std::cerr << "No config value for distant messaging. Setting it to true." << std::endl;
+#endif
 		enableDistantMessaging(true) ;
 	}
 
@@ -1764,7 +1770,7 @@ bool p3MsgService::encryptMessage(const std::string& pgp_id,RsMsgItem *item)
 #endif
 	if(!_serialiser->serialise(item,&data[1+KEY_ID_SIZE],&rssize))
 	{
-		std::cerr << "(EE) p3MsgService::sendTurtleData(): Serialization error." << std::endl;
+		std::cerr << "(EE) p3MsgService::encryptMessage(): Serialization error." << std::endl;
 		free(data) ;
 		return false;
 	}
