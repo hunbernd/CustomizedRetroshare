@@ -6,7 +6,7 @@ CupCake::CupCake()
 {
     checkInterval = 30;
     maxFriends = 10;
-    minloglevel = 0;
+    minloglevel = 1;
     forumstat = 0;
     chatstat = 0;
     channelstat = 0;
@@ -106,7 +106,7 @@ void CupCake::refreshlobbies()
     for (std::vector<VisibleChatLobbyRecord>::const_iterator it = visibleLobbies.begin(); it != visibleLobbies.end();++it) {
         lid = it->lobby_id;
         //check if we are subcribed
-        if(!rsMsgs->getVirtualPeerId(lid, vpid))
+        if((!rsMsgs->getVirtualPeerId(lid, vpid)) && (it->total_number_of_peers > 2))
         {
             //join
             rsMsgs->joinVisibleChatLobby(lid);
