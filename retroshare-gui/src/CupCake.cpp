@@ -11,6 +11,8 @@ CupCake::CupCake()
     chatstat = 0;
     channelstat = 0;
     unsubcribeMonths = 2;
+    lastCommand = time(0);
+    timeBetweenCommands = 5.0;
     //tickCounter = 0;
     //longeCycle = 4;
     ofs.open("Cupcake.log");
@@ -224,7 +226,7 @@ const std::string CupCake::currentDateTime(time_t now)
 }
 
 void CupCake::processMessage(const ChatInfo &cinfo)
-{
+{           
     //get message as plaintext
     QTextEdit editor;
     editor.setHtml(QString::fromStdWString(cinfo.msg));
@@ -239,29 +241,35 @@ void CupCake::processMessage(const ChatInfo &cinfo)
     ss << " message: " << msg.toStdString();
     log(ss.str(), 0);
 
+    if(difftime(time(0), lastCommand) < timeBetweenCommands) return;
+
     //auto answers
     if(msg.startsWith(QString::fromStdString("ping"), Qt::CaseInsensitive))
     {
         log("Command received: ping, from: " + cinfo.peer_nickname + " vpid: " + cinfo.rsid, 1);
         rsMsgs->sendPrivateChat(cinfo.rsid, (QString::fromStdString(cinfo.peer_nickname) + QString::fromStdString(": pong")).toStdWString());
+        lastCommand = time(0);
     }
     if(msg.startsWith(QString::fromStdString("/help"), Qt::CaseInsensitive) || msg.startsWith(QString::fromStdString("!help"), Qt::CaseInsensitive))
     {
         log("Command received: /help, from: " + cinfo.peer_nickname + " vpid: " + cinfo.rsid, 1);
         std::wstringstream ss;
         ss << L"<pre>";
+        ss << L"You have to wait " << timeBetweenCommands << "s between sending commands" << std::endl;
         ss << L"/help             this message" << std::endl;
         ss << L"!help             this message" << std::endl;
         ss << L"ping" << std::endl;
-        ss << L"/echo message     repeats the message" << std::endl;
+        ss << L"/echo message     repeats the message, ignores pictures" << std::endl;
         ss << L"</pre>";
         rsMsgs->sendPrivateChat(cinfo.rsid, ss.str());
+        lastCommand = time(0);
     }
     if(msg.startsWith(QString::fromStdString("/echo "), Qt::CaseInsensitive))
     {
         log("Command received: /echo, from: " + cinfo.peer_nickname + " vpid: " + cinfo.rsid, 1);
         QString echo = msg.mid(QString::fromStdString("/echo ").length());
         rsMsgs->sendPrivateChat(cinfo.rsid, echo.toStdWString());
+        lastCommand = time(0);
     }
 }
 

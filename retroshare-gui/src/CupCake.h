@@ -48,6 +48,7 @@ protected:
     bool minloglevel;
     //unsigned int longCycle; //ticks
     int unsubcribeMonths;
+    double timeBetweenCommands;
 
 private:
     static CupCake* _instance;
@@ -59,6 +60,7 @@ private:
     unsigned int forumstat;
     unsigned int channelstat;
     unsigned int chatstat;
+    time_t lastCommand;
     //unsigned int tickCounter;
 
 };
