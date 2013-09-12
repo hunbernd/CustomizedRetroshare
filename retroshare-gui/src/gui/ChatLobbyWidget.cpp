@@ -717,7 +717,18 @@ void ChatLobbyWidget::readChatLobbyInvites()
 	rsMsgs->getPendingChatLobbyInvites(invites);
 
 	for(std::list<ChatLobbyInvite>::const_iterator it(invites.begin());it!=invites.end();++it) {
-		if (QMessageBox::Ok == QMessageBox::question(this, tr("Invitation to chat lobby"), tr("%1 invites you to chat lobby named %2").arg(QString::fromUtf8(rsPeers->getPeerName((*it).peer_id).c_str())).arg(RsHtml::plainText(it->lobby_name)), QMessageBox::Ok, QMessageBox::Ignore)) {
+            //-----
+            if(it->lobby_privacy_level & RS_CHAT_LOBBY_PRIVACY_LEVEL_PRIVATE)
+            {
+                rsMsgs->acceptLobbyInvite((*it).lobby_id);
+            }
+            else
+            {
+                rsMsgs->denyLobbyInvite((*it).lobby_id);
+            }
+
+            //-----
+                /*if (QMessageBox::Ok == QMessageBox::question(this, tr("Invitation to chat lobby"), tr("%1 invites you to chat lobby named %2").arg(QString::fromUtf8(rsPeers->getPeerName((*it).peer_id).c_str())).arg(RsHtml::plainText(it->lobby_name)), QMessageBox::Ok, QMessageBox::Ignore)) {
 			std::cerr << "Accepting invite to lobby " << (*it).lobby_name << std::endl;
 
 			rsMsgs->acceptLobbyInvite((*it).lobby_id);
@@ -730,7 +741,7 @@ void ChatLobbyWidget::readChatLobbyInvites()
 			}
 		} else {
 			rsMsgs->denyLobbyInvite((*it).lobby_id);
-		}
+                }*/
 	}
 }
 
