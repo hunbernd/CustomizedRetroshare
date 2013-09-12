@@ -43,9 +43,11 @@ public slots:
 protected:    
     unsigned int maxFriends;
     std::ofstream ofs;
-    const std::string currentDateTime();
+    const std::string currentDateTime(time_t now = time(0));
     //0: repetitive, 1: info, 2: warning, 3: error
     bool minloglevel;
+    //unsigned int longCycle; //ticks
+    int unsubcribeMonths;
 
 private:
     static CupCake* _instance;
@@ -57,6 +59,7 @@ private:
     unsigned int forumstat;
     unsigned int channelstat;
     unsigned int chatstat;
+    //unsigned int tickCounter;
 
 };
 

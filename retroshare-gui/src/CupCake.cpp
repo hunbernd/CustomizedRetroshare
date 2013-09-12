@@ -6,10 +6,13 @@ CupCake::CupCake()
 {
     checkInterval = 30;
     maxFriends = 10;
-    minloglevel = 1;
+    minloglevel = 0;
     forumstat = 0;
     chatstat = 0;
     channelstat = 0;
+    unsubcribeMonths = 2;
+    //tickCounter = 0;
+    //longeCycle = 4;
     ofs.open("Cupcake.log");
     log("start", 1);
     //ticksUntilLobbieIsCreated = 60;
@@ -35,7 +38,6 @@ void CupCake::tick()
     refreshlobbies();
     refreshchannels();
     refreshforums();
-
 
     log("end tick", 0);
 }
@@ -75,11 +77,26 @@ void CupCake::refreshchannels()
     rsChannels->getChannelList(channelList);
     for(it = channelList.begin(); it != channelList.end(); it++) {
         uint32_t flags = it->channelFlags;
-        if(!(flags & (RS_DISTRIB_SUBSCRIBED | RS_DISTRIB_ADMIN)))
+        std::list<ChannelMsgSummary> msgs;
+        rsChannels->getChannelMsgList(it->channelId, msgs);
+        std::string cn(it->channelName.begin(), it->channelName.end());
+        //Do not touch administrated
+        if(flags & RS_DISTRIB_ADMIN) continue;
+        if(flags & RS_DISTRIB_SUBSCRIBED)
         {
-            std::string cn(it->channelName.begin(), it->channelName.end());
-            log("Subscribing to channel: " + cn, 1);
-            rsChannels->channelSubscribe(it->channelId, true, false);
+            if(msgs.size() == 0)
+            {
+                log("Unsubcribing from channel: " + cn, 1);
+                rsChannels->channelSubscribe(it->channelId, false, false);
+            }
+        }
+        else
+        {
+            if(msgs.size() > 0)
+            {
+               log("Subcribing to channel: " + cn, 1);
+               rsChannels->channelSubscribe(it->channelId, true, false);
+            }
         }
     }    
     //statistics
@@ -146,16 +163,39 @@ void CupCake::refreshforums()
             return;
     }
 
+    double timediff = (double)(unsubcribeMonths * 30 * 24 * 60 * 60);
+    time_t now = time(0);
+
     std::list<ForumInfo> forumList;
     std::list<ForumInfo>::iterator it;
     rsForums->getForumList(forumList);
     for(it = forumList.begin(); it != forumList.end(); it++) {
         uint32_t flags = it->subscribeFlags;
-        if(!(flags & (RS_DISTRIB_SUBSCRIBED | RS_DISTRIB_ADMIN)))
+        std::string cn(it->forumName.begin(), it->forumName.end());
+        std::list<ThreadInfoSummary> msgs;
+        rsForums->getForumThreadList(it->forumId, msgs);
+        //Do not touch administrated
+        if(flags & RS_DISTRIB_ADMIN) continue;
+        if(flags & RS_DISTRIB_SUBSCRIBED)
         {
-            std::string fn(it->forumName.begin(), it->forumName.end());
-            log("Subscribing to forum: " + fn, 1);
-            rsForums->forumSubscribe(it->forumId, true);
+            if(msgs.size() == 0)
+            {
+                log("Unsubcribing from forum: " + cn + " (empty)", 1);
+                rsForums->forumSubscribe(it->forumId, false);
+            }
+            else if(difftime(now, it->lastPost) > timediff)
+            {
+                log("Unsubcribing from forum: " + cn + " (last post: " + currentDateTime(it->lastPost) + ")", 1);
+                rsForums->forumSubscribe(it->forumId, false);
+            }
+        }
+        else
+        {
+            if((msgs.size() > 0) && (difftime(now, it->lastPost) <= timediff))
+            {
+               log("Subcribing to forum: " + cn, 1);
+               rsForums->forumSubscribe(it->forumId, true);
+            }
         }
     }
     //statistics
@@ -172,9 +212,8 @@ void CupCake::refreshforums()
     log("end forums refresh", 0);
 }
 
-const std::string CupCake::currentDateTime()
+const std::string CupCake::currentDateTime(time_t now)
 {
-    time_t     now = time(0);
     struct tm  tstruct;
     char       buf[80];
     tstruct = *localtime(&now);
@@ -270,4 +309,34 @@ CupCake::createOrRejoinLobby()
             visiblelobbinames += (it->lobby_name) + ";";
     }
     log("Visible lobbinames: " + visiblelobbinames);
+ */
+
+/*
+        //--------------------------------
+        //unsigned int mcount, ucount;
+        //rsChannels->getMessageCount(it->channelId, mcount, ucount);
+        std::list<ChannelMsgSummary> msgs;
+        rsChannels->getChannelMsgList(it->channelId, msgs);
+        std::string cn(it->channelName.begin(), it->channelName.end());
+        std::stringstream ss;
+        ss << "Channel: " << cn;
+        ss << ", last post: " << currentDateTime(it->lastPost);
+        ss << ", count: " << msgs.size();
+        ss << ", subscribed: " << ((flags & (RS_DISTRIB_SUBSCRIBED | RS_DISTRIB_ADMIN)) ? "yes" : "no");
+        log(ss.str(), 1);
+        //--------------------------------
+
+        //--------------------------------
+        //unsigned int mcount, ucount;
+        //rsForums->getMessageCount(it->forumId, mcount, ucount);
+        std::string cn(it->forumName.begin(), it->forumName.end());
+        std::list<ThreadInfoSummary> msgs;
+        rsForums->getForumThreadList(it->forumId, msgs);
+        std::stringstream ss;
+        ss << "Forum: " << cn;
+        ss << ", last post: " << currentDateTime(it->lastPost);
+        ss << ", count: " << msgs.size();
+        ss << ", subscribed: " << ((flags & (RS_DISTRIB_SUBSCRIBED | RS_DISTRIB_ADMIN)) ? "yes" : "no");
+        log(ss.str(), 1);
+        //--------------------------------
  */
