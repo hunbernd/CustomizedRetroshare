@@ -71,7 +71,7 @@ static const uint32_t DISTANT_CHAT_HASH_SIZE            =   20 ; // This is sha1
 static const uint32_t MAX_AVATAR_JPEG_SIZE              = 32767; // Maximum size in bytes for an avatar. Too large packets 
                                                                  // don't transfer correctly and can kill the system.
 																					  // Images are 96x96, which makes approx. 27000 bytes uncompressed.
-static const uint32_t MAX_ALLOWED_LOBBIES_IN_LIST_WARNING = 50 ;
+static const uint32_t MAX_ALLOWED_LOBBIES_IN_LIST_WARNING = 100 ;
 static const uint32_t MAX_MESSAGES_PER_SECONDS_NUMBER     =  5 ; // max number of messages from a given peer in a window for duration below
 static const uint32_t MAX_MESSAGES_PER_SECONDS_PERIOD     = 10 ; // duration window for max number of messages before messages get dropped.
 
@@ -1150,6 +1150,9 @@ void p3ChatService::handleRecvChatAvatarItem(RsChatAvatarItem *ca)
 
 bool p3ChatService::checkForMessageSecurity(RsChatMsgItem *ci)
 {
+    // The following code has been suggested, but is kept suspended since it is a bit too much restrictive.
+#ifdef SUSPENDED
+
 	// Remove too big messages
 	if (ci->message.length() > 6000 && (ci->chatFlags & RS_CHAT_FLAG_LOBBY))
 	{
@@ -1160,8 +1163,6 @@ bool p3ChatService::checkForMessageSecurity(RsChatMsgItem *ci)
 		return false;
 	}
 
-	// The following code has been suggested, but is kept suspended since it is a bit too much restrictive.
-#ifdef SUSPENDED
 	// Transform message to lowercase
 	std::wstring mes(ci->message);
 	std::transform( mes.begin(), mes.end(), mes.begin(), std::towlower);
