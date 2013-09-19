@@ -4,4 +4,7 @@ SUBDIRS += \
 		LinksCloud \
 		VOIP \
 #		FeedReader \
-                ExportImport
+		ExportImport \
+		tortoise \
+		ZeroReserve \
+		PaintChat \

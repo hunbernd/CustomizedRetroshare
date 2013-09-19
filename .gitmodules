@@ -1,0 +1,9 @@
+[submodule "plugins/PaintChat"]
+	path = plugins/PaintChat
+	url = https://github.com/electron128/Retroshare-Paintchat-Plugin.git
+[submodule "plugins/tortoise"]
+	path = plugins/tortoise
+	url = https://github.com/zeroreserve/tortoise.git
+[submodule "plugins/ZeroReserve"]
+	path = plugins/ZeroReserve
+	url = https://github.com/zeroreserve/ZeroReserve.git
