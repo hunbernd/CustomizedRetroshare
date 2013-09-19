@@ -50,69 +50,6 @@
 #include <QPainter>
 #include <limits>
 
-LListDelegate::LListDelegate(QObject *parent) : QAbstractItemDelegate(parent)
-{
-    ;
-}
-
-LListDelegate::~LListDelegate(void)
-{
-    ;
-}
-
-void LListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
-{
-    QStyleOptionViewItem opt = option;
-
-    QString temp ;
-
-    // prepare
-    painter->save();
-    painter->setClipRect(opt.rect);
-
-    //set text color
-    QVariant value = index.data(Qt::TextColorRole);
-    if(value.isValid() && qvariant_cast<QColor>(value).isValid()) {
-        opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
-    }
-    QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
-    if(option.state & QStyle::State_Selected){
-        painter->setPen(opt.palette.color(cg, QPalette::HighlightedText));
-    } else {
-        painter->setPen(opt.palette.color(cg, QPalette::Text));
-    }
-
-    // draw the background color
-    if(option.showDecorationSelected && (option.state & QStyle::State_Selected)) {
-        if(cg == QPalette::Normal && !(option.state & QStyle::State_Active)) {
-            cg = QPalette::Inactive;
-        }
-        painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
-    } else {
-        value = index.data(Qt::BackgroundRole);
-        if(value.isValid() && qvariant_cast<QColor>(value).isValid()) {
-            painter->fillRect(option.rect, qvariant_cast<QColor>(value));
-        }
-    }
-
-    switch(index.column()) {
-    case COLUMN_USER_COUNT:
-        temp=QString::number(index.data().toInt());
-        painter->drawText(option.rect, Qt::AlignRight, temp);
-        break;
-    default:
-        painter->drawText(option.rect, Qt::AlignLeft, index.data().toString());
-    }
-
-    // done
-    painter->restore();
-}
-
-QSize LListDelegate::sizeHint(const QStyleOptionViewItem & /*option*/, const QModelIndex & /*index*/) const
-{
-    return QSize(50,17);
-}
-
 ChatLobbyWidget::ChatLobbyWidget(QWidget *parent, Qt::WFlags flags)
 	: RsAutoUpdatePage(5000, parent, flags)
 {
@@ -274,7 +211,18 @@ void ChatLobbyWidget::lobbyTreeWidgetCustomPopupMenu(QPoint)
         }
 	}
 
-    contextMnu.addSeparator();//-------------------------------------------------------------------
+	if (contextMnu.children().count() == 0) {
+		return;
+	}
+
+	contextMnu.exec(QCursor::pos());
+}
+
+
+void ChatLobbyWidget::lobbyTreeWidgetHeaderCustomPopupMenu( QPoint /*point*/ )
+{
+    std::cerr << "ChatLobbyWidget::lobbyTreeWidgetHeaderCustomPopupMenu()" << std::endl;
+    QMenu contextMnu( this );
 
     showUserCountAct->setChecked(!lobbyTreeWidget->isColumnHidden(COLUMN_USER_COUNT));
     showTopicAct->setChecked(!lobbyTreeWidget->isColumnHidden(COLUMN_TOPIC));
@@ -285,7 +233,8 @@ void ChatLobbyWidget::lobbyTreeWidgetCustomPopupMenu(QPoint)
     menu->addAction(showTopicAct);
     menu->addAction(showSubscribeAct);
 
-	contextMnu.exec(QCursor::pos());
+    contextMnu.exec(QCursor::pos());
+
 }
 
 void ChatLobbyWidget::lobbyChanged()
@@ -921,7 +870,6 @@ void ChatLobbyWidget::setShowUserCountColumn(bool show)
     if (lobbyTreeWidget->isColumnHidden(COLUMN_USER_COUNT) == show) {
         lobbyTreeWidget->setColumnHidden(COLUMN_USER_COUNT, !show);
     }
-    lobbyTreeWidget->header()->setVisible(getNumColVisible()>1);
 }
 
 void ChatLobbyWidget::setShowTopicColumn(bool show)
@@ -929,7 +877,6 @@ void ChatLobbyWidget::setShowTopicColumn(bool show)
     if (lobbyTreeWidget->isColumnHidden(COLUMN_TOPIC) == show) {
         lobbyTreeWidget->setColumnHidden(COLUMN_TOPIC, !show);
     }
-    lobbyTreeWidget->header()->setVisible(getNumColVisible()>1);
 }
 
 void ChatLobbyWidget::setShowSubscribeColumn(bool show)
@@ -937,16 +884,4 @@ void ChatLobbyWidget::setShowSubscribeColumn(bool show)
     if (lobbyTreeWidget->isColumnHidden(COLUMN_SUBSCRIBED) == show) {
         lobbyTreeWidget->setColumnHidden(COLUMN_SUBSCRIBED, !show);
     }
-    lobbyTreeWidget->header()->setVisible(getNumColVisible()>1);
-}
-
-int ChatLobbyWidget::getNumColVisible()
-{
-    int iNumColVis=0;
-    for (int iColumn = 0; iColumn < COLUMN_COUNT; ++iColumn) {
-        if (!lobbyTreeWidget->isColumnHidden(iColumn)) {
-            ++iNumColVis;
-        }
-    }
-    return iNumColVis;
 }

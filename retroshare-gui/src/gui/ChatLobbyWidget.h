@@ -8,23 +8,6 @@
 class QModelIndex;
 class QPainter;
 
-class LListDelegate: public QAbstractItemDelegate {
-
-    Q_OBJECT
-
-    public:
-        LListDelegate(QObject *parent=0);
-        ~LListDelegate();
-        void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
-        QSize sizeHint(const QStyleOptionViewItem &, const QModelIndex &) const;
-
-    private:
-
-    public slots:
-
-    signals:
-};
-
 class RSTreeWidgetItemCompareRole;
 class ChatTabWidget ;
 class ChatLobbyDialog ;
@@ -56,6 +39,7 @@ public:
 protected slots:
 	void lobbyChanged();
 	void lobbyTreeWidgetCustomPopupMenu(QPoint);
+    void lobbyTreeWidgetHeaderCustomPopupMenu( QPoint point );
 	void createChatLobby();
 	void subscribeItem();
 	void unsubscribeItem();
@@ -106,6 +90,5 @@ private:
     QAction* showUserCountAct;
     QAction* showTopicAct;
     QAction* showSubscribeAct;
-    int getNumColVisible();
 };
 
