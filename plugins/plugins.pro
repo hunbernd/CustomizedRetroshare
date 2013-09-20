@@ -3,8 +3,10 @@ TEMPLATE = subdirs
 SUBDIRS += \
 		LinksCloud \
 		VOIP \
-#		FeedReader \
+		FeedReader \
 		ExportImport \
 		tortoise \
 		ZeroReserve \
 		PaintChat \
+		example \
+		FriendMap
