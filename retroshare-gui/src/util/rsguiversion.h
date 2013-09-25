@@ -22,7 +22,7 @@
 
 #define GUI_VERSION "0.5.5a"
 
-#define GUI_REVISION "Revision: 6761"
+#define GUI_REVISION "Revision: 6766"
 
 
 #include <QString>
