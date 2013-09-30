@@ -23,6 +23,7 @@
  *
  */
 #include <math.h>
+#include <sstream>
 
 #include "openssl/rand.h"
 #include "pgp/rscertificate.h"
@@ -70,6 +71,9 @@ static const uint32_t DISTANT_CHAT_HASH_SIZE            =   20 ; // This is sha1
 static const uint32_t MAX_AVATAR_JPEG_SIZE              = 32767; // Maximum size in bytes for an avatar. Too large packets 
                                                                  // don't transfer correctly and can kill the system.
 																					  // Images are 96x96, which makes approx. 27000 bytes uncompressed.
+static const uint32_t MAX_ALLOWED_LOBBIES_IN_LIST_WARNING = 50 ;
+static const uint32_t MAX_MESSAGES_PER_SECONDS_NUMBER     =  5 ; // max number of messages from a given peer in a window for duration below
+static const uint32_t MAX_MESSAGES_PER_SECONDS_PERIOD     = 10 ; // duration window for max number of messages before messages get dropped.
 
 p3ChatService::p3ChatService(p3LinkMgr *lm, p3HistoryMgr *historyMgr)
 	:p3Service(RS_SERVICE_TYPE_CHAT), p3Config(CONFIG_TYPE_CHAT), mChatMtx("p3ChatService"), mLinkMgr(lm) , mHistoryMgr(historyMgr)
@@ -697,12 +701,71 @@ void p3ChatService::receiveChatQueue()
 	while(NULL != (item=recvItem()))
 		handleIncomingItem(item) ;
 }
+class MsgCounter
+{
+	public:
+		MsgCounter() {}
+
+		void clean(time_t max_time)
+		{
+			while(!recv_times.empty() && recv_times.front() < max_time)
+				recv_times.pop_front() ;
+		}
+		std::list<time_t> recv_times ;
+};
+
+
+bool p3ChatService::locked_bouncingObjectCheck(RsChatLobbyBouncingObject *obj,const std::string& peer_id,uint32_t lobby_count)
+{
+	static std::map<std::string, std::list<time_t> > message_counts ;
+
+	std::ostringstream os ;
+	os << obj->lobby_id ;
+
+	std::string pid = peer_id + "_" + os.str() ;
+
+	VisibleChatLobbyRecord& rec(_visible_lobbies[obj->lobby_id]) ;
+	lobby_count = rec.total_number_of_peers ;
+
+	// max objects per second: lobby_count * 1/MAX_DELAY_BETWEEN_LOBBY_KEEP_ALIVE objects per second.
+	// So in cache, there is in average that number times MAX_MESSAGES_PER_SECONDS_PERIOD
+	//
+	float max_cnt = std::max(10.0f, 4*lobby_count / (float)MAX_DELAY_BETWEEN_LOBBY_KEEP_ALIVE * MAX_MESSAGES_PER_SECONDS_PERIOD) ;
+
+#ifdef CHAT_DEBUG
+	std::cerr << "lobby_count=" << lobby_count << std::endl;
+	std::cerr << "Got msg for peer " << pid << std::dec << ". Limit is " << max_cnt << ". List is " ;
+	for(std::list<time_t>::const_iterator it(message_counts[pid].begin());it!=message_counts[pid].end();++it)
+		std::cerr << *it << " " ;
+	std::cerr << std::endl;
+#endif
+
+	time_t now = time(NULL) ;
+
+	std::list<time_t>& lst = message_counts[pid] ;
+	
+	// Clean old messages time stamps from the list.
+	//
+	while(!lst.empty() && lst.front() + MAX_MESSAGES_PER_SECONDS_PERIOD < now)
+		lst.pop_front() ;
+
+	if(lst.size() > max_cnt)
+	{
+		std::cerr << "Too many messages from peer " << pid << ". Someone (name=" << obj->nick << ") is trying to flood this lobby. Message will not be forwarded." << std::endl;
+		return false;
+	}
+	else
+		lst.push_back(now) ;
+
+	return true ;
+}
 
 void p3ChatService::handleIncomingItem(RsItem *item)
 {
 #ifdef CHAT_DEBUG
 	std::cerr << "p3ChatService::receiveChatQueue() Item:" << (void*)item << std::endl ;
 #endif
+
 	// RsChatMsgItems needs dynamic_cast, since they have derived siblings.
 	//
 	RsChatMsgItem *ci = dynamic_cast<RsChatMsgItem*>(item) ; 
@@ -814,12 +877,15 @@ void p3ChatService::handleRecvChatLobbyListRequest(RsChatLobbyListRequestItem *c
 }
 void p3ChatService::handleRecvChatLobbyList(RsChatLobbyListItem_deprecated *item)
 {
+	if(item->lobby_ids.size() > MAX_ALLOWED_LOBBIES_IN_LIST_WARNING)
+		std::cerr << "Warning: Peer " << item->PeerId() << "(" << rsPeers->getPeerName(item->PeerId()) << ") is sending a lobby list of " << item->lobby_ids.size() << " lobbies. This is unusual, and probably a attempt to crash you." << std::endl;
+
 	{
 		time_t now = time(NULL) ;
 
 		RsStackMutex stack(mChatMtx); /********** STACK LOCKED MTX ******/
 
-		for(uint32_t i=0;i<item->lobby_ids.size();++i)
+		for(uint32_t i=0;i<item->lobby_ids.size() && i < MAX_ALLOWED_LOBBIES_IN_LIST_WARNING;++i)
 		{
 			VisibleChatLobbyRecord& rec(_visible_lobbies[item->lobby_ids[i]]) ;
 
@@ -842,12 +908,15 @@ void p3ChatService::handleRecvChatLobbyList(RsChatLobbyListItem_deprecated *item
 }
 void p3ChatService::handleRecvChatLobbyList(RsChatLobbyListItem_deprecated2 *item)
 {
+	if(item->lobby_ids.size() > MAX_ALLOWED_LOBBIES_IN_LIST_WARNING)
+		std::cerr << "Warning: Peer " << item->PeerId() << "(" << rsPeers->getPeerName(item->PeerId()) << ") is sending a lobby list of " << item->lobby_ids.size() << " lobbies. This is unusual, and probably a attempt to crash you." << std::endl;
+
 	{
 		time_t now = time(NULL) ;
 
 		RsStackMutex stack(mChatMtx); /********** STACK LOCKED MTX ******/
 
-		for(uint32_t i=0;i<item->lobby_ids.size();++i)
+		for(uint32_t i=0;i<item->lobby_ids.size() && i < MAX_ALLOWED_LOBBIES_IN_LIST_WARNING;++i)
 		{
 			VisibleChatLobbyRecord& rec(_visible_lobbies[item->lobby_ids[i]]) ;
 
@@ -871,6 +940,9 @@ void p3ChatService::handleRecvChatLobbyList(RsChatLobbyListItem_deprecated2 *ite
 }
 void p3ChatService::handleRecvChatLobbyList(RsChatLobbyListItem *item)
 {
+	if(item->lobby_ids.size() > MAX_ALLOWED_LOBBIES_IN_LIST_WARNING)
+		std::cerr << "Warning: Peer " << item->PeerId() << "(" << rsPeers->getPeerName(item->PeerId()) << ") is sending a lobby list of " << item->lobby_ids.size() << " lobbies. This is unusual, and probably a attempt to crash you." << std::endl;
+
     std::list<ChatLobbyId> chatLobbyToSubscribe;
 
 	{
@@ -878,7 +950,7 @@ void p3ChatService::handleRecvChatLobbyList(RsChatLobbyListItem *item)
 
 		RsStackMutex stack(mChatMtx); /********** STACK LOCKED MTX ******/
 
-		for(uint32_t i=0;i<item->lobby_ids.size();++i)
+		for(uint32_t i=0;i<item->lobby_ids.size() && i < MAX_ALLOWED_LOBBIES_IN_LIST_WARNING;++i)
 		{
 			VisibleChatLobbyRecord& rec(_visible_lobbies[item->lobby_ids[i]]) ;
 
@@ -1078,6 +1150,43 @@ void p3ChatService::handleRecvChatAvatarItem(RsChatAvatarItem *ca)
 
 bool p3ChatService::checkForMessageSecurity(RsChatMsgItem *ci)
 {
+	// Remove too big messages
+	if (ci->message.length() > 6000 && (ci->chatFlags & RS_CHAT_FLAG_LOBBY))
+	{
+		wchar_t tmp[300];
+		mbstowcs(tmp, rsPeers->getPeerName(ci->PeerId()).c_str(), 299);
+
+		ci->message = std::wstring(L"**** Security warning: Message bigger than 6000 characters, forwarded to you by ") + tmp + L", dropped. ****";
+		return false;
+	}
+
+	// The following code has been suggested, but is kept suspended since it is a bit too much restrictive.
+#ifdef SUSPENDED
+	// Transform message to lowercase
+	std::wstring mes(ci->message);
+	std::transform( mes.begin(), mes.end(), mes.begin(), std::towlower);
+
+	// Quick fix for svg attack and other nuisances (inline pictures)
+	if (mes.find(L"<img") != std::string::npos)
+	{
+		ci->message = L"**** Security warning: Message contains an . ****";
+		return false;
+	}
+
+	// Remove messages with too many line breaks
+	size_t pos = 0;
+	int count_line_breaks = 0;
+	while ((pos = mes.find(L"<br", pos+1)) != std::string::npos)
+	{
+		count_line_breaks++;
+	}
+	if (count_line_breaks > 50)
+	{
+		ci->message = L"**** More than 50 line breaks, dropped. ****";
+		return false;
+	}
+#endif
+
 	// https://en.wikipedia.org/wiki/Billion_laughs
 	// This should be done for all incoming HTML messages (also in forums
 	// etc.) so this should be a function in some other file.
@@ -1094,7 +1203,10 @@ bool p3ChatService::checkForMessageSecurity(RsChatMsgItem *ci)
 		std::wcout << "********** entity attack by " << ci->PeerId().c_str() << std::endl;
 		std::wcout << "**********" << std::endl;
 
-		ci->message = L"**** This message has been removed because it breaks security rules.****" ;
+		wchar_t tmp2[300];
+		mbstowcs(tmp2, rsPeers->getPeerName(ci->PeerId()).c_str(), 299);
+
+		ci->message = std::wstring(L"**** This message (from peer id ") + tmp2 + L") has been removed because it contains the string \"<!\".****" ;
 		return false;
 	}
 	// For a future whitelist:
@@ -2089,6 +2201,7 @@ bool p3ChatService::bounceLobbyObject(RsChatLobbyBouncingObject *item,const std:
 #endif
 		return false ;
 	}
+
 	ChatLobbyEntry& lobby(it->second) ;
 
 	// Adds the peer id to the list of friend participants, even if it's not original msg source
@@ -2116,6 +2229,10 @@ bool p3ChatService::bounceLobbyObject(RsChatLobbyBouncingObject *item,const std:
 
 	lobby.msg_cache[item->msg_id] = now ;
 	lobby.last_activity = now ;
+
+	// Check that if we have a lobby bouncing object, it's not flooding the lobby
+	if(!locked_bouncingObjectCheck(item,peer_id,lobby.participating_friends.size()))
+		return false;
 
 	bool is_message =  (NULL != dynamic_cast<RsChatLobbyMsgItem*>(item)) ;
 
@@ -2346,7 +2463,9 @@ void p3ChatService::sendConnectionChallenge(ChatLobbyId lobby_id)
 
 	if(msg_id == 0)
 	{
-		std::cerr << "  No suitable message found in cache. Weird !!" << std::endl;
+#ifdef CHAT_DEBUG
+		std::cerr << "  No suitable message found in cache. Probably not enough activity !!" << std::endl;
+#endif
 		return ;
 	}
 
@@ -2773,7 +2892,7 @@ void p3ChatService::unsubscribeChatLobby(const ChatLobbyId& id)
 
 		// remove history
 
-		mHistoryMgr->clear(it->second.virtual_peer_id);
+		//mHistoryMgr->clear(it->second.virtual_peer_id);
 
 		// remove lobby information
 

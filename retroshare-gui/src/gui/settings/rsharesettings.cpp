@@ -462,7 +462,15 @@ void RshareSettings::setHistoryChatStyle(const QString &stylePath, const QString
     setValueToGroup("Chat", "StyleHistory", stylePath);
     setValueToGroup("Chat", "StylePrivateVariant", styleVariant);
 }
+int RshareSettings::getLobbyChatHistoryCount()
+{
+    return valueFromGroup("Chat", "LobbyChatHistoryCount", 0).toInt();
+}
 
+void RshareSettings::setLobbyChatHistoryCount(int value)
+{
+    setValueToGroup("Chat", "LobbyChatHistoryCount", value);
+}
 int RshareSettings::getPublicChatHistoryCount()
 {
     return valueFromGroup("Chat", "PublicChatHistoryCount", 0).toInt();
@@ -703,6 +711,16 @@ void RshareSettings::setMsgSetToReadOnActivate (bool value)
     setValueToGroup("MessageDialog", "SetMsgToReadOnActivate", value);
 }
 
+bool RshareSettings::getMsgLoadEmbeddedImages()
+{
+    return valueFromGroup("MessageDialog", "LoadEmbeddedImages", false).toBool();
+}
+
+void RshareSettings::setMsgLoadEmbeddedImages(bool value)
+{
+    setValueToGroup("MessageDialog", "LoadEmbeddedImages", value);
+}
+
 RshareSettings::enumMsgOpen RshareSettings::getMsgOpen()
 {
     enumMsgOpen value = (enumMsgOpen) valueFromGroup("MessageDialog", "msgOpen", MSG_OPEN_TAB).toInt();
@@ -774,4 +792,14 @@ void RshareSettings::setMaxTimeBeforeIdle(uint nValue)
 {
     m_maxTimeBeforeIdle = nValue;
     setValue("maxTimeBeforeIdle", nValue);
+}
+
+bool RshareSettings::getForumLoadEmbeddedImages()
+{
+    return valueFromGroup("ForumDialog", "LoadEmbeddedImages", false).toBool();
+}
+
+void RshareSettings::setForumLoadEmbeddedImages(bool value)
+{
+    setValueToGroup("ForumDialog", "LoadEmbeddedImages", value);
 }

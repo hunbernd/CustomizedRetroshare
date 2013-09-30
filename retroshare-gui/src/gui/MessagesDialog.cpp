@@ -49,6 +49,7 @@
 #define IMAGE_STAR_ON          ":/images/star-on-16.png"
 #define IMAGE_STAR_OFF         ":/images/star-off-16.png"
 #define IMAGE_SYSTEM           ":/images/user/user_request16.png"
+#define IMAGE_DECRYPTMESSAGE  ":/images/decrypt-mail.png"
 
 #define COLUMN_STAR          0
 #define COLUMN_ATTACHEMENTS  1
@@ -608,7 +609,7 @@ void MessagesDialog::messageslistWidgetCustomPopupMenu( QPoint /*point*/ )
     }
 
 	 if(nCount==1 && (msgInfo.msgflags & RS_MSG_ENCRYPTED))
-		 action = contextMnu.addAction(QIcon(IMAGE_SYSTEM), tr("Decrypt Message"), this, SLOT(decryptSelectedMsg()));
+		 action = contextMnu.addAction(QIcon(IMAGE_DECRYPTMESSAGE), tr("Decrypt Message"), this, SLOT(decryptSelectedMsg()));
 
     int listrow = ui.listWidget->currentRow();
     if (listrow == ROW_TRASHBOX) {
@@ -726,7 +727,7 @@ void MessagesDialog::changeBox(int)
     listMode = LIST_BOX;
 
     insertMessages();
-    insertMsgTxtAndFiles();
+    insertMsgTxtAndFiles(ui.messagestreeView->currentIndex());
 
     inChange = false;
 }
@@ -748,7 +749,7 @@ void MessagesDialog::changeQuickView(int newrow)
     listMode = LIST_QUICKVIEW;
 
     insertMessages();
-    insertMsgTxtAndFiles();
+    insertMsgTxtAndFiles(ui.messagestreeView->currentIndex());
 
     inChange = false;
 }
@@ -1137,6 +1138,7 @@ void MessagesDialog::insertMessages()
             // Subject
 				if(it->msgflags & RS_MSG_ENCRYPTED)
 					text = tr("Encrypted message. Right-click to decrypt it.") ;
+
 				else
 					text = QString::fromStdWString(it->title);
 
@@ -1218,6 +1220,7 @@ void MessagesDialog::insertMessages()
 				{
 					item[COLUMN_SIGNATURE]->setIcon(QIcon(":/images/blue_lock.png")) ;
 					item[COLUMN_SIGNATURE]->setToolTip(tr("This message is encrypted. Right click to decrypt it.")) ;
+					item[COLUMN_SUBJECT]->setIcon(QIcon(":/images/mail-encrypted-full.png")) ;
 				}
 				else 
 					if(it->msgflags & RS_MSG_SIGNED) 
@@ -1513,33 +1516,15 @@ void MessagesDialog::insertMsgTxtAndFiles(QModelIndex Index, bool bSetToRead)
 
 void MessagesDialog::decryptSelectedMsg()
 {
-    MessageInfo msgInfo;
+    if (!MessageWidget::decryptMsg(mCurrMsgId)) {
+        return;
+    }
 
-    if (!rsMsgs->getMessage(mCurrMsgId, msgInfo)) 
-		 return ;
+    // Force refill
+    mCurrMsgId.clear();
+    msgWidget->fill("");
 
-	 if(!msgInfo.msgflags & RS_MSG_ENCRYPTED)
-	 {
-		 QMessageBox::warning(NULL,tr("Decryption failed!"),tr("This message is not encrypted. Cannot decrypt!")) ;
-		 return ;
-	 }
-
-	 if(!rsMsgs->decryptMessage(mCurrMsgId) )
-		 QMessageBox::warning(NULL,tr("Decryption failed!"),tr("This message could not be decrypted.")) ;
-
-	 //setMsgAsReadUnread(currentIndex.row(), true);
-    timer->start();
-
-	 updateMessageSummaryList();
-
-	 //QModelIndex currentIndex = ui.messagestreeView->currentIndex();
-	 //QModelIndex index = ui.messagestreeView->model()->index(currentIndex.row(), COLUMN_UNREAD, currentIndex.parent());
-	 //currentChanged(index);
-
-    MessagesModel->removeRows (0, MessagesModel->rowCount());
-
-    insertMessages();
-    insertMsgTxtAndFiles();
+    insertMsgTxtAndFiles(ui.messagestreeView->currentIndex());
 }
 
 bool MessagesDialog::getCurrentMsg(std::string &cid, std::string &mid)

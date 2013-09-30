@@ -216,6 +216,9 @@ public:
   int  getPrivateChatHistoryCount();
   void setPrivateChatHistoryCount(int value);
 
+  int  getLobbyChatHistoryCount();
+  void setLobbyChatHistoryCount(int value);
+
   //! Save placement, state and size information of a window.
   void saveWidgetInformation(QWidget *widget);
 
@@ -238,6 +241,8 @@ public:
   /* Messages */
   bool getMsgSetToReadOnActivate();
   void setMsgSetToReadOnActivate(bool value);
+  bool getMsgLoadEmbeddedImages();
+  void setMsgLoadEmbeddedImages(bool value);
 
   enumMsgOpen getMsgOpen();
   void setMsgOpen(enumMsgOpen value);
@@ -249,6 +254,8 @@ public:
   void setForumExpandNewMessages(bool value);
   bool getForumOpenAllInNewTab();
   void setForumOpenAllInNewTab(bool value);
+  bool getForumLoadEmbeddedImages();
+  void setForumLoadEmbeddedImages(bool value);
 
   /* time before idle */
   uint getMaxTimeBeforeIdle();

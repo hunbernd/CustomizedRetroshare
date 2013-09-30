@@ -1344,22 +1344,6 @@ Please choose one of it to chat with.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Lobby name: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lobby Id: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Topic: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Type: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Private</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1368,19 +1352,7 @@ Please choose one of it to chat with.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Peers: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>You&apos;re not subscribed to this lobby; Double click-it to enter and chat.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No lobby selected. 
-
-Select lobbies at left to show details.
-
-Double click lobbies to enter and chat.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1409,6 +1381,60 @@ Double click lobbies to enter and chat.</source>
     </message>
     <message>
         <source> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Chat Lobbies&lt;/h1&gt;                              		  &lt;p&gt;Chat lobbies are distributed chat rooms, and work pretty much like IRC.                                      		  They allow you to talk anonymously with tons of people without the need to make friends.&lt;/p&gt;                    		  &lt;p&gt;A chat lobby can be public (your friends see it) or private (your friends can&apos;t see it, unless you           		  invite them with &lt;img src=&quot;:/images/add_24x24.png&quot; width=12/&gt;). Once you have been invited to a private lobby, you will be able to see it when your friends   		  are using it.&lt;/p&gt;                                                                                               		  &lt;p&gt;The list at left shows                                                                                     		  chat lobbies your friends are participating in. You can either                                 		  &lt;ul&gt;                                                                                                            			  &lt;li&gt;Right click to create a new chat lobby&lt;/li&gt;                                                              		     &lt;li&gt;Double click a chat lobby to enter, chat, and show it to your friends&lt;/li&gt;                      		  &lt;/ul&gt; 		  Note: For the chat lobbies to work properly, your computer needs be on time.  So check your system clock!		  &lt;/p&gt;                                      		</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscribed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lobby Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lobby Id:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Topic:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Peers:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No lobby selected. 
+Select lobbies at left to show details.
+Double click lobbies to enter and chat.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1538,22 +1564,6 @@ Double click lobbies to enter and chat.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Group Chat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Number of saved messages (0 = unlimited)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Load number of messages (0 = off)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1667,6 +1677,30 @@ Double click lobbies to enter and chat.</source>
     </message>
     <message>
         <source>Private chat invite to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;In this tab you can setup how many chat messages Retroshare will keep saved on the disc and how much of the previous conversation it will display, for the different chat systems. The max storage period allows to discard old messages and prevents the chat history from filling up with volatile chat (e.g. chat lobbies and distant chat).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chatlobbies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabled:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saved messages (0 = unlimited):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number of messages restored  (0 = off):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum storage period, in days:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3823,6 +3857,14 @@ p, li { white-space: pre-wrap; }
         <source>Add Extra File</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Attach a Picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Picture File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CreateGroup</name>
@@ -5377,6 +5419,10 @@ p, li { white-space: pre-wrap; }
         <source>Forum</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Load embedded images</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ForumUserNotify</name>
@@ -5635,6 +5681,10 @@ p, li { white-space: pre-wrap; }
         <source> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Forums&lt;/h1&gt;                                  &lt;p&gt;Retroshare Forums look like internet forums, but they work in a decentralized way:                         You see forums your friends are subscribed to, and you forward subscribed forums to                          your friends. This automatically promotes interesting forums in the network.&lt;/p&gt;                         &lt;p&gt;Forums are either Authenticated (&lt;img src=&quot;:/images/konv_message2.png&quot; width=&quot;12&quot;/&gt;) in which case you need to cryptographically sign                          your posts, or anonymous (&lt;img src=&quot;:/images/konversation.png&quot; width=&quot;12&quot;/&gt;). The former class is more resistant to spamming.&lt;/p&gt;                     &lt;p&gt;Forum posts propagate from friend to friend using small cache file exchanges. When you first connect to a new friend, it&apos;s likely     you will receive many such cache files, and new forums will appear.     &lt;/p&gt;                                        </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Load images always for this message</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ForumsFillThread</name>
@@ -5774,14 +5824,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy RetroShare Link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Paste Friend Link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Deny Friend</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5851,6 +5893,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste certificate link</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6234,10 +6280,6 @@ anonymous, you can use a fake email.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Put a meaningful location. ex : home, laptop, etc. This field will be used to differentiate different installations with the same identity (PGP key).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Create new identity</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6385,6 +6427,28 @@ Fill in your PGP password when asked, to sign your new key.</source>
     </message>
     <message>
         <source>Failed to Generate your new Certificate, maybe PGP password is wrong!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password (check)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Before proceeding, move your mouse around to help Retroshare collect as much randomness as possible. Filling the progressbar to 20% is needed, 100% is advised.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[Required] Type the same password again here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Put a meaningful location. ex : home, laptop, etc. 
+This field will be used to differentiate different installations with
+the same identity (PGP key).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passwords to not match</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8918,6 +8982,10 @@ Do you want to save message ?</source>
         <source>Accept encrypted distant messages from everyone</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Load embedded images</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageToaster</name>
@@ -9033,6 +9101,34 @@ Do you want to save message ?</source>
     </message>
     <message>
         <source>HTML-Files (*.htm *.html);;All Files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load images always for this message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This messages is encrypted. Click the right button to decrypt it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Decrypt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encrypted message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Decryption failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This message is not encrypted. Cannot decrypt!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This message could not be decrypted.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9434,14 +9530,6 @@ Do you want to save message ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Decryption failed!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This message could not be decrypted.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Messages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9459,10 +9547,6 @@ Do you want to save message ?</source>
     </message>
     <message>
         <source>This message was signed but the signature doesn&apos;t check</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This message is not encrypted. Cannot decrypt!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10704,15 +10788,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PostedGroupDialog</name>
     <message>
-        <source>Create New Posted Topic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Posted Topic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit Posted Topic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10723,15 +10799,19 @@ p, li { white-space: pre-wrap; }
         <source>Select Topic Admins</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Create New Topic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Topic</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>\/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -10763,11 +10843,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Vote Up</source>
+        <source>I like this</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Vote Down</source>
+        <source>I dislike this</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11655,6 +11735,21 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>RSImageBlockWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The loading of embedded images is blocked.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load images</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RSettingsWin</name>
     <message>
         <source>Error Saving Configuration on page </source>
@@ -12519,18 +12614,6 @@ The default value is 20.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;This is a list of shared folders. You can add and remove folders using the buttons at the bottom.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;When you add a new folder, intially all files in that folder are shared.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:8pt;&quot;&gt;You can separately setup share flags for each shared directory:&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:8pt; font-weight:600;&quot;&gt;Browsable&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:8pt;&quot;&gt;: files are browsable from your direct friends.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:8pt; font-weight:600;&quot;&gt;Network Wide&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:8pt;&quot;&gt;: files can be downloaded by anybody through anonymous tunnels.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12600,6 +12683,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Directory not found or directory name not accepted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is a list of shared folders. You can add and remove folders using the buttons at the bottom. When you add a new folder, intially all files in that folder are shared. You can separately setup share flags for each shared directory.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
