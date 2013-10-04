@@ -27,6 +27,8 @@
 
 #include "ui_FriendsDialog.h"
 
+#include "SoundManager.h"
+
 class QFont;
 class QAction;
 class QTextEdit;

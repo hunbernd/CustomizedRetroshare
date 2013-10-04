@@ -295,6 +295,12 @@ void ChatLobbyDialog::addIncomingChatMsg(const ChatInfo& info)
 	if(!isParticipantMuted(name)) {
 	  ui.chatWidget->addChatMsg(true, name, sendTime, recvTime, message, ChatWidget::TYPE_NORMAL);
 		emit messageReceived(id()) ;
+      //play sound
+      std::string nickName;
+      rsMsgs->getNickNameForChatLobby(lobbyId, nickName);
+      QString nick = QString::fromUtf8(nickName.c_str());
+      if(message.contains(nick))
+          soundManager->play(SOUND_MY_NAME_MENTIONED);
 	}
 	
 	// This is a trick to translate HTML into text.

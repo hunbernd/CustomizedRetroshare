@@ -28,6 +28,7 @@
 #define SOUND_USER_ONLINE       "User_go_Online"
 #define SOUND_MESSAGE_ARRIVED   "MessageArrived"
 #define SOUND_DOWNLOAD_COMPLETE "DownloadComplete"
+#define SOUND_MY_NAME_MENTIONED "MyNameMentioned"
 
 class SoundEvents
 {
