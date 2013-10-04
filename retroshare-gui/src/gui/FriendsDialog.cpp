@@ -467,6 +467,16 @@ void FriendsDialog::addChatMsg(bool incoming, bool history, const QString &name,
     QString formatMsg = style.formatMessage(type, name, incoming ? recvTime : sendTime, formattedMessage);
 
     ui.msgText->append(formatMsg);
+
+    //sound
+    RsPeerDetails pd ;
+    std::string nickName;
+    if (rsPeers->getPeerDetails(rsPeers->getOwnId(), pd)) {
+        nickName = pd.name;
+    }
+    QString nick = QString::fromUtf8(nickName.c_str());
+    if(message.contains(nick))
+        soundManager->play(SOUND_MY_NAME_MENTIONED);
 }
 
 void FriendsDialog::insertChat()

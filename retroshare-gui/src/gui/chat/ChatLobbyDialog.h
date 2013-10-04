@@ -25,6 +25,7 @@
 
 #include "ui_ChatLobbyDialog.h"
 #include "ChatDialog.h"
+#include "../SoundManager.h"
 
 class ChatLobbyDialog: public ChatDialog
 {

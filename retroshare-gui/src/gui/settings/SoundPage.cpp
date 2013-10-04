@@ -129,6 +129,7 @@ void SoundPage::load()
 
 	groupItem = addGroup(tr("Chatmessage"));
 	addItem(groupItem, tr("New Msg"), SOUND_NEW_CHAT_MESSAGE);
+    addItem(groupItem, tr("My name mentioned"), SOUND_MY_NAME_MENTIONED);
 
 	groupItem = addGroup(tr("Message"));
 	addItem(groupItem, tr("Message arrived"), SOUND_MESSAGE_ARRIVED);
