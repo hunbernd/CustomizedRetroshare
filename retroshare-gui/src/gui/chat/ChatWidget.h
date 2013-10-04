@@ -87,6 +87,7 @@ private slots:
 	void deleteChatHistory();
 	void messageHistory();
 	void resetStatusBar() ;
+    void quote();
 
 signals:
 	void infoChanged(ChatWidget*);
