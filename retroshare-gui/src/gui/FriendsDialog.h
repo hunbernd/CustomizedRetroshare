@@ -126,6 +126,7 @@ private slots:
     void setCurrentFileName(const QString &fileName);
 
     //void newsFeedChanged(int count);
+    void quote();
 
 signals:
     void notifyGroupChat(const QString&,const QString&) ;

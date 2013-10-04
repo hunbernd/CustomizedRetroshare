@@ -126,6 +126,7 @@ FriendsDialog::FriendsDialog(QWidget *parent)
     connect(ui.colorChatButton, SIGNAL(clicked()), this, SLOT(chooseColor()));
     connect(ui.attachPictureButton, SIGNAL(clicked()), this, SLOT(addExtraPicture()));
     connect(ui.actionSave_History, SIGNAL(triggered()), this, SLOT(fileSaveAs()));
+    connect(ui.actionQuote, SIGNAL(triggered()), this, SLOT(quote()));
 
     connect(ui.hashBox, SIGNAL(fileHashingFinished(QList<HashedFile>)), this, SLOT(fileHashingFinished(QList<HashedFile>)));
 
@@ -309,6 +310,7 @@ void FriendsDialog::contextMenuMsgText(QPoint point)
 
     contextMnu->addSeparator();
     contextMnu->addAction(ui.actionClear_Chat_History);
+    contextMnu->addAction(ui.actionQuote);
 
     contextMnu->exec(ui.msgText->viewport()->mapToGlobal(point));
     delete(contextMnu);
@@ -907,4 +909,11 @@ void FriendsDialog::on_actionMessageHistory_triggered()
 	MainWindow::showWindow(MainWindow::Friends);
 	friendsDialog->ui.tabWidget->setCurrentWidget(friendsDialog->ui.groupChatTab);
 	friendsDialog->ui.lineEdit->setFocus();
+}
+
+void FriendsDialog::quote()
+{
+    QString text = ui.msgText->textCursor().selectedText();
+    if(text.length() > 0)
+        emit ui.lineEdit->append(QString(">") + text);
 }
