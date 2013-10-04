@@ -566,6 +566,12 @@ void FriendsDialog::sendMsg()
 
     QString text;
     RsHtml::optimizeHtml(lineWidget, text);
+    RsPeerDetails pd ;
+    std::string nickName;
+    if (rsPeers->getPeerDetails(rsPeers->getOwnId(), pd)) {
+        nickName = pd.name;
+    }
+    RsHtml::processChat(text, QString::fromUtf8(nickName.c_str()));
     std::wstring message = text.toStdWString();
 
 #ifdef FRIENDS_DEBUG

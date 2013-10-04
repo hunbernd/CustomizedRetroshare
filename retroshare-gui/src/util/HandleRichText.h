@@ -72,6 +72,9 @@ public:
 	static QString plainText(const QString &text);
 	static QString plainText(const std::string &text);
 
+    static void    processChat(QString &text, const QString& nick);
+    static void    processChat(QDomDocument& doc, QDomElement& currentElement, const QString& nick);
+
 protected:
 	void embedHtml(QTextDocument *textDocument, QDomDocument &doc, QDomElement &currentElement, EmbedInHtml& embedInfos, ulong flag);
 	void replaceAnchorWithImg(QDomDocument& doc, QDomElement &element, QTextDocument *textDocument, const RetroShareLink &link);
