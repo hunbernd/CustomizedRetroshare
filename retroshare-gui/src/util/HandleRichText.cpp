@@ -810,3 +810,46 @@ QString RsHtml::plainText(const std::string &text)
 	return Qt::escape(QString::fromUtf8(text.c_str()));
 #endif
 }
+
+void RsHtml::processChat(QString &text, const QString &nick)
+{
+    QDomDocument doc;
+    if (doc.setContent(text) == false) {
+        // convert text with QTextBrowser
+        QTextBrowser textBrowser;
+        textBrowser.setText(text);
+        doc.setContent(textBrowser.toHtml());
+    }
+
+    QDomElement root = doc.documentElement();
+    processChat(doc, root, nick);
+
+    text = doc.toString(-1);
+}
+
+void RsHtml::processChat(QDomDocument &doc, QDomElement &currentElement, const QString &nick)
+{
+    QDomNodeList children = currentElement.childNodes();
+    for(uint index = 0; index < children.length(); index++) {
+        QDomNode node = children.item(index);
+        if(node.isElement())
+        {
+            QDomElement element = node.toElement();
+            processChat(doc, element, nick);
+        }
+        if(node.isText())
+        {
+            QDomText textnode = node.toText();
+            QString text = textnode.data();
+            //me
+            if(text.startsWith(QString("/me")))
+                text.replace(0, 3, nick);
+
+
+
+
+            //write back the string
+            textnode.setData(text);
+        }
+    }
+}

@@ -715,6 +715,20 @@ void ChatWidget::sendChat()
 
 	QString text;
 	RsHtml::optimizeHtml(chatWidget, text);
+    ChatLobbyId lid;
+
+    std::string nickName;
+    if(rsMsgs->isLobbyId(peerId, lid))
+    {
+        rsMsgs->getNickNameForChatLobby(lid, nickName);
+    }else{
+        RsPeerDetails pd ;
+        if (rsPeers->getPeerDetails(rsPeers->getOwnId(), pd)) {
+            nickName = pd.name;
+        }
+    }
+    RsHtml::processChat(text, QString::fromUtf8(nickName.c_str()));
+
 	std::wstring msg = text.toStdWString();
 
 	if (msg.empty()) {
