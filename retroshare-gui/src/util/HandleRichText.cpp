@@ -845,8 +845,14 @@ void RsHtml::processChat(QDomDocument &doc, QDomElement &currentElement, const Q
             if(text.startsWith(QString("/me")))
                 text.replace(0, 3, nick);
 
-
-
+            //>greentext
+            if(text.startsWith(">"))
+            {
+                QDomElement span = doc.createElement(QString("span"));
+                span.setAttribute(QString("style"), QString("color:#00FF00;"));
+                QDomNode old = currentElement.replaceChild(span, node);
+                span.appendChild(old);
+            }
 
             //write back the string
             textnode.setData(text);
