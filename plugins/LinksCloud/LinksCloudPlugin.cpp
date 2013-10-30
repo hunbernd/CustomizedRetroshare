@@ -18,7 +18,7 @@ extern "C" {
 	// It will be tested by RS to load the plugin automatically, since it is safe to load plugins
 	// with same revision numbers, assuming that the revision numbers are up-to-date.
 	//
-	uint32_t RETROSHARE_PLUGIN_revision = SVN_REVISION_NUMBER ;
+    uint32_t RETROSHARE_PLUGIN_revision = RsUtil::retroshareRevision() ;
 
 	// This symbol contains the svn revision number grabbed from the executable. 
 	// It will be tested by RS to load the plugin automatically, since it is safe to load plugins
@@ -33,7 +33,7 @@ void LinksCloudPlugin::getPluginVersion(int& major,int& minor,int& svn_rev) cons
 {
 	major = 5 ;
 	minor = 4 ;
-	svn_rev = SVN_REVISION_NUMBER ;
+    svn_rev = RsUtil::retroshareRevision() ;
 }
 
 LinksCloudPlugin::LinksCloudPlugin()

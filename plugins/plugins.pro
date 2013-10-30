@@ -3,4 +3,6 @@ TEMPLATE = subdirs
 SUBDIRS += \
 		LinksCloud \
 		VOIP \
-		FeedReader
+		FeedReader \
+		ExportImport \
+		PaintChat \
