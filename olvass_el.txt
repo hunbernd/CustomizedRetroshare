@@ -1,0 +1,10 @@
+Mi az új:
+-nincs karakter limit, bármekkora képek
+/me
+>zõdszöveg
+-név elhangzásakor figyelmeztetõhang
+-új emotikonok
+-PaintChat plugin
+-ExportImport plugin
+
+Ha hordozható verziót használsz, csak írd felül a fájlokat. Ha nem, akkor töröld ki a "portable" nevû fájlt, és a Data mappa tartalma pedig a %appdata%/Retroshare mappába megy.
