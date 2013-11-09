@@ -1,10 +1,11 @@
 Mi az új:
--nincs karakter limit, bármekkora képek
+-nincs karakter limit a cseten, bármekkora képek fogadása
 /me
->zõdszöveg
--név elhangzásakor figyelmeztetõhang
--új emotikonok
--PaintChat plugin
--ExportImport plugin
+>zöldszöveg
+-szöveg idézése a cseten (jobb klikkes menü)
+-még több emotikon: másold át az emoticons mappát az extras mappából a futtatható állomány mellé
+-hangjelzés ha kimondják a nevedet
+-PaintChat kiegészítõ
+-ExportImport kiegészítõ
 
 Ha hordozható verziót használsz, csak írd felül a fájlokat. Ha nem, akkor töröld ki a "portable" nevû fájlt, és a Data mappa tartalma pedig a %appdata%/Retroshare mappába megy.

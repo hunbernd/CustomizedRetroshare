@@ -1,3 +1,9 @@
+-------------------------------
+This is a stable branch which contains additional features and useful plugins.
+Please, read the what_is_new.txt 
+-------------------------------
+
+
 To compile:
 
 	- install the package dependencies. On ubuntu:
