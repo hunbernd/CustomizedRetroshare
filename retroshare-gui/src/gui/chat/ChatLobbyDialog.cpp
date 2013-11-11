@@ -45,6 +45,8 @@
 #define COLUMN_ACTIVITY  2
 #define COLUMN_COUNT     3
 
+#define NICK_NAME_LIMIT 20
+
 /** Default constructor */
 ChatLobbyDialog::ChatLobbyDialog(const ChatLobbyId& lid, QWidget *parent, Qt::WindowFlags flags)
 	: ChatDialog(parent, flags), lobbyId(lid)
@@ -287,13 +289,14 @@ void ChatLobbyDialog::addIncomingChatMsg(const ChatInfo& info)
 	QDateTime sendTime = QDateTime::fromTime_t(info.sendTime);
 	QDateTime recvTime = QDateTime::fromTime_t(info.recvTime);
 	QString message = QString::fromStdWString(info.msg);
-	QString name = QString::fromUtf8(info.peer_nickname.c_str());
+    QString name = QString::fromUtf8(info.peer_nickname.c_str());
+    QString limitedname = QString(name).left(NICK_NAME_LIMIT);
 	QString rsid = QString::fromUtf8(info.rsid.c_str());
 
 	//std::cerr << "message from rsid " << info.rsid.c_str() << std::endl;
 	
 	if(!isParticipantMuted(name)) {
-	  ui.chatWidget->addChatMsg(true, name, sendTime, recvTime, message, ChatWidget::TYPE_NORMAL);
+      ui.chatWidget->addChatMsg(true, limitedname, sendTime, recvTime, message, ChatWidget::TYPE_NORMAL);
 		emit messageReceived(id()) ;
       //play sound
       std::string nickName;
@@ -306,7 +309,7 @@ void ChatLobbyDialog::addIncomingChatMsg(const ChatInfo& info)
 	// This is a trick to translate HTML into text.
 	QTextEdit editor;
 	editor.setHtml(message);
-	QString notifyMsg = name + ": " + editor.toPlainText();
+    QString notifyMsg = limitedname + ": " + editor.toPlainText();
 
 	if(notifyMsg.length() > 30)
 		MainWindow::displayLobbySystrayMsg(tr("Lobby chat") + ": " + _lobby_name, notifyMsg.left(30) + QString("..."));
@@ -526,24 +529,24 @@ void ChatLobbyDialog::displayLobbyEvent(int event_type, const QString& nickname,
 	switch (event_type) {
 	case RS_CHAT_LOBBY_EVENT_PEER_LEFT:
         qsParticipant=str;
-		ui.chatWidget->addChatMsg(true, tr("Lobby management"), QDateTime::currentDateTime(), QDateTime::currentDateTime(), tr("%1 has left the lobby.").arg(RsHtml::plainText(str)), ChatWidget::TYPE_SYSTEM);
+        ui.chatWidget->addChatMsg(true, tr("Lobby management"), QDateTime::currentDateTime(), QDateTime::currentDateTime(), tr("%1 has left the lobby.").arg(RsHtml::plainText(str).left(NICK_NAME_LIMIT)), ChatWidget::TYPE_SYSTEM);
 		emit peerLeft(id()) ;
 		break;
 	case RS_CHAT_LOBBY_EVENT_PEER_JOINED:
         qsParticipant=str;
-		ui.chatWidget->addChatMsg(true, tr("Lobby management"), QDateTime::currentDateTime(), QDateTime::currentDateTime(), tr("%1 joined the lobby.").arg(RsHtml::plainText(str)), ChatWidget::TYPE_SYSTEM);
+        ui.chatWidget->addChatMsg(true, tr("Lobby management"), QDateTime::currentDateTime(), QDateTime::currentDateTime(), tr("%1 joined the lobby.").arg(RsHtml::plainText(str).left(NICK_NAME_LIMIT)), ChatWidget::TYPE_SYSTEM);
 		emit peerJoined(id()) ;
 		break;
 	case RS_CHAT_LOBBY_EVENT_PEER_STATUS:
         qsParticipant=nickname;
-		ui.chatWidget->updateStatusString(RsHtml::plainText(nickname) + " %1", RsHtml::plainText(str));
+        ui.chatWidget->updateStatusString(RsHtml::plainText(nickname).left(NICK_NAME_LIMIT) + " %1", RsHtml::plainText(str));
 		if (!isParticipantMuted(nickname)) {
 			emit typingEventReceived(id()) ;
 		}
 		break;
 	case RS_CHAT_LOBBY_EVENT_PEER_CHANGE_NICKNAME:
         qsParticipant=str;
-		ui.chatWidget->addChatMsg(true, tr("Lobby management"), QDateTime::currentDateTime(), QDateTime::currentDateTime(), tr("%1 changed his name to: %2").arg(RsHtml::plainText(nickname), RsHtml::plainText(str)), ChatWidget::TYPE_SYSTEM);
+        ui.chatWidget->addChatMsg(true, tr("Lobby management"), QDateTime::currentDateTime(), QDateTime::currentDateTime(), tr("%1 changed his name to: %2").arg(RsHtml::plainText(nickname).left(NICK_NAME_LIMIT), RsHtml::plainText(str).left(NICK_NAME_LIMIT)), ChatWidget::TYPE_SYSTEM);
 		
 		// TODO if a user was muted and changed his name, update mute list, but only, when the muted peer, dont change his name to a other peer in your chat lobby
 		if (isParticipantMuted(nickname) && !isNicknameInLobby(str)) {
