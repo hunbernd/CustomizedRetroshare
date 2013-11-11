@@ -102,6 +102,9 @@
 #define IS_FORUM_ADMIN(subscribeFlags) (subscribeFlags & RS_DISTRIB_ADMIN)
 #define IS_FORUM_SUBSCRIBED(subscribeFlags) (subscribeFlags & (RS_DISTRIB_ADMIN | RS_DISTRIB_SUBSCRIBED))
 
+#define FORUM_TITLE_LENGTH_LIMIT 100
+#define FORUM_TITLE_INSERT_WHITESPACE_AFTER 30
+
 /** Constructor */
 ForumsDialog::ForumsDialog(QWidget *parent)
 : RsAutoUpdatePage(1000,parent)
@@ -1121,7 +1124,7 @@ QString ForumsDialog::titleFromInfo(ForumMsgInfo &msgInfo)
         return QApplication::translate("ForumsDialog", "[ ... Missing Message ... ]");
     }
 
-    return QString::fromStdWString(msgInfo.title);
+    return QString::fromStdWString(msgInfo.title).left(FORUM_TITLE_LENGTH_LIMIT);
 }
 
 QString ForumsDialog::messageFromInfo(ForumMsgInfo &msgInfo)
@@ -1223,7 +1226,27 @@ void ForumsDialog::insertPost()
 
     ui.postText->resetImagesStatus(loadEmbeddedImages);
     ui.postText->setHtml(extraTxt);
-    ui.threadTitle->setText(titleFromInfo(msg));
+
+    //insert whitespaces if the title doesn't contains them to prevent breaking the ui
+    QString title = titleFromInfo(msg);
+    int wsindex = 0;
+    for(int i = 0; i < title.length(); i++)
+    {
+        if(title[i].isSpace())
+        {
+            wsindex = i;
+        }
+        else
+        {
+            if((wsindex + FORUM_TITLE_INSERT_WHITESPACE_AFTER) < i)
+            {
+                i++;
+                title.insert(i, ' ');
+                wsindex = i;
+            }
+        }
+    }
+    ui.threadTitle->setText(title);
 }
 
 void ForumsDialog::previousMessage ()
