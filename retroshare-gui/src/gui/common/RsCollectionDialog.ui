@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>434</width>
-    <height>310</height>
+    <width>570</width>
+    <height>331</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -111,6 +111,11 @@
      <property name="allColumnsShowFocus">
       <bool>true</bool>
      </property>
+     <column>
+      <property name="text">
+       <string notr="true">1</string>
+      </property>
+     </column>
     </widget>
    </item>
    <item>
@@ -127,6 +132,13 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="_add_PB">
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="_selectAll_PB">
@@ -150,6 +162,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="_save_PB">
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="_download_PB">
        <property name="text">
         <string>Download!</string>
@@ -158,8 +177,23 @@
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="HashBox" name="_hashBox">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HashBox</class>
+   <extends>QScrollArea</extends>
+   <header location="global">gui/common/HashBox.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../images.qrc"/>
  </resources>

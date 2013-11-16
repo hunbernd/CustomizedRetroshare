@@ -327,11 +327,14 @@ bool misc::getOpenFileNames(QWidget *parent, RshareSettings::enumLastDir type, c
     return true;
 }
 
-bool misc::getSaveFileName(QWidget *parent, RshareSettings::enumLastDir type, const QString &caption, const QString &filter, QString &file)
+bool misc::getSaveFileName(QWidget *parent, RshareSettings::enumLastDir type
+													 , const QString &caption , const QString &filter
+													 , QString &file, QString *selectedFilter,
+													 QFileDialog::Options options)
 {
     QString lastDir = Settings->getLastDir(type);
 
-    file = QFileDialog::getSaveFileName(parent, caption, lastDir, filter);
+		file = QFileDialog::getSaveFileName(parent, caption, lastDir, filter, selectedFilter, options);
 
     if (file.isEmpty())
         return false;
