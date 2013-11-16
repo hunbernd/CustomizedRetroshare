@@ -25,6 +25,8 @@
 
 #include <QWidget>
 #include <QCompleter>
+#include <QTextCursor>
+#include <QTextCharFormat>
 #include "gui/common/HashBox.h"
 #include "ChatStyle.h"
 #include "gui/style/RSStyle.h"
@@ -35,6 +37,7 @@
 class QAction;
 class QTextEdit;
 class QPushButton;
+class QMenu;
 
 namespace Ui {
 class ChatWidget;
@@ -104,6 +107,7 @@ private slots:
 	void pasteOwnCertificateLink();
 	void contextMenu(QPoint);
 	void contextMenuTextBrowser(QPoint);
+	void contextMenuSearchButton(QPoint);
 	void chatCharFormatChanged();
 
 	void fileHashingFinished(QList<HashedFile> hashedFiles);
@@ -114,6 +118,15 @@ private slots:
 	void addExtraFile();
 	void addExtraPicture();
 	void on_closeInfoFrameButton_clicked();
+	void on_searchButton_clicked(bool bValue);
+	void on_searchBefore_clicked();
+	void on_searchAfter_clicked();
+	void toogle_FindCaseSensitively();
+	void toogle_FindWholeWords();
+	void toogle_MoveToCursor();
+	void toogle_SeachWithoutLimit();
+
+	void on_markButton_clicked(bool bValue);
 
 	void chooseColor();
 	void chooseFont();
@@ -128,6 +141,9 @@ private slots:
 	bool fileSaveAs();
 
 private:
+	bool findText(const QString& qsStringToFind);
+	bool findText(const QString& qsStringToFind, bool bBackWard, bool bForceMove);
+	void removeFoundText();
 	void updateStatusTyping();
 	void setCurrentFileName(const QString &fileName);
 
@@ -162,6 +178,20 @@ private:
 
 	bool firstShow;
 	bool inChatCharFormatChanged;
+	bool firstSearch;
+	QPalette qpSave_leSearch;
+	std::map<QTextCursor,QTextCharFormat> smFoundCursor;
+	int iCharToStartSearch;
+	bool bFindCaseSensitively;
+	bool bFindWholeWords;
+	bool bMoveToCursor;
+	bool bSearchWithoutLimit;
+	uint uiMaxSearchLimitColor;
+	QColor cFoundColor;
+	QString qsLastsearchText;
+	QTextCursor qtcCurrent;
+
+	QTextCursor qtcMark;
 
 	TransferRequestFlags mDefaultExtraFileFlags ; // flags for extra files shared in this chat. Will be 0 by default, but might be ANONYMOUS for chat lobbies.
 	QDate lastMsgDate ;
