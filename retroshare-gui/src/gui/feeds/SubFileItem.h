@@ -73,10 +73,13 @@ public:
 	bool isDownloadable(bool &startable);
 	bool isPlayable(bool &startable);
 
+	void setChannelId(const std::string &channelId) { mChannelId = channelId; }
+
 public slots:
 	void download();
 	void play();
 	void mediatype();
+	void copyLink();
 
 private slots:
 	void toggle();
@@ -94,6 +97,7 @@ private:
 	std::string mFileName;
 	uint64_t    mFileSize;
 	std::string mSrcId;
+	std::string mChannelId;
 
 	uint32_t    mMode;
 	uint32_t    mType;

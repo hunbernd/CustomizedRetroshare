@@ -10,7 +10,7 @@
  ******/
 
 #define CHUNK_MAX_AGE           120
-#define MAX_FTCHUNKS_PER_PEER   5
+#define MAX_FTCHUNKS_PER_PEER    20
 
 /***********************************************************
 *
@@ -265,11 +265,13 @@ int ftFileCreator::locked_initializeFileAttrs()
 
 	if (!fd)
 	{
+#ifdef FILE_DEBUG
 		std::cerr << "ftFileCreator::initializeFileAttrs() Failed to open (r+b): ";
 		std::cerr << file_name << ", errno = " << errno << std::endl;
 
 		std::cerr << "ftFileCreator::initializeFileAttrs() opening w+b";
 		std::cerr << std::endl;
+#endif
 
 		/* try opening for write */
 		fd = RsDirUtil::rs_fopen(file_name.c_str(), "w+b");
