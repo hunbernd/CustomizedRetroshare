@@ -31,7 +31,7 @@ class RsCollectionDialog: public QDialog, public Ui::RsCollectionDialog
 	Q_OBJECT
 
 public:
-	RsCollectionDialog(const QString& filename,const std::vector<RsCollectionFile::DLinfo>& dlinfos) ;
+		RsCollectionDialog(const QString& filename, const std::vector<ColFileInfo> &colFileInfos,const bool& creation) ;
 
 private slots:
 	void download() ;
@@ -40,6 +40,14 @@ private slots:
 	void cancel() ;
 	void updateSizes() ;
 	void itemChanged(QTreeWidgetItem *item, int column);
+		void changeCheckAllChild(QTreeWidgetItem *item, bool checked);
+		void checkAllParent(QTreeWidgetItem *item);
+		void add();
+		void fileHashingFinished(QList<HashedFile> hashedFiles);
+		void save();
+
+signals:
+		void saveColl(std::vector<ColFileInfo>);
 
 protected:
 	bool eventFilter(QObject *obj, QEvent *ev);
@@ -47,7 +55,12 @@ protected:
 private:
 	void selectDeselectAll(bool select);
 	void connectUpdate(bool doConnect);
+		bool updateList();
+		bool addChild(QTreeWidgetItem *parent, std::vector<ColFileInfo> child, uint64_t total_size, uint32_t total_files);
 
-	const std::vector<RsCollectionFile::DLinfo>& _dlinfos ;
-	QString _filename ;
+		const QString _filename ;
+		const std::vector<ColFileInfo>& _colFileInfos ;
+		const bool _creationMode ;
+		QString _newFilename ;
+		std::vector<ColFileInfo> _newColFileInfos ;
 };

@@ -27,6 +27,7 @@
 #include <QObject>
 #include <QPair>
 #include <QThread>
+#include <QFileDialog>
 
 #include "gui/settings/rsharesettings.h"
 
@@ -162,7 +163,10 @@ class misc : public QObject
     static bool getOpenFileName(QWidget *parent, RshareSettings::enumLastDir type, const QString &caption, const QString &filter, QString &file);
     static bool getOpenFileNames(QWidget *parent, RshareSettings::enumLastDir type, const QString &caption, const QString &filter, QStringList &files);
 
-    static bool getSaveFileName(QWidget *parent, RshareSettings::enumLastDir type, const QString &caption, const QString &filter, QString &file);
+    static bool getSaveFileName(QWidget *parent, RshareSettings::enumLastDir type
+                                , const QString &caption , const QString &filter
+                                , QString &file, QString *selectedFilter = 0,
+                                QFileDialog::Options options = 0);
 };
 
 //  Trick to get a portable sleep() function

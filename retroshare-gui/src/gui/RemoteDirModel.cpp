@@ -903,7 +903,7 @@ void RetroshareDirModel::createCollectionFile(QWidget *parent, const QModelIndex
 	std::vector <DirDetails> dirVec;
 	getDirDetailsFromSelect(list, dirVec);
 
-	RsCollectionFile(dirVec).save(parent);
+    RsCollectionFile(dirVec).openNewColl(parent);
 }
 
 void RetroshareDirModel::downloadSelected(const QModelIndexList &list)
