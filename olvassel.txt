@@ -1,0 +1,30 @@
+----------------------------------
+Hozzáadott dolgok:
+----------------------------------
+-nincs karakter limit a cseten, bármekkora képek fogadása
+/me
+>zöldszöveg
+-szöveg idézése a cseten (jobb klikkes menü)
+-még több emotikon
+-hangjelzés ha kimondják a nevedet
+-többé nem rontják el a grafikus felületet a túl hosszú nickek
+-többé nem rontják el a grafikus felületet a túl hosszú fórum címek
+-rscollection szerkesztõ (Phenom)
+-megjelölés és keresés a cset ablakban (Phenom)
+-fájl találati lista rendezése a források száma szerint (Phenom)
+-PaintChat kiegészítõ (electron128)
+-ExportImport kiegészítõ
+-WebScriptRS kiegészítõ: https://github.com/chozabu/WebScriptRS (chozabu)(aktív fejlesztés alatt ál, ezért instabil lehet)
+
+----------------------------------
+Telepítési útmutató:
+----------------------------------
+Windows (hordozható):
+	-csomagold ki a zip-et a Retroshare mappádba
+	-kérdés esetén írd felül a fájlokat
+	
+Windows (telepített verzió):
+	-csomagold ki a zip-et a Retroshare mappádba, a Data mappa kivételével
+	-töröld "portable" nevû fájlt
+	-csomagold ki a Data mappa tartalmát a %appdata%/Retroshare mappába
+	-kérdés esetén írd felül a fájlokat

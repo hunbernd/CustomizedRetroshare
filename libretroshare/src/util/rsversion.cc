@@ -11,7 +11,7 @@
 
 std::string RsUtil::retroshareVersion()
 {
-	return std::string(LIB_VERSION) + " " + std::string(SVN_REVISION);
+    return std::string(LIB_VERSION) + " " + std::string(SVN_REVISION) + " Turul edition";
 
 }
 

@@ -1,6 +1,6 @@
 -------------------------------
 This is a stable branch which contains additional features and useful plugins.
-Please, read the what_is_new.txt 
+Please, read the readme2.txt for additional information. 
 -------------------------------
 
 

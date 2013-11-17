@@ -1,0 +1,30 @@
+----------------------------------
+What are the additional features:
+----------------------------------
+-disabled character limit in chat, doesn't block large images
+/me
+>greentext
+-quote text from the chat (right click menu)
+-additional emoticons
+-sound when somebody mentions your name in the chat
+-prevent breaking the UI with too long nickname
+-prevent breaking the UI with too long forum title
+-rscollecton editor (from Phenom)
+-search and mark on chatwidget (from Phenom)
+-sort found files by count of sources (from Phenom)
+-PaintChat plugin (from electron128)
+-ExportImport plugin (from unknown)
+-WebScriptRS plugin: https://github.com/chozabu/WebScriptRS (from chozabu)(unstable, under active development)
+
+----------------------------------
+Installation instructions:
+----------------------------------
+Windows (portable):
+	-extract the zip into your Retroshare folder
+	-write over existing files if asked
+	
+Windows (installed version):
+	-extract the zip into your Retroshare folder, except the Data folder
+	-delete the file called "portable"
+	-extract the content of the Data folder into %appdata%/Retroshare
+	-write over existing files if asked

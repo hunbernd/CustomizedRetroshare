@@ -1,9 +1,0 @@
-What is new:
--disabled character limit in chat, doesn't block large images
-/me
->greentext
--quote text from the chat (right click menu)
--additional emoticons: copy the emoticons folder from extras to next to the executable
--sound when somebody mentions your name in the chat
--PaintChat plugin
--ExportImport plugin
