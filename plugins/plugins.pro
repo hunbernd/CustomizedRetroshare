@@ -6,3 +6,4 @@ SUBDIRS += \
 		FeedReader \
 		ExportImport \
 		PaintChat \
+		WebScriptRS \
