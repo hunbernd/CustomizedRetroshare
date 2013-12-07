@@ -167,9 +167,9 @@ void ftController::addFileSource(const std::string& hash,const std::string& peer
 
 	std::map<std::string, ftFileControl*>::iterator it = mDownloads.find(hash);
 
-#ifdef CONTROL_DEBUG
+//#ifdef CONTROL_DEBUG
 	std::cerr << "ftController: Adding source " << peer_id << " to current download hash=" << hash ;
-#endif
+//#endif
 	if(it != mDownloads.end())
 	{
 		it->second->mTransfer->addFileSource(peer_id);
@@ -426,17 +426,17 @@ void ftController::checkDownloadQueue()
 	for(std::map<std::string,ftFileControl*>::const_iterator it(mDownloads.begin());it!=mDownloads.end() && nb_moved <= _max_active_downloads;++it)
 		if(	it->second->mState != ftFileControl::QUEUED 
                 && (it->second->mState == ftFileControl::PAUSED
-                    || now > it->second->mCreator->lastRecvTimeStamp() + (time_t)MAX_TIME_INACTIVE_REQUEUED))
+                    || now > it->second->mTransfer->lastActvTimeStamp() + (time_t)MAX_TIME_INACTIVE_REQUEUED))
 		{
 #ifdef DEBUG_DWLQUEUE
-			std::cerr << "  - Inactive file " << it->second->mName << " at position " << it->second->mQueuePosition << " moved to end of the queue. mState=" << it->second->mState << ", time lapse=" << now - it->second->mCreator->lastRecvTimeStamp()  << std::endl ;
+			std::cerr << "  - Inactive file " << it->second->mName << " at position " << it->second->mQueuePosition << " moved to end of the queue. mState=" << it->second->mState << ", time lapse=" << now - it->second->mCreator->lastActvTimeStamp()  << std::endl ;
 #endif
 			locked_bottomQueue(it->second->mQueuePosition) ;
 #ifdef DEBUG_DWLQUEUE
 			std::cerr << "  new position: " << it->second->mQueuePosition << std::endl ;
 			std::cerr << "  new state: " << it->second->mState << std::endl ;
 #endif
-			it->second->mCreator->resetRecvTimeStamp() ;	// very important!
+			it->second->mTransfer->resetActvTimeStamp() ;	// very important!
 			++nb_moved ;
 		}
 
@@ -640,7 +640,7 @@ void ftController::locked_checkQueueElement(uint32_t pos)
 	if(pos < _max_active_downloads && _queue[pos]->mState != ftFileControl::PAUSED)
 	{
 		if(_queue[pos]->mState == ftFileControl::QUEUED)
-			_queue[pos]->mCreator->resetRecvTimeStamp() ;
+			_queue[pos]->mTransfer->resetActvTimeStamp() ;
 
 		_queue[pos]->mState = ftFileControl::DOWNLOADING ;
 
@@ -1133,6 +1133,20 @@ bool 	ftController::FileRequest(const std::string& fname, const std::string& has
 		}
 	}
 
+	// remove the sources from the list, if they don't have clearance for direct transfer. This happens only for non cache files.
+	//
+	if(!(flags & RS_FILE_REQ_CACHE))
+		for(std::list<std::string>::iterator it = srcIds.begin(); it != srcIds.end(); )
+			if(!(rsPeers->servicePermissionFlags_sslid(*it) & RS_SERVICE_PERM_DIRECT_DL))
+			{
+				std::list<std::string>::iterator tmp(it) ;
+				++tmp ;
+				srcIds.erase(it) ;
+				it = tmp ;
+			}
+			else
+				++it ;
+	
 	std::list<std::string>::const_iterator it;
 	std::list<TransferInfo>::const_iterator pit;
 
@@ -1179,26 +1193,27 @@ bool 	ftController::FileRequest(const std::string& fname, const std::string& has
 			 */
 
 			for(it = srcIds.begin(); it != srcIds.end(); it++)
-			{
-				uint32_t i, j;
-				if ((dit->second)->mTransfer->getPeerState(*it, i, j))
+				if(rsPeers->servicePermissionFlags_sslid(*it) & RS_SERVICE_PERM_DIRECT_DL)
 				{
+					uint32_t i, j;
+					if ((dit->second)->mTransfer->getPeerState(*it, i, j))
+					{
 #ifdef CONTROL_DEBUG
-					std::cerr << "ftController::FileRequest() Peer Existing";
+						std::cerr << "ftController::FileRequest() Peer Existing";
+						std::cerr << std::endl;
+#endif
+						continue; /* already added peer */
+					}
+
+#ifdef CONTROL_DEBUG
+					std::cerr << "ftController::FileRequest() Adding Peer: " << *it;
 					std::cerr << std::endl;
 #endif
-					continue; /* already added peer */
+					(dit->second)->mTransfer->addFileSource(*it);
+					setPeerState(dit->second->mTransfer, *it, rate, mLinkMgr->isOnline(*it));
+
+					IndicateConfigChanged(); /* new peer for transfer -> save */
 				}
-
-#ifdef CONTROL_DEBUG
-				std::cerr << "ftController::FileRequest() Adding Peer: " << *it;
-				std::cerr << std::endl;
-#endif
-				(dit->second)->mTransfer->addFileSource(*it);
-				setPeerState(dit->second->mTransfer, *it, rate, mLinkMgr->isOnline(*it));
-
-				IndicateConfigChanged(); /* new peer for transfer -> save */
-			}
 
 			if (srcIds.size() == 0)
 			{
@@ -1211,6 +1226,7 @@ bool 	ftController::FileRequest(const std::string& fname, const std::string& has
 			return true;
 		}
 	} /******* UNLOCKED ********/
+
 
 	if(!(flags & RS_FILE_REQ_NO_SEARCH))
 	{
@@ -1701,7 +1717,10 @@ bool 	ftController::FileDetails(const std::string &hash, FileInfo &info)
 	{
 		it->second->mTransfer->getFileSources(peerIds);
 		info.priority = it->second->mTransfer->downloadPriority() ;
+		info.lastTS = it->second->mCreator->lastRecvTimeStamp();	// last time the file was actually written
 	}
+	else
+		info.lastTS = 0; 
 
 	double totalRate = 0;
 	uint32_t tfRate = 0;
