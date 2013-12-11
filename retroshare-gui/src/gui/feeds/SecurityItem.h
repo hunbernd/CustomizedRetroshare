@@ -52,6 +52,7 @@ private slots:
 	void friendRequest();
 	void removeFriend();
 	void peerDetails();
+    void checkIp();
 	void sendMsg();
 	void openChat();
 

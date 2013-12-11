@@ -7,8 +7,9 @@ What are the additional features:
 -quote text from the chat (right click menu)
 -additional emoticons
 -sound when somebody mentions your name in the chat
+-check geolocation and other data based on IP for unknown incoming connections
 -prevent breaking the UI with too long nickname
--prevent breaking the UI with too long forum title
+-prevent breaking the UI with too long forum title (from Phenom)
 -rscollecton editor (from Phenom)
 -search and mark on chatwidget (from Phenom)
 -sort found files by count of sources (from Phenom)

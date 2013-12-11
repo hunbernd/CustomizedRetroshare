@@ -147,6 +147,7 @@ private slots:
     void msgfriend();
     void recommendfriend();
     void removefriend();
+    void checkIp();
 #ifdef UNFINISHED_FD
     void viewprofile();
 #endif

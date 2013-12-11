@@ -22,6 +22,8 @@
 #include <QDateTime>
 #include <QTimer>
 #include <QMessageBox>
+#include <QUrl>
+#include <QDesktopServices>
 
 #include "SecurityItem.h"
 #include "FeedHolder.h"
@@ -57,6 +59,7 @@ SecurityItem::SecurityItem(FeedHolder *parent, uint32_t feedId, const std::strin
     removeFriendButton->setEnabled(false);
     removeFriendButton->hide();
     peerDetailsButton->setEnabled(false);
+    checkipButton->setEnabled(mIP.empty());
     friendRequesttoolButton->hide();
     requestLabel->hide();
 
@@ -75,6 +78,7 @@ SecurityItem::SecurityItem(FeedHolder *parent, uint32_t feedId, const std::strin
 
     connect( removeFriendButton, SIGNAL(clicked()), this, SLOT(removeFriend()));
     connect( peerDetailsButton, SIGNAL(clicked()), this, SLOT(peerDetails()));
+    connect( checkipButton, SIGNAL(clicked()), this, SLOT(checkIp()));
     connect( friendRequesttoolButton, SIGNAL(clicked()), this, SLOT(friendRequest()));
 
     connect(NotifyQt::getInstance(), SIGNAL(friendsChanged()), this, SLOT(updateItem()));
@@ -189,6 +193,7 @@ void SecurityItem::updateItem()
 				trustLabel->setText(tr("Unknown Peer"));
 				locLabel->setText(tr("Unknown Peer"));
 				ipLabel->setText(QString::fromStdString(mIP)) ; //tr("Unknown Peer"));
+                checkipButton->setEnabled(!mIP.empty());
 				connLabel->setText(tr("Unknown Peer"));
 
 				chatButton->hide();
@@ -227,6 +232,7 @@ void SecurityItem::updateItem()
 		trustLabel->setText(QString::fromStdString(RsPeerTrustString(details.trustLvl)));
 
 		ipLabel->setText(QString::fromStdString(mIP)) ; //QString("%1:%2/%3:%4").arg(QString::fromStdString(details.localAddr)).arg(details.localPort).arg(QString::fromStdString(details.extAddr)).arg(details.extPort));
+        checkipButton->setEnabled(!mIP.empty());
 
 		connLabel->setText(StatusDefs::connectStateString(details));
 
@@ -427,4 +433,9 @@ void SecurityItem::on_quickmsgText_textChanged()
 	{
 		sendmsgButton->setEnabled(true);
 	}
+}
+
+void SecurityItem::checkIp()
+{
+    QDesktopServices::openUrl(QString("http://geoip.flagfox.net/?ip=%1").arg(QString::fromStdString(mIP)));
 }

@@ -7,8 +7,9 @@ Hozzáadott dolgok:
 -szöveg idézése a cseten (jobb klikkes menü)
 -még több emotikon
 -hangjelzés ha kimondják a nevedet
+-hely és egyéb adatok ellenõrzése IP alapján ismeretlen csatlakozási kísérletnél
 -többé nem rontják el a grafikus felületet a túl hosszú nickek
--többé nem rontják el a grafikus felületet a túl hosszú fórum címek
+-többé nem rontják el a grafikus felületet a túl hosszú fórum címek (Phenom)
 -rscollection szerkesztõ (Phenom)
 -megjelölés és keresés a cset ablakban (Phenom)
 -fájl találati lista rendezése a források száma szerint (Phenom)

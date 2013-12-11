@@ -26,6 +26,8 @@
 #include <QTreeWidgetItem>
 #include <QWidgetAction>
 #include <QDateTime>
+#include <QUrl>
+#include <QDesktopServices>
 
 #include "retroshare/rspeers.h"
 
@@ -61,6 +63,7 @@
 #define IMAGE_EXPORTFRIEND       ":/images/user/friend_suggestion16.png"
 #define IMAGE_ADDFRIEND          ":/images/user/add_user16.png"
 #define IMAGE_FRIENDINFO         ":/images/info16.png"
+#define IMAGE_CHECKIP            ":/images/network16.png"
 #define IMAGE_CHAT               ":/images/chat_24.png"
 #define IMAGE_MSG                ":/images/mail_new.png"
 #define IMAGE_CONNECT            ":/images/connect_friend.png"
@@ -394,6 +397,17 @@ void FriendList::peerTreeWidgetCostumPopupMenu()
                  contextMnu.addAction(QIcon(IMAGE_FRIENDINFO), tr("Friend Details"), this, SLOT(configurefriend()));
                  //            contextMnu.addAction(QIcon(IMAGE_PEERINFO), tr("Profile View"), this, SLOT(viewprofile()));
                  //            action = contextMnu.addAction(QIcon(IMAGE_EXPORTFRIEND), tr("Export Friend"), this, SLOT(exportfriend()));
+
+                 if (type == TYPE_SSL){
+                     QAction *cIP = contextMnu.addAction(QIcon(IMAGE_CHECKIP), "Check IP", this, SLOT(checkIp()));
+                     RsPeerDetails sslDetail;
+                     if (rsPeers->getPeerDetails(getRsId(c), sslDetail))
+                     {
+                         cIP->setEnabled(sslDetail.state & RS_PEER_STATE_CONNECTED);
+                     } else {
+                         cIP->setEnabled(false);
+                     }
+                 }
 
                  if (type == TYPE_GPG || type == TYPE_SSL) {
                      contextMnu.addAction(QIcon(IMAGE_EXPORTFRIEND), tr("Recommend this Friend to..."), this, SLOT(recommendfriend()));
@@ -2029,4 +2043,35 @@ void FriendList::updateMenu()
     ui->actionHideState->setChecked(mHideState);
     ui->actionRootIsDecorated->setChecked(ui->peerTreeWidget->rootIsDecorated());
     ui->actionShowGroups->setChecked(mShowGroups);
+}
+
+void FriendList::checkIp()
+{
+    QTreeWidgetItem *c = getCurrentPeer();
+#ifdef FRIENDS_DEBUG
+    std::cerr << "FriendList::checkip()" << std::endl;
+#endif
+    if (!c)
+    {
+#ifdef FRIENDS_DEBUG
+        std::cerr << "FriendList::connectfriend() None Selected -- sorry" << std::endl;
+#endif
+        return;
+    }
+
+    if (rsPeers)
+    {
+        if (c->type() == TYPE_GPG) {
+            return;
+        } else {
+            //this is a SSL key
+            RsPeerDetails sslDetail;
+            if (!rsPeers->getPeerDetails(getRsId(c), sslDetail)) return;
+            if(sslDetail.state & RS_PEER_STATE_CONNECTED)
+            {
+                QString IP = QString(sslDetail.connectAddr.c_str());
+                QDesktopServices::openUrl(QString("http://geoip.flagfox.net/?ip=%1").arg(IP));
+            }
+        }
+    }
 }
