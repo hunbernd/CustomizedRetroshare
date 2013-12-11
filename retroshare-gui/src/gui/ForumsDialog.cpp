@@ -102,9 +102,6 @@
 #define IS_FORUM_ADMIN(subscribeFlags) (subscribeFlags & RS_DISTRIB_ADMIN)
 #define IS_FORUM_SUBSCRIBED(subscribeFlags) (subscribeFlags & (RS_DISTRIB_ADMIN | RS_DISTRIB_SUBSCRIBED))
 
-#define FORUM_TITLE_LENGTH_LIMIT 100
-#define FORUM_TITLE_INSERT_WHITESPACE_AFTER 30
-
 /** Constructor */
 ForumsDialog::ForumsDialog(QWidget *parent)
 : RsAutoUpdatePage(1000,parent)
@@ -142,6 +139,7 @@ ForumsDialog::ForumsDialog(QWidget *parent)
     connect(ui.filterLineEdit, SIGNAL(filterChanged(int)), this, SLOT(filterColumnChanged(int)));
 
     connect(NotifyQt::getInstance(), SIGNAL(forumMsgReadSatusChanged(QString,QString,int)), this, SLOT(forumMsgReadSatusChanged(QString,QString,int)));
+    connect(ui.threadTitle, SIGNAL(elisionChanged(bool)), this, SLOT(threadTitle_elisionChanged(bool)));
 
     ui.imageBlockWidget->addButtonAction(tr("Load images always for this message"), this, SLOT(loadImagesAlways()), true);
     ui.postText->setImageBlockWidget(ui.imageBlockWidget);
@@ -1124,7 +1122,7 @@ QString ForumsDialog::titleFromInfo(ForumMsgInfo &msgInfo)
         return QApplication::translate("ForumsDialog", "[ ... Missing Message ... ]");
     }
 
-    return QString::fromStdWString(msgInfo.title).left(FORUM_TITLE_LENGTH_LIMIT);
+    return QString::fromStdWString(msgInfo.title);
 }
 
 QString ForumsDialog::messageFromInfo(ForumMsgInfo &msgInfo)
@@ -1226,27 +1224,7 @@ void ForumsDialog::insertPost()
 
     ui.postText->resetImagesStatus(loadEmbeddedImages);
     ui.postText->setHtml(extraTxt);
-
-    //insert whitespaces if the title doesn't contains them to prevent breaking the ui
-    QString title = titleFromInfo(msg);
-    int wsindex = 0;
-    for(int i = 0; i < title.length(); i++)
-    {
-        if(title[i].isSpace())
-        {
-            wsindex = i;
-        }
-        else
-        {
-            if((wsindex + FORUM_TITLE_INSERT_WHITESPACE_AFTER) < i)
-            {
-                i++;
-                title.insert(i, ' ');
-                wsindex = i;
-            }
-        }
-    }
-    ui.threadTitle->setText(title);
+    ui.threadTitle->setText(titleFromInfo(msg));
 }
 
 void ForumsDialog::previousMessage ()
@@ -2161,4 +2139,9 @@ void ForumsDialog::loadImagesAlways()
     }
 
     rsForums->setMessageStatus(mCurrForumId, mCurrThreadId, FORUM_MSG_STATUS_LOAD_EMBEDDED_IMAGES, FORUM_MSG_STATUS_LOAD_EMBEDDED_IMAGES);
+}
+
+void ForumsDialog::threadTitle_elisionChanged(bool elided)
+{
+	ui.threadTitle->setToolTip(elided?ui.threadTitle->text():"");
 }
