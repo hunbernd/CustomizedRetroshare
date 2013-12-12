@@ -120,6 +120,7 @@ ChatWidget::ChatWidget(QWidget *parent) :
 	connect(ui->actionChooseFont, SIGNAL(triggered()), this, SLOT(chooseFont()));
 	connect(ui->actionResetFont, SIGNAL(triggered()), this, SLOT(resetFont()));
     connect(ui->actionQuote, SIGNAL(triggered()), this, SLOT(quote()));
+    connect(ui->actionSave_image, SIGNAL(triggered()), this, SLOT(saveImage()));
 
 	connect(ui->hashBox, SIGNAL(fileHashingFinished(QList<HashedFile>)), this, SLOT(fileHashingFinished(QList<HashedFile>)));
 
@@ -761,11 +762,14 @@ void ChatWidget::contextMenuTextBrowser(QPoint point)
 	QMatrix matrix;
 	matrix.translate(ui->textBrowser->horizontalScrollBar()->value(), ui->textBrowser->verticalScrollBar()->value());
 
+    clickPos = point;
+
 	QMenu *contextMnu = ui->textBrowser->createStandardContextMenu(matrix.map(point));
 
 	contextMnu->addSeparator();
 	contextMnu->addAction(ui->actionClearChatHistory);
     contextMnu->addAction(ui->actionQuote);
+    contextMnu->addAction(ui->actionSave_image);
 
 	contextMnu->exec(ui->textBrowser->viewport()->mapToGlobal(point));
 	delete(contextMnu);
@@ -1397,4 +1401,36 @@ void ChatWidget::quote()
     QString text = ui->textBrowser->textCursor().selectedText();
     if(text.length() > 0)
         emit ui->chatTextEdit->append(QString(">") + text);
+}
+
+void ChatWidget::saveImage()
+{
+    QTextCursor cursor = ui->textBrowser->cursorForPosition(clickPos);
+    cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+    cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, 2);
+    QString imagestr = cursor.selection().toHtml();
+    bool success = false;
+    int start = imagestr.indexOf("base64,") + 7;
+    int stop = imagestr.indexOf("\"", start);
+    int length = stop - start;
+    if((start >= 0) && (length > 0))
+    {
+        QByteArray ba = QByteArray::fromBase64(imagestr.mid(start, length).toAscii());
+        QImage image = QImage::fromData(ba);
+        if(!image.isNull())
+        {
+            QString file;
+            success = true;
+            if(misc::getSaveFileName(window(), RshareSettings::LASTDIR_IMAGES, "Save Picture File", "Pictures (*.png *.xpm *.jpg)", file))
+            {
+                if(!image.save(file, 0, 100))
+                    if(!image.save(file + ".png", 0, 100))
+                        QMessageBox::warning(window(), "", "Cannot save the image, invalid filename");
+            }
+        }
+    }
+    if(!success)
+    {
+        QMessageBox::warning(window(), "", "Not an image");
+    }
 }

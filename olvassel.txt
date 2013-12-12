@@ -6,6 +6,7 @@ Hozzáadott dolgok:
 >zöldszöveg
 -szöveg idézése a cseten (jobb klikkes menü)
 -még több emotikon
+-képek mentése csetrõl
 -hangjelzés ha kimondják a nevedet
 -hely és egyéb adatok ellenõrzése IP alapján ismeretlen csatlakozási kísérletnél
 -többé nem rontják el a grafikus felületet a túl hosszú nickek

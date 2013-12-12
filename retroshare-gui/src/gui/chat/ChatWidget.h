@@ -91,6 +91,7 @@ private slots:
 	void messageHistory();
 	void resetStatusBar() ;
     void quote();
+    void saveImage();
 
 signals:
 	void infoChanged(ChatWidget*);
@@ -191,8 +192,8 @@ private:
 	QColor cFoundColor;
 	QString qsLastsearchText;
 	QTextCursor qtcCurrent;
-
 	QTextCursor qtcMark;
+    QPoint clickPos;
 
 	TransferRequestFlags mDefaultExtraFileFlags ; // flags for extra files shared in this chat. Will be 0 by default, but might be ANONYMOUS for chat lobbies.
 	QDate lastMsgDate ;

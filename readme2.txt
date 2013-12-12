@@ -6,6 +6,7 @@ What are the additional features:
 >greentext
 -quote text from the chat (right click menu)
 -additional emoticons
+-save images from chat
 -sound when somebody mentions your name in the chat
 -check geolocation and other data based on IP for unknown incoming connections
 -prevent breaking the UI with too long nickname
