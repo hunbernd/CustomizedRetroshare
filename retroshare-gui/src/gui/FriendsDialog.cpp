@@ -925,5 +925,9 @@ void FriendsDialog::quote()
 {
     QString text = ui.msgText->textCursor().selectedText();
     if(text.length() > 0)
-        emit ui.lineEdit->append(QString(">") + text);
+    {
+        QStringList sl = text.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+        text = QString(">") + sl.join("\n>");
+        emit ui.lineEdit->append(text);
+    }
 }

@@ -1400,7 +1400,11 @@ void ChatWidget::quote()
 {
     QString text = ui->textBrowser->textCursor().selectedText();
     if(text.length() > 0)
-        emit ui->chatTextEdit->append(QString(">") + text);
+    {
+        QStringList sl = text.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+        text = QString(">") + sl.join("\n>");
+        emit ui->chatTextEdit->append(text);
+    }
 }
 
 void ChatWidget::saveImage()
