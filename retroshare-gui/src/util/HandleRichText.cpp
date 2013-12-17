@@ -859,3 +859,22 @@ void RsHtml::processChat(QDomDocument &doc, QDomElement &currentElement, const Q
         }
     }
 }
+
+//returns true if there is /me
+bool RsHtml::processTextDocument(QTextDocument* doc, const QString& nick)
+{
+    QTextCursor cursor(doc);
+    do{
+        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::MoveAnchor);
+        cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
+        if(cursor.selectedText().startsWith(">") || cursor.selectedText().endsWith("<"))
+        {
+            QBrush brush(Qt::green);
+            QTextCharFormat format;
+            format.setForeground(brush);
+            cursor.mergeCharFormat(format);
+        }
+
+    }while(cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor));
+    return false;
+}

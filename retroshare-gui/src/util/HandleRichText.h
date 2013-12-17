@@ -74,6 +74,7 @@ public:
 
     static void    processChat(QString &text, const QString& nick);
     static void    processChat(QDomDocument& doc, QDomElement& currentElement, const QString& nick);
+    static bool    processTextDocument(QTextDocument* doc, const QString& nick = QString(""));
 
 protected:
 	void embedHtml(QTextDocument *textDocument, QDomDocument &doc, QDomElement &currentElement, EmbedInHtml& embedInfos, ulong flag);
