@@ -842,12 +842,14 @@ void ChatWidget::sendChat()
 		return;
 	}
 
-	RsHtml::processTextDocument(chatWidget->document(), name);
+    ChatLobbyId lid;
+    bool me = RsHtml::processTextDocument(chatWidget->document(), name) && rsMsgs->isLobbyId(peerId, lid);
 	QString text;
 	RsHtml::optimizeHtml(chatWidget, text);
 
-
 	std::wstring msg = text.toStdWString();
+    if(me) msg = msg.insert(0, L"*");
+
 	if (msg.empty()) {
 		// nothing to send
 		return;
@@ -859,7 +861,7 @@ void ChatWidget::sendChat()
 
 	if (rsMsgs->sendPrivateChat(peerId, msg)) {
 		QDateTime currentTime = QDateTime::currentDateTime();
-		addChatMsg(false, name, currentTime, currentTime, QString::fromStdWString(msg), TYPE_NORMAL);
+        addChatMsg(false, me ? QString('*') : name, currentTime, currentTime, text, TYPE_NORMAL);
 	}
 
 	chatWidget->clear();

@@ -2373,7 +2373,19 @@ bool p3ChatService::sendLobbyChat(const std::string &id, const std::wstring& msg
 		item.chatFlags = RS_CHAT_FLAG_LOBBY | RS_CHAT_FLAG_PRIVATE;
 		item.sendTime = time(NULL);
 		item.recvTime = item.sendTime;
-		item.message = msg;
+        if(!msg.empty())
+        {
+            std::wstring::size_type found = msg.find(L'*');
+            if(found == 0)
+            {
+                item.nick = "*";
+                std::wstring msg2 = std::wstring(msg);
+                item.message = msg2.erase(0,1);
+            }else{
+                item.message = msg;
+            }
+        }
+
 	}
 
 	std::string ownId = rsPeers->getOwnId();

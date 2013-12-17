@@ -29,6 +29,7 @@
 #include "HandleRichText.h"
 #include "gui/RetroShareLink.h"
 #include "util/ObjectPainter.h"
+#include <retroshare/rspeers.h>
 
 #include <iostream>
 
@@ -863,6 +864,9 @@ void RsHtml::processChat(QDomDocument &doc, QDomElement &currentElement, const Q
 //returns true if there is /me
 bool RsHtml::processTextDocument(QTextDocument* doc, const QString& nick)
 {
+    QString nick2 = QString(nick);
+    bool me = false;
+    QString mestr("/me ");
     QTextCursor cursor(doc);
     do{
         cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::MoveAnchor);
@@ -874,7 +878,21 @@ bool RsHtml::processTextDocument(QTextDocument* doc, const QString& nick)
             format.setForeground(brush);
             cursor.mergeCharFormat(format);
         }
-
+        //should be in the last position
+        if(cursor.selectedText().startsWith(mestr))
+        {
+            if(nick2.isEmpty())
+            {
+                RsPeerDetails pd ;
+                if (rsPeers->getPeerDetails(rsPeers->getOwnId(), pd)) {
+                    nick2 = QString::fromStdString(pd.name);
+                }
+            }
+            cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+            cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, mestr.length() - 1);
+            cursor.insertText(QString("* ") + nick2);
+            me = true;
+        }
     }while(cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor));
-    return false;
+    return me;
 }
