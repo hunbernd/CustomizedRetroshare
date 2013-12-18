@@ -949,6 +949,11 @@ border-image: url(:/images/closepressed.png)
     <string>Save image</string>
    </property>
   </action>
+  <action name="actionPaste_plaintext">
+   <property name="text">
+    <string>Paste as plaintext</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

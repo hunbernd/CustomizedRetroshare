@@ -32,6 +32,7 @@
 #include <QTimer>
 #include <QTextDocumentFragment>
 #include <QStringListModel>
+#include <QClipboard>
 
 #include "ChatWidget.h"
 #include "ui_ChatWidget.h"
@@ -120,6 +121,7 @@ ChatWidget::ChatWidget(QWidget *parent) :
 	connect(ui->actionChooseFont, SIGNAL(triggered()), this, SLOT(chooseFont()));
 	connect(ui->actionResetFont, SIGNAL(triggered()), this, SLOT(resetFont()));
     connect(ui->actionQuote, SIGNAL(triggered()), this, SLOT(quote()));
+    connect(ui->actionPaste_plaintext, SIGNAL(triggered()), this, SLOT(pastePlaintext()));
     connect(ui->actionSave_image, SIGNAL(triggered()), this, SLOT(saveImage()));
 
 	connect(ui->hashBox, SIGNAL(fileHashingFinished(QList<HashedFile>)), this, SLOT(fileHashingFinished(QList<HashedFile>)));
@@ -747,7 +749,7 @@ void ChatWidget::contextMenu(QPoint point)
 //#ifdef ENABLE_DISTANT_CHAT_AND_MSGS
 //	contextMnu->addAction(QIcon(":/images/pasterslink.png"), tr("Paste/Create private chat or Message link..."), this, SLOT(pasteCreateMsgLink()));
 //#endif
-
+    contextMnu->addAction(ui->actionPaste_plaintext);
 	contextMnu->exec(QCursor::pos());
 	delete(contextMnu);
 }
@@ -1427,4 +1429,11 @@ void ChatWidget::saveImage()
     {
         QMessageBox::warning(window(), "", "Not an image");
     }
+}
+
+void ChatWidget::pastePlaintext()
+{
+    QClipboard* cb = QApplication::clipboard();
+    QString text = cb->text();
+    ui->chatTextEdit->insertPlainText(text);
 }

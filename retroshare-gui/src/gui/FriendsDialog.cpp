@@ -31,6 +31,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QTextDocumentFragment>
+#include <QClipboard>
 
 #include "retroshare/rspeers.h"
 #include <retroshare/rshistory.h>
@@ -127,6 +128,7 @@ FriendsDialog::FriendsDialog(QWidget *parent)
     connect(ui.attachPictureButton, SIGNAL(clicked()), this, SLOT(addExtraPicture()));
     connect(ui.actionSave_History, SIGNAL(triggered()), this, SLOT(fileSaveAs()));
     connect(ui.actionQuote, SIGNAL(triggered()), this, SLOT(quote()));
+    connect(ui.actionPaste_plaintext, SIGNAL(triggered()), this, SLOT(pastePlaintext()));
 
     connect(ui.hashBox, SIGNAL(fileHashingFinished(QList<HashedFile>)), this, SLOT(fileHashingFinished(QList<HashedFile>)));
 
@@ -323,6 +325,7 @@ void FriendsDialog::contextMenu(QPoint point)
     contextMnu->addSeparator();
     QAction *action = contextMnu->addAction(QIcon(":/images/pasterslink.png"), tr("Paste RetroShare Link"), this, SLOT(pasteLink()));
     action->setDisabled(RSLinkClipboard::empty());
+    contextMnu->addAction(ui.actionPaste_plaintext);
 
     contextMnu->exec(QCursor::pos());
     delete(contextMnu);
@@ -925,4 +928,11 @@ void FriendsDialog::quote()
         text = QString(">") + sl.join("\n>");
         emit ui.lineEdit->append(text);
     }
+}
+
+void FriendsDialog::pastePlaintext()
+{
+    QClipboard* cb = QApplication::clipboard();
+    QString text = cb->text();
+    ui.lineEdit->insertPlainText(text);
 }

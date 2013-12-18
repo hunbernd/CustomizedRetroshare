@@ -91,6 +91,7 @@ private slots:
 	void messageHistory();
 	void resetStatusBar() ;
     void quote();
+    void pastePlaintext();
     void saveImage();
 
 signals:

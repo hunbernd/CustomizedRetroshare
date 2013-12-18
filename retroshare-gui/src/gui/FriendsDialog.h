@@ -129,6 +129,7 @@ private slots:
 
     //void newsFeedChanged(int count);
     void quote();
+    void pastePlaintext();
 
 signals:
     void notifyGroupChat(const QString&,const QString&) ;
