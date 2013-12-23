@@ -25,6 +25,8 @@
 #include <QBuffer>
 #include <QMessageBox>
 #include <qmath.h>
+#include <QUrl>
+#include <QTextDocumentFragment>
 
 #include "HandleRichText.h"
 #include "gui/RetroShareLink.h"
@@ -605,6 +607,27 @@ static void optimizeHtml(QDomDocument& doc, QDomElement& currentElement, unsigne
 				continue;
 			}
 
+            //hidden text in a
+            if (element.tagName().toLower() == "a") {
+                if(element.hasAttribute("href")){
+                    QString href = element.attribute("href", "");
+                    if(href.startsWith("hidden:")){
+                        //this text should be hidden and appear in title
+                        QString title = href.remove(0, QString("hidden:").length());
+                        QString text = element.text();
+                        element.setTagName("span");
+                        element.removeAttribute("href");
+                        QDomNodeList c = element.childNodes();
+                        for(int i = 0; i < c.count(); i++){
+                            element.removeChild(c.at(i));
+                        };
+                        element.setAttribute(QString("title"), title);
+                        QDomText textnode = doc.createTextNode(text);
+                        element.appendChild(textnode);
+                    }
+                }
+            }
+
 			// iterate children
 			optimizeHtml(doc, element, flag, bglum, desiredContrast);
 
@@ -895,4 +918,37 @@ bool RsHtml::processTextDocument(QTextDocument* doc, const QString& nick)
         }
     }while(cursor.movePosition(QTextCursor::Down, QTextCursor::MoveAnchor));
     return me;
+}
+
+void RsHtml::insertHiddenText(QTextCursor cursor, const QString &replacewith, bool repeat)
+{
+    if(!cursor.hasSelection()) return;
+    /* for html insertion
+    QTextDocumentFragment fragment = cursor.selection();
+    QString hiddentext = fragment.toHtml();
+    */
+    QString hiddentext = cursor.selectedText();
+    QString publictext;
+    if(repeat)
+    {
+        //use only the plaintext length
+        int n = hiddentext.length();
+        publictext = replacewith.repeated(n);
+    }else{
+        publictext = replacewith;
+    }
+    if(publictext.isEmpty()) publictext = "_";
+
+    //QByteArray encoded = QUrl::toPercentEncoding(hiddentext);
+    QString encoded = hiddentext;
+    encoded = encoded.replace(QChar('\"'), QString("&quot;"));
+    encoded = encoded.replace(QChar('\''), QString("&apos;"));
+    encoded = encoded.replace(QChar('<'), QString("&lt;"));
+    encoded = encoded.replace(QChar('>'), QString("&gt;"));
+    encoded = encoded.replace(QChar('&'), QString("&amp;"));
+
+    QString html = QString("<a href=\"hidden:%1\" title=\"%1\">%2</a>").arg(encoded, publictext);
+    //html = QString("%1 %2").arg(QString(encoded)).arg(publictext);
+    //QString html = QString("<span title=\"%1\">%2</span>").arg(QString(encoded), publictext);
+    cursor.insertHtml(html);
 }

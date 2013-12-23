@@ -123,6 +123,8 @@ ChatWidget::ChatWidget(QWidget *parent) :
     connect(ui->actionQuote, SIGNAL(triggered()), this, SLOT(quote()));
     connect(ui->actionPaste_plaintext, SIGNAL(triggered()), this, SLOT(pastePlaintext()));
     connect(ui->actionSave_image, SIGNAL(triggered()), this, SLOT(saveImage()));
+    connect(ui->actionHidden, SIGNAL(triggered()), this, SLOT(hidden()));
+    connect(ui->actionSpoiler, SIGNAL(triggered()), this, SLOT(spoiler()));
 
 	connect(ui->hashBox, SIGNAL(fileHashingFinished(QList<HashedFile>)), this, SLOT(fileHashingFinished(QList<HashedFile>)));
 
@@ -750,6 +752,8 @@ void ChatWidget::contextMenu(QPoint point)
 //	contextMnu->addAction(QIcon(":/images/pasterslink.png"), tr("Paste/Create private chat or Message link..."), this, SLOT(pasteCreateMsgLink()));
 //#endif
     contextMnu->addAction(ui->actionPaste_plaintext);
+    contextMnu->addAction(ui->actionHidden);
+    contextMnu->addAction(ui->actionSpoiler);
 	contextMnu->exec(QCursor::pos());
 	delete(contextMnu);
 }
@@ -1429,6 +1433,16 @@ void ChatWidget::saveImage()
     {
         QMessageBox::warning(window(), "", "Not an image");
     }
+}
+
+void ChatWidget::hidden()
+{
+    RsHtml::insertHiddenText(ui->chatTextEdit->textCursor(), QString("_"), true);
+}
+
+void ChatWidget::spoiler()
+{
+    RsHtml::insertHiddenText(ui->chatTextEdit->textCursor(), QString("*SPOILER*"));
 }
 
 void ChatWidget::pastePlaintext()

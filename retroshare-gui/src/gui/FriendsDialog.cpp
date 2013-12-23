@@ -129,6 +129,8 @@ FriendsDialog::FriendsDialog(QWidget *parent)
     connect(ui.actionSave_History, SIGNAL(triggered()), this, SLOT(fileSaveAs()));
     connect(ui.actionQuote, SIGNAL(triggered()), this, SLOT(quote()));
     connect(ui.actionPaste_plaintext, SIGNAL(triggered()), this, SLOT(pastePlaintext()));
+    connect(ui.actionHidden, SIGNAL(triggered()), this, SLOT(hidden()));
+    connect(ui.actionSpoiler, SIGNAL(triggered()), this, SLOT(spoiler()));
 
     connect(ui.hashBox, SIGNAL(fileHashingFinished(QList<HashedFile>)), this, SLOT(fileHashingFinished(QList<HashedFile>)));
 
@@ -326,6 +328,8 @@ void FriendsDialog::contextMenu(QPoint point)
     QAction *action = contextMnu->addAction(QIcon(":/images/pasterslink.png"), tr("Paste RetroShare Link"), this, SLOT(pasteLink()));
     action->setDisabled(RSLinkClipboard::empty());
     contextMnu->addAction(ui.actionPaste_plaintext);
+    contextMnu->addAction(ui.actionHidden);
+    contextMnu->addAction(ui.actionSpoiler);
 
     contextMnu->exec(QCursor::pos());
     delete(contextMnu);
@@ -935,4 +939,14 @@ void FriendsDialog::pastePlaintext()
     QClipboard* cb = QApplication::clipboard();
     QString text = cb->text();
     ui.lineEdit->insertPlainText(text);
+}
+
+void FriendsDialog::hidden()
+{
+    RsHtml::insertHiddenText(ui.lineEdit->textCursor(), QString("_"), true);
+}
+
+void FriendsDialog::spoiler()
+{
+    RsHtml::insertHiddenText(ui.lineEdit->textCursor(), QString("*SPOILER*"));
 }

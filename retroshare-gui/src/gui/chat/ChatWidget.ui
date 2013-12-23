@@ -954,6 +954,16 @@ border-image: url(:/images/closepressed.png)
     <string>Paste as plaintext</string>
    </property>
   </action>
+  <action name="actionHidden">
+   <property name="text">
+    <string>Hidden</string>
+   </property>
+  </action>
+  <action name="actionSpoiler">
+   <property name="text">
+    <string>Spoiler</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

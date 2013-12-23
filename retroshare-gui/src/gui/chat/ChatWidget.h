@@ -93,6 +93,8 @@ private slots:
     void quote();
     void pastePlaintext();
     void saveImage();
+    void hidden();
+    void spoiler();
 
 signals:
 	void infoChanged(ChatWidget*);

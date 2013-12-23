@@ -51,6 +51,7 @@ class QDomDocument;
 class QDomElement;
 class EmbedInHtml;
 class RetroShareLink;
+class QTextCursor;
 
 class RsHtml
 {
@@ -75,6 +76,7 @@ public:
     static void    processChat(QString &text, const QString& nick);
     static void    processChat(QDomDocument& doc, QDomElement& currentElement, const QString& nick);
     static bool    processTextDocument(QTextDocument* doc, const QString& nick = QString(""));
+    static void    insertHiddenText(QTextCursor cursor, const QString& replacewith, bool repeat = false);
 
 protected:
 	void embedHtml(QTextDocument *textDocument, QDomDocument &doc, QDomElement &currentElement, EmbedInHtml& embedInfos, ulong flag);
