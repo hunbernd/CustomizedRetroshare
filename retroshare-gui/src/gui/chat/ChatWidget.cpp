@@ -1388,7 +1388,7 @@ bool ChatWidget::setStyle()
 
 void ChatWidget::quote()
 {
-    QString text = ui->textBrowser->textCursor().selectedText();
+    QString text = ui->textBrowser->textCursor().selection().toPlainText();
     if(text.length() > 0)
     {
         QStringList sl = text.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);

@@ -918,7 +918,7 @@ void FriendsDialog::on_actionMessageHistory_triggered()
 
 void FriendsDialog::quote()
 {
-    QString text = ui.msgText->textCursor().selectedText();
+    QString text = ui.msgText->textCursor().selection().toPlainText();
     if(text.length() > 0)
     {
         QStringList sl = text.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
