@@ -2,9 +2,11 @@
 What are the additional features:
 ----------------------------------
 -disabled character limit in chat, doesn't block large images
-/me
->greentext
--quote text from the chat (right click menu)
+-better /me
+-better >greentext
+-quote text from the chat
+-paste as plaintext to chat
+-hidden and spoiler text in chat
 -additional emoticons
 -save images from chat
 -sound when somebody mentions your name in the chat
@@ -16,7 +18,7 @@ What are the additional features:
 -sort found files by count of sources (from Phenom)
 -PaintChat plugin (from electron128)
 -ExportImport plugin (from unknown)
--WebScriptRS plugin: https://github.com/chozabu/WebScriptRS (from chozabu)(unstable, under active development)
+-JumpingCube plugin:(from chozabu) (you can copy your drawing with middle click, and paste into chat)
 
 ----------------------------------
 Installation instructions:
