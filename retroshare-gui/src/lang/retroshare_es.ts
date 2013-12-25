@@ -1110,6 +1110,10 @@ p, li { white-space: pre-wrap; }
         <source>Private - (Private Publish Key required to view Messages)</source>
         <translation>Privado - (Es necesario publicar la llave privada para leer los mensajes)</translation>
     </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ChannelDialog</name>
@@ -1231,6 +1235,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Channels&lt;/h1&gt;                                                             &lt;p&gt;Channels allow you to post data (e.g. movies, music) that will spread in the network                                                    among people who subscribed your channel.  If you activate auto-download on a channel, files attached to each post will start      downloading automatically when the post is received.&lt;/p&gt;                                                                                   &lt;p&gt;You see channels your friends are subscribed to, and forward subscribed channels to                                                    your friends. This promotes good channels in the network.                                                         When you first connect to a new friend, it&apos;s likely     you will receive many such cache files, and new channels will appear.                                                                      &lt;/p&gt;                                                                                                                                       &lt;p&gt;Only the channel&apos;s creator can post on that channel. Other peers                           in the network can only read from it, unless the channel is private. You can however share the posting rights or the reading rights     with your friends.&lt;/p&gt;                                </source>
         <translation> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Canales&lt;/h1&gt; &lt;p&gt;Los canales que le permiten enviar datos (p.ej, películas, música) que se distribuyen en la red entre la gente que se ha suscrito a su canal. Si activa la descarga automática en un canal, los archivos adjuntos a cada mensaje se iniciarán automáticamente descargándose cuando se recibe el mensaje.&lt;/p&gt; &lt;p&gt;Usted ve los canales a los que sus amigos están suscritos, y reenvía los canales a los que esta suscrito a sus amigos. Esto promueve buenos canales en la red. Cuando se conecte por primera vez a un nuevo amigo, es probable que reciba muchos de estos archivos en caché, y aparecerán nuevos canales. &lt;/p&gt; &lt;p&gt;Sólo el creador del canal puede publicar en ese canal. Otros amigos en la red sólo podrán leer de ella, a menos que el canal sea privado. Sin embargo, usted puede compartir los derechos de publicación o los derechos de lectura con sus amigos.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>Suscribirse</translation>
+    </message>
+    <message>
+        <source>Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subscribed</source>
+        <translation>Suscrito</translation>
     </message>
 </context>
 <context>
@@ -1495,11 +1511,11 @@ Haga doble clic en las salas para entrar y charlar.</translation>
     </message>
     <message>
         <source>Private Subscribed Lobbies</source>
-        <translation type="unfinished"/>
+        <translation>Salas suscritas privadas</translation>
     </message>
     <message>
         <source>Public Subscribed Lobbies</source>
-        <translation type="unfinished"/>
+        <translation>Salas suscritas públicas</translation>
     </message>
 </context>
 <context>
@@ -1765,19 +1781,19 @@ Haga doble clic en las salas para entrar y charlar.</translation>
     </message>
     <message>
         <source>Maximum storage period, in days (0=keep all):</source>
-        <translation type="unfinished"/>
+        <translation>Máximo periodo de almacenamiento, en días (0=mantener todo):</translation>
     </message>
     <message>
         <source>Name : </source>
-        <translation type="unfinished"/>
+        <translation>Nombre :</translation>
     </message>
     <message>
         <source>Signed with key not in keyring</source>
-        <translation type="unfinished"/>
+        <translation>Firmado con una clave externa al grupo de claves (&apos;keyring&apos;)</translation>
     </message>
     <message>
         <source>Not signed.</source>
-        <translation type="unfinished"/>
+        <translation>No firmado.</translation>
     </message>
     <message>
         <source>Authenticated signature</source>
@@ -2078,10 +2094,6 @@ Haga doble clic en las salas para entrar y charlar.</translation>
         <translation>Nombre</translation>
     </message>
     <message>
-        <source>Peer ID</source>
-        <translation>ID del vecino</translation>
-    </message>
-    <message>
         <source>RetroShare ID</source>
         <translation>ID de RetroShare</translation>
     </message>
@@ -2326,6 +2338,14 @@ Algunos servicios (Descubrimiento, enrutado anónimo) se pueden desactivar de ma
     <message>
         <source>Peer Addresses</source>
         <translation>Direcciones del vecino</translation>
+    </message>
+    <message>
+        <source>Location ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>PGP fingerprint</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2794,22 +2814,25 @@ Algunos servicios (Descubrimiento, enrutado anónimo) se pueden desactivar de ma
     </message>
     <message>
         <source>Please note that RetroShare will require excessive amounts of bandwidth, memory and CPU if you add to many friends. You can add as many friends as you like, but more than 40 will probably require too much resources.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor observer que RetroShare requerirá cantidades excesivas de ancho de banda, memoria y CPU si añade demasiados amigos. Puede añadir tantos amigos como qujiera, pero más de 40 probablemente requerirán demasiados recursos.</translation>
     </message>
     <message>
         <source>Add key to keyring</source>
-        <translation type="unfinished"/>
+        <translation>Añadir al grupo de claves (&apos;keyring&apos;)</translation>
     </message>
     <message>
         <source>This key is already in your keyring</source>
-        <translation type="unfinished"/>
+        <translation>Esta clave ya está en su grupo de claves (&apos;keyring&apos;)</translation>
     </message>
     <message>
         <source>Check this to add the key to your keyring
 This might be useful for sending
 distant messages to this peer
 even if you don&apos;t make friends.</source>
-        <translation type="unfinished"/>
+        <translation>Compruebe esto para añadir la clave a su grupo de claves (&apos;keyring&apos;)
+Esto podría ser útil para enviar
+mensajes distantes a su par
+incluso si no hace amigos.</translation>
     </message>
 </context>
 <context>
@@ -4453,7 +4476,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Identity ID</source>
-        <translation type="unfinished"/>
+        <translation>Identidad ID</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -4461,7 +4484,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>PGP fingerprint:</source>
-        <translation type="unfinished"/>
+        <translation>Huella de validación PGP:</translation>
     </message>
 </context>
 <context>
@@ -10161,6 +10184,10 @@ botón derecho y seleccione hacer amigo para conectar.</translation>
         <source>Edge length:</source>
         <translation>Longitud de perfil:</translation>
     </message>
+    <message>
+        <source>Freeze</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>NewTag</name>
@@ -13525,6 +13552,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Open File</source>
         <translation>Abrir archivo</translation>
+    </message>
+    <message>
+        <source>Copy RetroShare Link</source>
+        <translation>Copiar enlace de RetroShare</translation>
     </message>
 </context>
 <context>

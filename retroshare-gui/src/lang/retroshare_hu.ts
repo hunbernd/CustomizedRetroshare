@@ -1109,6 +1109,10 @@ p, li { white-space: pre-wrap; }
         <source>Private - (Private Publish Key required to view Messages)</source>
         <translation>Privát - (Privát kulcs szükséges)</translation>
     </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ChannelDialog</name>
@@ -1230,6 +1234,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Channels&lt;/h1&gt;                                                             &lt;p&gt;Channels allow you to post data (e.g. movies, music) that will spread in the network                                                    among people who subscribed your channel.  If you activate auto-download on a channel, files attached to each post will start      downloading automatically when the post is received.&lt;/p&gt;                                                                                   &lt;p&gt;You see channels your friends are subscribed to, and forward subscribed channels to                                                    your friends. This promotes good channels in the network.                                                         When you first connect to a new friend, it&apos;s likely     you will receive many such cache files, and new channels will appear.                                                                      &lt;/p&gt;                                                                                                                                       &lt;p&gt;Only the channel&apos;s creator can post on that channel. Other peers                           in the network can only read from it, unless the channel is private. You can however share the posting rights or the reading rights     with your friends.&lt;/p&gt;                                </source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>Feliratkozás</translation>
+    </message>
+    <message>
+        <source>Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subscribed</source>
+        <translation>Feliratkozva</translation>
     </message>
 </context>
 <context>
@@ -1438,7 +1454,7 @@ Please choose one of it to chat with.</translation>
     </message>
     <message>
         <source>Subscribed</source>
-        <translation type="unfinished"/>
+        <translation>Feliratkozva</translation>
     </message>
     <message>
         <source>Show </source>
@@ -1496,11 +1512,11 @@ Kattints duplán a csevegőszobára, hogy belépj és beszélgethess.</translati
     </message>
     <message>
         <source>Private Subscribed Lobbies</source>
-        <translation type="unfinished"/>
+        <translation>Privát szoba feliratkozások</translation>
     </message>
     <message>
         <source>Public Subscribed Lobbies</source>
-        <translation type="unfinished"/>
+        <translation>Publikus szoba feliratkozások</translation>
     </message>
 </context>
 <context>
@@ -1766,23 +1782,23 @@ Kattints duplán a csevegőszobára, hogy belépj és beszélgethess.</translati
     </message>
     <message>
         <source>Maximum storage period, in days (0=keep all):</source>
-        <translation type="unfinished"/>
+        <translation>Tárolási idő napokban (0=végtelen)</translation>
     </message>
     <message>
         <source>Name : </source>
-        <translation type="unfinished"/>
+        <translation>Név :</translation>
     </message>
     <message>
         <source>Signed with key not in keyring</source>
-        <translation type="unfinished"/>
+        <translation>Kulcstartóban nem található kulccsal aláírva</translation>
     </message>
     <message>
         <source>Not signed.</source>
-        <translation type="unfinished"/>
+        <translation>Nincs aláírva.</translation>
     </message>
     <message>
         <source>Authenticated signature</source>
-        <translation type="unfinished"/>
+        <translation>Hitelesített aláírás</translation>
     </message>
 </context>
 <context>
@@ -2079,10 +2095,6 @@ Kattints duplán a csevegőszobára, hogy belépj és beszélgethess.</translati
         <translation>Név</translation>
     </message>
     <message>
-        <source>Peer ID</source>
-        <translation>Partner ID</translation>
-    </message>
-    <message>
         <source>RetroShare ID</source>
         <translation>RetroShare ID</translation>
     </message>
@@ -2327,6 +2339,14 @@ Némely szolgáltatás (Felfedező, névtelen forgalmazás) kikapcsolható glob�
     <message>
         <source>Peer Addresses</source>
         <translation>Partner címei</translation>
+    </message>
+    <message>
+        <source>Location ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>PGP fingerprint</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2795,15 +2815,15 @@ Némely szolgáltatás (Felfedező, névtelen forgalmazás) kikapcsolható glob�
     </message>
     <message>
         <source>Please note that RetroShare will require excessive amounts of bandwidth, memory and CPU if you add to many friends. You can add as many friends as you like, but more than 40 will probably require too much resources.</source>
-        <translation type="unfinished"/>
+        <translation>Kérlek vedd figyelembe, hogy a RetroShare jelentős sávszélességet, memóriát és processzor teljesítményt igényelhet, ha túl sok barátot veszel fel. 40 személynél több fő már valószínűleg sok erőforrást követelne.</translation>
     </message>
     <message>
         <source>Add key to keyring</source>
-        <translation type="unfinished"/>
+        <translation>Kulcs hozzáadása a kulcstartóhoz</translation>
     </message>
     <message>
         <source>This key is already in your keyring</source>
-        <translation type="unfinished"/>
+        <translation>Ez a kulcs már szerepel a kulcstartódban</translation>
     </message>
     <message>
         <source>Check this to add the key to your keyring
@@ -4086,7 +4106,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>GxsChannel security policy prevents you from posting files that you don&apos;t have. If you have these files, you need to share them before, or attach them explicitly:</source>
-        <translation type="unfinished"/>
+        <translation>A Gxs-csatorna biztonsági szabályai nem engedélyezik, hogy olyan fájlokat adj meg, amik nem a tieid. Amennyiben ezek a te fájljaid, először meg kell osztanod vagy csatolnod kell őket:</translation>
     </message>
     <message>
         <source>You can only post files that you do have</source>
@@ -4446,7 +4466,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Identity ID</source>
-        <translation type="unfinished"/>
+        <translation>Személyazonosság ID</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -4454,7 +4474,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>PGP fingerprint:</source>
-        <translation type="unfinished"/>
+        <translation>PGP ujjlenyomat:</translation>
     </message>
 </context>
 <context>
@@ -6598,7 +6618,7 @@ the same identity (PGP key).</source>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished"/>
+        <translation>A jelszavak nem egyeznek</translation>
     </message>
 </context>
 <context>
@@ -8290,7 +8310,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Implicit Score</source>
-        <translation type="unfinished"/>
+        <translation>Értékelés</translation>
     </message>
     <message>
         <source>Rating</source>
@@ -9149,11 +9169,11 @@ Szeretnéd menteni az üzenetet?</translation>
     </message>
     <message>
         <source>PGP key unknown</source>
-        <translation type="unfinished"/>
+        <translation>Ismeretlen PGP kulcs</translation>
     </message>
     <message>
         <source>You dont have the PGP key of the message sender. So you cannot respond!</source>
-        <translation type="unfinished"/>
+        <translation>Nem ismered az üzenet feladójának PGP kulcsát, így nem tudsz neki válaszolni!</translation>
     </message>
 </context>
 <context>
@@ -9373,7 +9393,7 @@ Szeretnéd menteni az üzenetet?</translation>
     </message>
     <message>
         <source>Unknown (needs decryption)</source>
-        <translation type="unfinished"/>
+        <translation>Ismeretlen (visszafejtést igényel)</translation>
     </message>
 </context>
 <context>
@@ -9799,7 +9819,7 @@ Szeretnéd menteni az üzenetet?</translation>
     </message>
     <message>
         <source>This message has been successfully decrypted, and is unsigned.</source>
-        <translation type="unfinished"/>
+        <translation>Az üzenet sikeresen vissza lett fejtve.</translation>
     </message>
 </context>
 <context>
@@ -10202,6 +10222,10 @@ Kattints rá jobb gombbal, majd választ ki a &apos;barátság kezdeményezése&
     <message>
         <source>Edge length:</source>
         <translation>Vonalak hossza:</translation>
+    </message>
+    <message>
+        <source>Freeze</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11154,7 +11178,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hot</source>
-        <translation>Forró</translation>
+        <translation>Népszerű</translation>
     </message>
     <message>
         <source>New</source>
@@ -11860,11 +11884,12 @@ A hibajelentés:
     <message>
         <source>Signature check failed!
 Make sure you know who you&apos;re talking to.</source>
-        <translation type="unfinished"/>
+        <translation>Az aláírás ellenőrzése sikertelen!
+Bizonyosodj meg róla, hogy jó emberrel beszélsz.</translation>
     </message>
     <message>
         <source>Chat connection is unauthenticated</source>
-        <translation type="unfinished"/>
+        <translation>A csevegési kapcsolat nem hitelesített</translation>
     </message>
 </context>
 <context>
@@ -13562,6 +13587,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Open File</source>
         <translation>Fájl megnyitása</translation>
+    </message>
+    <message>
+        <source>Copy RetroShare Link</source>
+        <translation>RetroShare hivatkozás másolása</translation>
     </message>
 </context>
 <context>

@@ -1089,6 +1089,10 @@ p, li { white-space: pre-wrap; }
         <source>Private - (Private Publish Key required to view Messages)</source>
         <translation>プライベート - (メッセージの表示にプライベート公開キーが必要)</translation>
     </message>
+    <message>
+        <source>Destination directory</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ChannelDialog</name>
@@ -1209,6 +1213,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Channels&lt;/h1&gt;                                                             &lt;p&gt;Channels allow you to post data (e.g. movies, music) that will spread in the network                                                    among people who subscribed your channel.  If you activate auto-download on a channel, files attached to each post will start      downloading automatically when the post is received.&lt;/p&gt;                                                                                   &lt;p&gt;You see channels your friends are subscribed to, and forward subscribed channels to                                                    your friends. This promotes good channels in the network.                                                         When you first connect to a new friend, it&apos;s likely     you will receive many such cache files, and new channels will appear.                                                                      &lt;/p&gt;                                                                                                                                       &lt;p&gt;Only the channel&apos;s creator can post on that channel. Other peers                           in the network can only read from it, unless the channel is private. You can however share the posting rights or the reading rights     with your friends.&lt;/p&gt;                                </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>購読</translation>
+    </message>
+    <message>
+        <source>Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subscribed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2054,10 +2070,6 @@ Double click lobbies to enter and chat.</source>
         <translation>名前</translation>
     </message>
     <message>
-        <source>Peer ID</source>
-        <translation>ピア ID</translation>
-    </message>
-    <message>
         <source>RetroShare ID</source>
         <translation>RetroShare ID</translation>
     </message>
@@ -2292,6 +2304,14 @@ Some services (Discovery, anonymous routing) can be switched off globally, which
     </message>
     <message>
         <source>Peer Addresses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>PGP fingerprint</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2572,7 +2592,7 @@ Some services (Discovery, anonymous routing) can be switched off globally, which
     </message>
     <message>
         <source>Certificate Load Failed</source>
-        <translation type="unfinished"/>
+        <translation>証明書の読み込みに失敗</translation>
     </message>
     <message>
         <source>Cannot get peer details of PGP key %1</source>
@@ -3161,7 +3181,7 @@ p, li { white-space: pre-wrap; }
     <name>CreateBlog</name>
     <message>
         <source>Create new Blog</source>
-        <translation type="unfinished"/>
+        <translation>ブログを新規作成</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -3177,7 +3197,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>説明</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -3197,23 +3217,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Allowed Messages</source>
-        <translation type="unfinished"/>
+        <translation>許可されたメッセージ</translation>
     </message>
     <message>
         <source>Authenticated Messages</source>
-        <translation type="unfinished"/>
+        <translation>認証されたメッセージ</translation>
     </message>
     <message>
         <source>Anonymous Messages</source>
-        <translation type="unfinished"/>
+        <translation>匿名メッセージ</translation>
     </message>
     <message>
         <source>Blog Logo</source>
-        <translation type="unfinished"/>
+        <translation>ブログロゴ</translation>
     </message>
     <message>
         <source>Add Blog Logo</source>
-        <translation type="unfinished"/>
+        <translation>ブログロゴを追加</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -3221,7 +3241,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished"/>
+        <translation>作成</translation>
     </message>
     <message>
         <source>RetroShare</source>
@@ -3229,54 +3249,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please add a Name</source>
-        <translation type="unfinished"/>
+        <translation>名前を追加してください</translation>
     </message>
     <message>
         <source>Load File</source>
-        <translation type="unfinished"/>
+        <translation>ファイルを読み込む</translation>
     </message>
     <message>
         <source>Pictures (*.png *.xpm *.jpg)</source>
-        <translation type="unfinished"/>
+        <translation>画像 (*.png *.xpm *.jpg)</translation>
     </message>
 </context>
 <context>
     <name>CreateBlogMsg</name>
     <message>
         <source>New Blog Post</source>
-        <translation type="unfinished"/>
+        <translation>新規ブログ投稿</translation>
     </message>
     <message>
         <source>Blog Post</source>
-        <translation type="unfinished"/>
+        <translation>ブログ投稿</translation>
     </message>
     <message>
         <source>Blog Post to:</source>
-        <translation type="unfinished"/>
+        <translation>投稿するブログ:</translation>
     </message>
     <message>
         <source>Visual Editor</source>
-        <translation type="unfinished"/>
+        <translation>ビジュアルエディタ</translation>
     </message>
     <message>
         <source>Blog Message</source>
-        <translation type="unfinished"/>
+        <translation>ブログメッセージ</translation>
     </message>
     <message>
         <source>Subject :</source>
-        <translation type="unfinished"/>
+        <translation>件名:</translation>
     </message>
     <message>
         <source>Html Editor</source>
-        <translation type="unfinished"/>
+        <translation>Htmlエディタ</translation>
     </message>
     <message>
         <source>toolBar</source>
-        <translation type="unfinished"/>
+        <translation>ツールバー</translation>
     </message>
     <message>
         <source>toolBar_2</source>
-        <translation type="unfinished"/>
+        <translation>ツールバー_2</translation>
     </message>
     <message>
         <source>blockquote</source>
@@ -3284,11 +3304,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Increase font Size</source>
-        <translation type="unfinished"/>
+        <translation>フォントを拡大</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished"/>
+        <translation>フォントを縮小</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -3304,7 +3324,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Publish</source>
-        <translation type="unfinished"/>
+        <translation>公開</translation>
     </message>
     <message>
         <source>New</source>
@@ -3312,11 +3332,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Code</source>
-        <translation type="unfinished"/>
+        <translation>コード</translation>
     </message>
     <message>
         <source>splitPost</source>
-        <translation type="unfinished"/>
+        <translation>分割投稿</translation>
     </message>
     <message>
         <source>Ordered List</source>
@@ -3328,11 +3348,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Clipboard</source>
-        <translation type="unfinished"/>
+        <translation>クリップボード</translation>
     </message>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"/>
+        <translation>元に戻す</translation>
     </message>
     <message>
         <source>RetroShare</source>
@@ -3340,7 +3360,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please add a Subject</source>
-        <translation type="unfinished"/>
+        <translation>件名を追加してください</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -3452,16 +3472,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Application</source>
-        <translation type="unfinished"/>
+        <translation>アプリケーション</translation>
     </message>
     <message>
         <source>The document has been modified.
 Do you want to save your changes?</source>
-        <translation type="unfinished"/>
+        <translation>ドキュメントが変更されています。変更を保存しますか?</translation>
     </message>
     <message>
         <source>Open File...</source>
-        <translation type="unfinished"/>
+        <translation>ファイルを開く...</translation>
     </message>
     <message>
         <source>HTML-Files (*.htm *.html);;All Files (*)</source>
@@ -3512,7 +3532,7 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>説明</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -3528,15 +3548,15 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <source>Allowed Messages</source>
-        <translation type="unfinished"/>
+        <translation>許可されたメッセージ</translation>
     </message>
     <message>
         <source>Anonymous Messages</source>
-        <translation type="unfinished"/>
+        <translation>匿名メッセージ</translation>
     </message>
     <message>
         <source>Authenticated Messages</source>
-        <translation type="unfinished"/>
+        <translation>認証されたメッセージ</translation>
     </message>
     <message>
         <source>Key Sharing</source>
@@ -3568,7 +3588,7 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <source>Please add a Name</source>
-        <translation type="unfinished"/>
+        <translation>名前を追加してください</translation>
     </message>
     <message>
         <source>Load channel logo</source>
@@ -3613,7 +3633,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Subject :</source>
-        <translation type="unfinished"/>
+        <translation>件名:</translation>
     </message>
     <message>
         <source>Attachments</source>
@@ -3673,7 +3693,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please add a Subject</source>
-        <translation type="unfinished"/>
+        <translation>件名を追加してください</translation>
     </message>
     <message>
         <source>Load thumbnail picture</source>
@@ -3811,7 +3831,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>説明</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -3843,15 +3863,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Allowed Messages</source>
-        <translation type="unfinished"/>
+        <translation>許可されたメッセージ</translation>
     </message>
     <message>
         <source>Authenticated Messages</source>
-        <translation type="unfinished"/>
+        <translation>認証されたメッセージ</translation>
     </message>
     <message>
         <source>Anonymous Messages</source>
-        <translation type="unfinished"/>
+        <translation>匿名メッセージ</translation>
     </message>
     <message>
         <source>New Forum</source>
@@ -3863,7 +3883,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please add a Name</source>
-        <translation type="unfinished"/>
+        <translation>名前を追加してください</translation>
     </message>
 </context>
 <context>
@@ -4002,7 +4022,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Subject :</source>
-        <translation type="unfinished"/>
+        <translation>件名:</translation>
     </message>
     <message>
         <source>Attachments</source>
@@ -4066,7 +4086,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please add a Subject</source>
-        <translation type="unfinished"/>
+        <translation>件名を追加してください</translation>
     </message>
     <message>
         <source>Load thumbnail picture</source>
@@ -5371,15 +5391,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Allowed Messages</source>
-        <translation type="unfinished"/>
+        <translation>許可されたメッセージ</translation>
     </message>
     <message>
         <source>Authenticated Messages</source>
-        <translation type="unfinished"/>
+        <translation>認証されたメッセージ</translation>
     </message>
     <message>
         <source>Anonymous Messages</source>
-        <translation type="unfinished"/>
+        <translation>匿名メッセージ</translation>
     </message>
 </context>
 <context>
@@ -6932,7 +6952,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>説明</translation>
     </message>
     <message>
         <source>Search Description</source>
@@ -7696,7 +7716,7 @@ before you can comment</source>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>説明</translation>
     </message>
     <message>
         <source>Message Distribution</source>
@@ -7772,7 +7792,7 @@ before you can comment</source>
     </message>
     <message>
         <source>Please add a Name</source>
-        <translation type="unfinished"/>
+        <translation>名前を追加してください</translation>
     </message>
     <message>
         <source>Load Group Logo</source>
@@ -8626,7 +8646,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished"/>
+        <translation>フォントを縮小</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -8947,7 +8967,7 @@ Do you want to save message to draft box?</source>
     </message>
     <message>
         <source>Open File...</source>
-        <translation type="unfinished"/>
+        <translation>ファイルを開く...</translation>
     </message>
     <message>
         <source>HTML-Files (*.htm *.html);;All Files (*)</source>
@@ -10038,6 +10058,10 @@ Right-click and select &apos;make friend&apos; to be able to connect.</source>
     </message>
     <message>
         <source>Edge length:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Freeze</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -13281,6 +13305,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Open File</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy RetroShare Link</source>
+        <translation>RetroShareリンクをコピー</translation>
     </message>
 </context>
 <context>

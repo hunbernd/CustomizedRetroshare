@@ -1110,6 +1110,10 @@ p, li { white-space: pre-wrap; }
         <source>Private - (Private Publish Key required to view Messages)</source>
         <translation>Privat - (Privater Veröffentlichungsschlüssel erforderlich, um Nachrichten zu lesen)</translation>
     </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Zielordner</translation>
+    </message>
 </context>
 <context>
     <name>ChannelDialog</name>
@@ -1231,6 +1235,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Channels&lt;/h1&gt;                                                             &lt;p&gt;Channels allow you to post data (e.g. movies, music) that will spread in the network                                                    among people who subscribed your channel.  If you activate auto-download on a channel, files attached to each post will start      downloading automatically when the post is received.&lt;/p&gt;                                                                                   &lt;p&gt;You see channels your friends are subscribed to, and forward subscribed channels to                                                    your friends. This promotes good channels in the network.                                                         When you first connect to a new friend, it&apos;s likely     you will receive many such cache files, and new channels will appear.                                                                      &lt;/p&gt;                                                                                                                                       &lt;p&gt;Only the channel&apos;s creator can post on that channel. Other peers                           in the network can only read from it, unless the channel is private. You can however share the posting rights or the reading rights     with your friends.&lt;/p&gt;                                </source>
         <translation> &lt;h1&gt;&lt;img width=&quot;32&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Kanäle&lt;/h1&gt;                                                         		  &lt;p&gt;Kanäle erlauben es dir Daten (z.B. Filme, Musik) zu veröffentlichen, die sich im Netz unter den Leuten die deinen Kanal abonniert haben verbreiten werden. Wenn du bei einem Kanal Auto-Download aktivierst, werden die Dateien, die an jeden Beitrag angehängt sind automatisch heruntergeladen, sobald der Beitrag eingeht.&lt;/p&gt;&lt;p&gt;Du siehst die Kanäle, die deine Freunde abonniert haben und leitest die von dir abonnierten Kanäle an deine Freunde weiter. Dies fördert gute Kanäle im Netz. Wenn du dich zum ersten Mal mit einem neuen Freund verbindest, wirst du wahrscheinlich viele Cachedateien empfangen und neue Kanäle werden auftauchen.&lt;/p&gt;&lt;p&gt;Nur der Ersteller eines Kanals kann Beiträge in dem Kanal veröffentlichen. Andere Netzwerkteilnehmer können nur lesend darauf zugreifen außer der Kanal ist privat. Du kannst deinen Freunden allerdings die Veröffentlichungsrechte gewähren.&lt;/p&gt;                            		  </translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>Abonnieren</translation>
+    </message>
+    <message>
+        <source>Post</source>
+        <translation>Nachricht</translation>
+    </message>
+    <message>
+        <source>Subscribed</source>
+        <translation>Abonniert</translation>
     </message>
 </context>
 <context>
@@ -2078,10 +2094,6 @@ Doppelklicke auf Lobbys um sie zu betreten und zu chatten.</translation>
         <translation>Name</translation>
     </message>
     <message>
-        <source>Peer ID</source>
-        <translation>Nachbar-ID</translation>
-    </message>
-    <message>
         <source>RetroShare ID</source>
         <translation>RetroShare-ID</translation>
     </message>
@@ -2326,6 +2338,14 @@ Einige Dienste (Discovery, anonymer Datenverkehr) können global ausgeschaltet w
     <message>
         <source>Peer Addresses</source>
         <translation>Adressen des Nachbarn</translation>
+    </message>
+    <message>
+        <source>Location ID</source>
+        <translation>Standortkennung</translation>
+    </message>
+    <message>
+        <source>PGP fingerprint</source>
+        <translation>PGP-Fingerabdruck</translation>
     </message>
 </context>
 <context>
@@ -10225,6 +10245,10 @@ Rechtsklick und als Freund hinzufügen um zu verbinden.</translation>
         <source>Edge length:</source>
         <translation>Kantenlänge:</translation>
     </message>
+    <message>
+        <source>Freeze</source>
+        <translation>Einfrieren</translation>
+    </message>
 </context>
 <context>
     <name>NewTag</name>
@@ -13605,6 +13629,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Open File</source>
         <translation>Datei öffnen</translation>
+    </message>
+    <message>
+        <source>Copy RetroShare Link</source>
+        <translation>RetroShare-Verweis kopieren</translation>
     </message>
 </context>
 <context>

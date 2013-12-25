@@ -1847,7 +1847,10 @@ RsGRouter *rsGRouter = NULL ;
 
 #include "services/p3banlist.h"
 #include "services/p3bwctrl.h"
+
+#ifdef SERVICES_DSDV
 #include "services/p3dsdv.h"
+#endif
 
 
 RsControl *createRsControl(NotifyBase &notify)
@@ -2194,12 +2197,6 @@ int RsServer::StartupRetroShare()
 	//
 	mPluginsManager->loadPlugins(programatically_inserted_plugins) ;
 
-	// set interfaces for plugins
-	RsPlugInInterfaces interfaces;
-	interfaces.mFiles = rsFiles;
-	interfaces.mPeers = rsPeers;
-	mPluginsManager->setInterfaces(interfaces);
-
 	/* create Services */
 	ad = new p3disc(mPeerMgr, mLinkMgr, mNetMgr, pqih);
 	msgSrv = new p3MsgService(mLinkMgr);
@@ -2221,6 +2218,23 @@ int RsServer::StartupRetroShare()
 	p3turtle *tr = new p3turtle(mLinkMgr) ;
 	rsTurtle = tr ;
 	pqih -> addService(tr);
+
+	rsDisc  = new p3Discovery(ad);
+	rsMsgs  = new p3Msgs(msgSrv, chatSrv);
+
+	// set interfaces for plugins
+	//
+	RsPlugInInterfaces interfaces;
+	interfaces.mFiles  = rsFiles;
+	interfaces.mPeers  = rsPeers;
+	interfaces.mMsgs   = rsMsgs;
+	interfaces.mTurtle = rsTurtle;
+	interfaces.mDisc   = rsDisc;
+	interfaces.mDht    = rsDht;
+
+	mPluginsManager->setInterfaces(interfaces);
+
+	// connect components to turtle router.
 
 	ftserver->connectToTurtleRouter(tr) ;
 	chatSrv->connectToTurtleRouter(tr) ;
@@ -2461,7 +2475,7 @@ int RsServer::StartupRetroShare()
 	p3BandwidthControl *mBwCtrl = new p3BandwidthControl(pqih);
 	pqih -> addService(mBwCtrl); 
 
-#ifdef RS_DSDVTEST
+#ifdef SERVICES_DSDV
 	p3Dsdv *mDsdv = new p3Dsdv(mLinkMgr);
 	pqih -> addService(mDsdv);
 	rsDsdv = mDsdv;
@@ -2724,15 +2738,11 @@ int RsServer::StartupRetroShare()
 
 	/* Setup GUI Interfaces. */
 
-	rsDisc  = new p3Discovery(ad);
 	rsBandwidthControl = mBwCtrl;
 	rsConfig = serverConfig;
 
-	rsMsgs  = new p3Msgs(msgSrv, chatSrv);
 	rsForums = mForums;
 	rsChannels = mChannels;
-
-
 
 #ifdef RS_USE_BLOGS	
 	rsBlogs = mBlogs;
