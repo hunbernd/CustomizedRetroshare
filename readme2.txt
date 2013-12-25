@@ -18,7 +18,7 @@ What are the additional features:
 -sort found files by count of sources (from Phenom)
 -PaintChat plugin (from electron128)
 -ExportImport plugin (from unknown)
--JumpingCube plugin:(from chozabu) (you can copy your drawing with middle click, and paste into chat)
+-JumpingCube plugin(from chozabu) (you can copy your drawing with middle click, and paste into chat)
 
 ----------------------------------
 Installation instructions:
