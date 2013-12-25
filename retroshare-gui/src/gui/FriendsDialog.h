@@ -129,6 +129,7 @@ private slots:
 
     //void newsFeedChanged(int count);
     void quote();
+    void saveImage();
     void pastePlaintext();
     void hidden();
     void spoiler();
@@ -143,6 +144,8 @@ private:
     void colorChanged();
     void fontChanged();
     void setColorAndFont();
+
+    QPoint clickPos;
 
     QString fileName;
 

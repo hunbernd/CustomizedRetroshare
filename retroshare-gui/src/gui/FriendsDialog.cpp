@@ -128,6 +128,7 @@ FriendsDialog::FriendsDialog(QWidget *parent)
     connect(ui.attachPictureButton, SIGNAL(clicked()), this, SLOT(addExtraPicture()));
     connect(ui.actionSave_History, SIGNAL(triggered()), this, SLOT(fileSaveAs()));
     connect(ui.actionQuote, SIGNAL(triggered()), this, SLOT(quote()));
+    connect(ui.actionSave_image, SIGNAL(triggered()), this, SLOT(saveImage()));
     connect(ui.actionPaste_plaintext, SIGNAL(triggered()), this, SLOT(pastePlaintext()));
     connect(ui.actionHidden, SIGNAL(triggered()), this, SLOT(hidden()));
     connect(ui.actionSpoiler, SIGNAL(triggered()), this, SLOT(spoiler()));
@@ -309,12 +310,14 @@ void FriendsDialog::contextMenuMsgText(QPoint point)
 {
     QMatrix matrix;
     matrix.translate(ui.msgText->horizontalScrollBar()->value(), ui.msgText->verticalScrollBar()->value());
+    clickPos = point;
 
     QMenu *contextMnu = ui.msgText->createStandardContextMenu(matrix.map(point));
 
     contextMnu->addSeparator();
     contextMnu->addAction(ui.actionClear_Chat_History);
     contextMnu->addAction(ui.actionQuote);
+    contextMnu->addAction(ui.actionSave_image);
 
     contextMnu->exec(ui.msgText->viewport()->mapToGlobal(point));
     delete(contextMnu);
@@ -949,4 +952,10 @@ void FriendsDialog::hidden()
 void FriendsDialog::spoiler()
 {
     RsHtml::insertHiddenText(ui.lineEdit->textCursor(), QString("*SPOILER*"));
+}
+
+void FriendsDialog::saveImage()
+{
+    QTextCursor cursor = ui.msgText->cursorForPosition(clickPos);
+    RsHtml::saveImage(window(), cursor);
 }

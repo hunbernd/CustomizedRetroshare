@@ -857,6 +857,11 @@
     <string>Spoiler</string>
    </property>
   </action>
+  <action name="actionSave_image">
+   <property name="text">
+    <string>Save image</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

@@ -52,6 +52,7 @@ class QDomElement;
 class EmbedInHtml;
 class RetroShareLink;
 class QTextCursor;
+class QWidget;
 
 class RsHtml
 {
@@ -77,6 +78,7 @@ public:
     static void    processChat(QDomDocument& doc, QDomElement& currentElement, const QString& nick);
     static bool    processTextDocument(QTextDocument* doc, const QString& nick = QString(""));
     static void    insertHiddenText(QTextCursor cursor, const QString& replacewith, bool repeat = false);
+    static void    saveImage(QWidget* window, QTextCursor cursor);
 
 protected:
 	void embedHtml(QTextDocument *textDocument, QDomDocument &doc, QDomElement &currentElement, EmbedInHtml& embedInfos, ulong flag);
