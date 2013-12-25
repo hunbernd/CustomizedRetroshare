@@ -6,4 +6,6 @@ SUBDIRS += \
 		FeedReader \
 		ExportImport \
 		PaintChat \
-		WebScriptRS \
+		JumpingCube \
+		
+#		WebScriptRS \
