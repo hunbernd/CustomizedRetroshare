@@ -127,6 +127,10 @@ ChatWidget::ChatWidget(QWidget *parent) :
     connect(ui->actionHidden, SIGNAL(triggered()), this, SLOT(hidden()));
     connect(ui->actionSpoiler, SIGNAL(triggered()), this, SLOT(spoiler()));
 
+    ui->chatTextEdit->addContextMenuAction(ui->actionPaste_plaintext);
+    ui->chatTextEdit->addContextMenuAction(ui->actionHidden);
+    ui->chatTextEdit->addContextMenuAction(ui->actionSpoiler);
+
 	connect(ui->hashBox, SIGNAL(fileHashingFinished(QList<HashedFile>)), this, SLOT(fileHashingFinished(QList<HashedFile>)));
 
 	connect(NotifyQt::getInstance(), SIGNAL(peerStatusChanged(const QString&, int)), this, SLOT(updateStatus(const QString&, int)));
@@ -134,7 +138,6 @@ ChatWidget::ChatWidget(QWidget *parent) :
 
 	connect(ui->textBrowser, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenuTextBrowser(QPoint)));
 
-	connect(ui->chatTextEdit, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenu(QPoint)));
 	// reset text and color after removing all characters from the QTextEdit and after calling QTextEdit::clear
 	connect(ui->chatTextEdit, SIGNAL(currentCharFormatChanged(QTextCharFormat)), this, SLOT(chatCharFormatChanged()));
 
