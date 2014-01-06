@@ -53,6 +53,7 @@
 #include <retroshare/rspeers.h>
 #include <retroshare/rshistory.h>
 #include <retroshare/rsmsgs.h>
+#include <retroshare/rsplugin.h>
 
 #include <time.h>
 
@@ -68,7 +69,7 @@ ChatWidget::ChatWidget(QWidget *parent) :
 	newMessages = false;
 	typing = false;
 	peerStatus = 0;
-	isChatLobby = false;
+	mChatType = CHATTYPE_UNKNOWN;
 	firstShow = true;
 	firstSearch = true;
 	inChatCharFormatChanged = false;
@@ -176,11 +177,22 @@ ChatWidget::ChatWidget(QWidget *parent) :
     ui->chatTextEdit->setCompleterKeyModifiers(Qt::ControlModifier);
     ui->chatTextEdit->setCompleterKey(Qt::Key_Space);
 
+//#ifdef ENABLE_DISTANT_CHAT_AND_MSGS
+//	contextMnu->addSeparator();
+//    QAction *action = new QAction(QIcon(":/images/pasterslink.png"), tr("Paste/Create private chat or Message link..."), this);
+//    connect(action, SIGNAL(triggered()), this, SLOT(pasteCreateMsgLink()));
+//    ui->chatTextEdit->addContextMenuAction(action);
+//#endif
 }
 
 ChatWidget::~ChatWidget()
 {
 	processSettings(false);
+
+	/* Cleanup plugin functions */
+	foreach (ChatWidgetHolder *chatWidgetHolder, mChatWidgetHolder) {
+		delete(chatWidgetHolder);
+	}
 
 	delete ui;
 }
@@ -208,10 +220,26 @@ void ChatWidget::init(const std::string &peerId, const QString &title)
 
 	ChatLobbyId lid;
 	if (rsMsgs->isLobbyId(peerId, lid)) {
-		isChatLobby = true;
-		chatStyle.setStyleFromSettings(ChatStyle::TYPE_PUBLIC);
+		mChatType = CHATTYPE_LOBBY;
 	} else {
+		uint32_t status;
+		std::string pgp_id;
+		if (rsMsgs->getDistantChatStatus(peerId, status, pgp_id)) {
+			mChatType = CHATTYPE_DISTANT;
+		} else {
+			mChatType = CHATTYPE_PRIVATE;
+		}
+	}
+
+	switch (mChatType) {
+	case CHATTYPE_UNKNOWN:
+	case CHATTYPE_PRIVATE:
+	case CHATTYPE_DISTANT:
 		chatStyle.setStyleFromSettings(ChatStyle::TYPE_PRIVATE);
+		break;
+	case CHATTYPE_LOBBY:
+		chatStyle.setStyleFromSettings(ChatStyle::TYPE_PUBLIC);
+		break;
 	}
 
 	currentColor.setNamedColor(PeerSettings->getPrivateChatColor(peerId));
@@ -224,7 +252,30 @@ void ChatWidget::init(const std::string &peerId, const QString &title)
 	// load style
 	PeerSettings->getStyle(peerId, "ChatWidget", style);
 
-	if (!isChatLobby) {
+	/* Add plugin functions */
+	int pluginCount = rsPlugins->nbPlugins();
+	for (int i = 0; i < pluginCount; ++i) {
+		RsPlugin *plugin = rsPlugins->plugin(i);
+		if (plugin) {
+			ChatWidgetHolder *chatWidgetHolder = plugin->qt_get_chat_widget_holder(this);
+			if (chatWidgetHolder) {
+				mChatWidgetHolder.push_back(chatWidgetHolder);
+			}
+		}
+	}
+
+	uint32_t hist_chat_type;
+	int messageCount;
+
+	if (chatType() == CHATTYPE_LOBBY) {
+		hist_chat_type = RS_HISTORY_TYPE_LOBBY;
+		messageCount = Settings->getLobbyChatHistoryCount();
+
+		updateTitle();
+	} else {
+		hist_chat_type = RS_HISTORY_TYPE_PRIVATE ;
+		messageCount = Settings->getPrivateChatHistoryCount();
+
 		// initialize first status
 		StatusInfo peerStatusInfo;
 		// No check of return value. Non existing status info is handled as offline.
@@ -234,12 +285,8 @@ void ChatWidget::init(const std::string &peerId, const QString &title)
 		// initialize first custom state string
 		QString customStateString = QString::fromUtf8(rsMsgs->getCustomStateString(peerId).c_str());
 		updatePeersCustomStateString(QString::fromStdString(peerId), customStateString);
-	} else {
-		updateTitle();
 	}
 
-	uint32_t hist_chat_type = isChatLobby?RS_HISTORY_TYPE_LOBBY:RS_HISTORY_TYPE_PRIVATE ;
-	int messageCount = isChatLobby?(Settings->getLobbyChatHistoryCount()):(Settings->getPrivateChatHistoryCount());
 
 	if (rsHistory->getEnable(hist_chat_type)) 
 	{
@@ -252,7 +299,7 @@ void ChatWidget::init(const std::string &peerId, const QString &title)
 
 			std::list<HistoryMsg>::iterator historyIt;
 			for (historyIt = historyMsgs.begin(); historyIt != historyMsgs.end(); historyIt++) 
-				addChatMsg(historyIt->incoming, QString::fromUtf8(historyIt->peerName.c_str()), QDateTime::fromTime_t(historyIt->sendTime), QDateTime::fromTime_t(historyIt->recvTime), QString::fromUtf8(historyIt->message.c_str()), TYPE_HISTORY);
+				addChatMsg(historyIt->incoming, QString::fromUtf8(historyIt->peerName.c_str()), QDateTime::fromTime_t(historyIt->sendTime), QDateTime::fromTime_t(historyIt->recvTime), QString::fromUtf8(historyIt->message.c_str()), MSGTYPE_HISTORY);
 		}
 	}
 
@@ -351,7 +398,7 @@ bool ChatWidget::eventFilter(QObject *obj, QEvent *event)
 					updateStatusTyping();
 				}
 
-				if (isChatLobby) {
+				if (chatType() == CHATTYPE_LOBBY) {
 					if (keyEvent->key() == Qt::Key_Tab) {
 						completeNickname((bool)(keyEvent->modifiers() & Qt::ShiftModifier));
 						return true; // eat event
@@ -624,7 +671,7 @@ void ChatWidget::setWelcomeMessage(QString &text)
 	ui->textBrowser->setText(text);
 }
 
-void ChatWidget::addChatMsg(bool incoming, const QString &name, const QDateTime &sendTime, const QDateTime &recvTime, const QString &message, enumChatType chatType)
+void ChatWidget::addChatMsg(bool incoming, const QString &name, const QDateTime &sendTime, const QDateTime &recvTime, const QString &message, MsgType chatType)
 {
 #ifdef CHAT_DEBUG
 	std::cout << "ChatWidget::addChatMsg message : " << message.toStdString() << std::endl;
@@ -664,18 +711,18 @@ void ChatWidget::addChatMsg(bool incoming, const QString &name, const QDateTime 
 	}
 
 	ChatStyle::enumFormatMessage type;
-	if (chatType == TYPE_OFFLINE) {
+	if (chatType == MSGTYPE_OFFLINE) {
 		type = ChatStyle::FORMATMSG_OOUTGOING;
-	} else if (chatType == TYPE_SYSTEM) {
+	} else if (chatType == MSGTYPE_SYSTEM) {
 		type = ChatStyle::FORMATMSG_SYSTEM;
-    } else if (chatType == TYPE_HISTORY || addDate) {
+    } else if (chatType == MSGTYPE_HISTORY || addDate) {
         lastMsgDate=QDate::currentDate();
 		type = incoming ? ChatStyle::FORMATMSG_HINCOMING : ChatStyle::FORMATMSG_HOUTGOING;
 	} else {
 		type = incoming ? ChatStyle::FORMATMSG_INCOMING : ChatStyle::FORMATMSG_OUTGOING;
 	}
 
-	if (chatType == TYPE_SYSTEM) {
+	if (chatType == MSGTYPE_SYSTEM) {
 		formatFlag |= CHAT_FORMATMSG_SYSTEM;
 	}
 
@@ -692,7 +739,7 @@ void ChatWidget::addChatMsg(bool incoming, const QString &name, const QDateTime 
 
 	resetStatusBar();
 
-	if (incoming && chatType == TYPE_NORMAL) {
+	if (incoming && chatType == MSGTYPE_NORMAL) {
 		emit newMessage(this);
 
 		if (!isActive()) {
@@ -717,45 +764,6 @@ void ChatWidget::pasteText(const QString& S)
 	//std::cerr << "In paste link" << std::endl;
 	ui->chatTextEdit->insertHtml(S);
 	setColorAndFont();
-}
-
-void ChatWidget::pasteLink()
-{
-	//std::cerr << "In paste link" << std::endl;
-	ui->chatTextEdit->insertHtml(RSLinkClipboard::toHtml());
-	setColorAndFont();
-}
-
-void ChatWidget::pasteOwnCertificateLink()
-{
-	//std::cerr << "In paste own certificate link" << std::endl;
-	RetroShareLink link ;
-	std::string ownId = rsPeers->getOwnId() ;
-
-	if( link.createCertificate(ownId) )	{
-		ui->chatTextEdit->insertHtml(link.toHtml() + " ");
-		setColorAndFont();
-	}
-}
-
-void ChatWidget::contextMenu(QPoint point)
-{
-	std::cerr << "In context menu" << std::endl;
-
-	QMenu *contextMnu = ui->chatTextEdit->createStandardContextMenu(point);
-
-	contextMnu->addSeparator();
-	QAction *action = contextMnu->addAction(QIcon(":/images/pasterslink.png"), tr("Paste RetroShare Link"), this, SLOT(pasteLink()));
-	action->setDisabled(RSLinkClipboard::empty());
-	contextMnu->addAction(QIcon(":/images/pasterslink.png"), tr("Paste my certificate link"), this, SLOT(pasteOwnCertificateLink()));
-//#ifdef ENABLE_DISTANT_CHAT_AND_MSGS
-//	contextMnu->addAction(QIcon(":/images/pasterslink.png"), tr("Paste/Create private chat or Message link..."), this, SLOT(pasteCreateMsgLink()));
-//#endif
-    contextMnu->addAction(ui->actionPaste_plaintext);
-    contextMnu->addAction(ui->actionHidden);
-    contextMnu->addAction(ui->actionSpoiler);
-	contextMnu->exec(QCursor::pos());
-	delete(contextMnu);
 }
 
 void ChatWidget::pasteCreateMsgLink()
@@ -867,7 +875,7 @@ void ChatWidget::sendChat()
 
 	if (rsMsgs->sendPrivateChat(peerId, msg)) {
 		QDateTime currentTime = QDateTime::currentDateTime();
-        addChatMsg(false, me ? QString('*') : name, currentTime, currentTime, text, TYPE_NORMAL);
+        addChatMsg(false, me ? QString('*') : name, currentTime, currentTime, text, MSGTYPE_NORMAL);
 	}
 
 	chatWidget->clear();
@@ -1268,7 +1276,7 @@ void ChatWidget::setCurrentFileName(const QString &fileName)
 
 void ChatWidget::updateStatus(const QString &peer_id, int status)
 {
-	if (isChatLobby) {
+	if (chatType() == CHATTYPE_LOBBY) {
 		// updateTitle is used
 		return;
 	}
@@ -1329,6 +1337,11 @@ void ChatWidget::updateStatus(const QString &peer_id, int status)
 		emit infoChanged(this);
 		emit statusChanged(status);
 
+		// Notify all ChatWidgetHolder
+		foreach (ChatWidgetHolder *chatWidgetHolder, mChatWidgetHolder) {
+			chatWidgetHolder->updateStatus(status);
+		}
+
 		return;
 	}
 
@@ -1337,7 +1350,7 @@ void ChatWidget::updateStatus(const QString &peer_id, int status)
 
 void ChatWidget::updateTitle()
 {
-	if (!isChatLobby) {
+	if (!chatType() != CHATTYPE_LOBBY) {
 		// updateStatus is used
 		return;
 	}

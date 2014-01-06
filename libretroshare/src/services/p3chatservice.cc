@@ -63,7 +63,7 @@ static const time_t 	MAX_KEEP_PUBLIC_LOBBY_RECORD       =   60 ; // keep inactiv
 static const time_t 	MIN_DELAY_BETWEEN_PUBLIC_LOBBY_REQ =   20 ; // don't ask for lobby list more than once every 30 secs.
 static const time_t 	LOBBY_LIST_AUTO_UPDATE_TIME        =  121 ; // regularly ask for available lobbies every 5 minutes, to allow auto-subscribe to work
 
-static const time_t 	 DISTANT_CHAT_CLEANING_PERIOD      =   60 ; // don't ask for lobby list more than once every 30 secs.
+static const time_t 	 DISTANT_CHAT_CLEANING_PERIOD      =   60 ; // clean distant chat caches every 60 secs (remove old invites)
 static const time_t 	 DISTANT_CHAT_KEEP_ALIVE_PERIOD    =   10 ; // sens keep alive distant chat packets every 10 secs.
 static const uint32_t DISTANT_CHAT_AES_KEY_SIZE         =   16 ; // size of AES encryption key for distant chat.
 static const uint32_t DISTANT_CHAT_HASH_SIZE            =   20 ; // This is sha1 size in bytes.
@@ -125,7 +125,11 @@ int	p3ChatService::tick()
 		std::vector<VisibleChatLobbyRecord> visible_lobbies_tmp ;
 		getListOfNearbyChatLobbies(visible_lobbies_tmp) ;
 
+		if (visible_lobbies_tmp.size()==0){
+			last_req_chat_lobby_list = now-LOBBY_LIST_AUTO_UPDATE_TIME+MIN_DELAY_BETWEEN_PUBLIC_LOBBY_REQ;
+		} else {
 		last_req_chat_lobby_list = now ;
+	}
 	}
 
 	// Flush items that could not be sent, probably because of a Mutex protected zone.
@@ -435,11 +439,11 @@ void p3ChatService::locked_printDebugInfo() const
         std::cerr << "   \"" << std::hex << it->first << "\" flags = " << it->second << std::dec << std::endl;
 }
 
-bool p3ChatService::isLobbyId(const std::string& id,ChatLobbyId& lobby_id) 
+bool p3ChatService::isLobbyId(const std::string& virtual_peer_id,ChatLobbyId& lobby_id)
 {
 	RsStackMutex stack(mChatMtx); /********** STACK LOCKED MTX ******/
 
-	std::map<std::string,ChatLobbyId>::const_iterator it(_lobby_ids.find(id)) ;
+	std::map<std::string,ChatLobbyId>::const_iterator it(_lobby_ids.find(virtual_peer_id)) ;
 
 	if(it != _lobby_ids.end())
 	{
@@ -724,8 +728,13 @@ bool p3ChatService::locked_bouncingObjectCheck(RsChatLobbyBouncingObject *obj,co
 
 	std::string pid = peer_id + "_" + os.str() ;
 
-	VisibleChatLobbyRecord& rec(_visible_lobbies[obj->lobby_id]) ;
-	lobby_count = rec.total_number_of_peers ;
+	std::map<ChatLobbyId,VisibleChatLobbyRecord>::const_iterator it = _visible_lobbies.find(obj->lobby_id) ;
+	if(it == _visible_lobbies.end())
+	{
+		std::cerr << "p3ChatService::locked_bouncingObjectCheck(): weird situation: cannot find lobby in visible lobbies. Dropping message. If you see this, contact the developers." << std::endl;
+		return false ;
+	}
+	lobby_count = it->second.total_number_of_peers ;
 
 	// max objects per second: lobby_count * 1/MAX_DELAY_BETWEEN_LOBBY_KEEP_ALIVE objects per second.
 	// So in cache, there is in average that number times MAX_MESSAGES_PER_SECONDS_PERIOD
@@ -2013,10 +2022,10 @@ bool p3ChatService::loadList(std::list<RsItem*>& load)
 						_default_nick_name = kit->value ;
 				}
 
-		RsChatLobbyConfigItem *cas = NULL ;
+		RsChatLobbyConfigItem *clci = NULL ;
 
-		if(NULL != (cas = dynamic_cast<RsChatLobbyConfigItem*>(*it)))
-			_known_lobbies_flags[cas->lobby_Id] = ChatLobbyFlags(cas->flags) ;
+		if(NULL != (clci = dynamic_cast<RsChatLobbyConfigItem*>(*it)))
+			_known_lobbies_flags[clci->lobby_Id] = ChatLobbyFlags(clci->flags) ;
 
 		// delete unknown items
 		delete *it;
@@ -2084,6 +2093,8 @@ bool p3ChatService::saveList(bool& cleanup, std::list<RsItem*>& list)
 		list.push_back(ei) ;
 	}
 
+	/* Save Default Nick Name */
+
 	RsConfigKeyValueSet *vitem = new RsConfigKeyValueSet ;
 	RsTlvKeyValue kv;
 	kv.key = "DEFAULT_NICK_NAME" ;
@@ -2095,11 +2106,11 @@ bool p3ChatService::saveList(bool& cleanup, std::list<RsItem*>& list)
 	/* Save Lobby Auto Subscribe */
 	for(std::map<ChatLobbyId,ChatLobbyFlags>::const_iterator it=_known_lobbies_flags.begin();it!=_known_lobbies_flags.end();++it)
 	{
-		RsChatLobbyConfigItem *cas = new RsChatLobbyConfigItem ;
-		cas->lobby_Id=it->first;
-		cas->flags=it->second.toUInt32();
+		RsChatLobbyConfigItem *clci = new RsChatLobbyConfigItem ;
+		clci->lobby_Id=it->first;
+		clci->flags=it->second.toUInt32();
 
-		list.push_back(cas) ;
+		list.push_back(clci) ;
 	}
 
 
@@ -2523,16 +2534,16 @@ uint64_t p3ChatService::makeConnexionChallengeCode(const std::string& peer_id,Ch
 	return result ;
 }
 
-void p3ChatService::getChatLobbyList(std::list<ChatLobbyInfo>& linfos) 
+void p3ChatService::getChatLobbyList(std::list<ChatLobbyInfo>& cl_infos)
 {
 	// fill up a dummy list for now.
 
 	RsStackMutex stack(mChatMtx); /********** STACK LOCKED MTX ******/
 
-	linfos.clear() ;
+	cl_infos.clear() ;
 
 	for(std::map<ChatLobbyId,ChatLobbyEntry>::const_iterator it(_chat_lobbys.begin());it!=_chat_lobbys.end();++it)
-		linfos.push_back(it->second) ;
+		cl_infos.push_back(it->second) ;
 }
 void p3ChatService::invitePeerToLobby(const ChatLobbyId& lobby_id, const std::string& peer_id,bool connexion_challenge) 
 {
@@ -3119,7 +3130,7 @@ void p3ChatService::cleanLobbyCaches()
 		// 
 
 		for(std::map<ChatLobbyId,VisibleChatLobbyRecord>::iterator it(_visible_lobbies.begin());it!=_visible_lobbies.end();)
-			if(it->second.last_report_time + MAX_KEEP_PUBLIC_LOBBY_RECORD < now)	// this lobby record is too late.
+			if(it->second.last_report_time + MAX_KEEP_PUBLIC_LOBBY_RECORD < now && _chat_lobbys.find(it->first)==_chat_lobbys.end())	// this lobby record is too late.
 			{
 #ifdef CHAT_DEBUG
 				std::cerr << "  removing old public lobby record 0x" << std::hex << it->first << ", time=" << std::dec << now - it->second.last_report_time << " secs ago" << std::endl;
@@ -3500,14 +3511,14 @@ bool p3ChatService::createDistantChatInvite(const std::string& pgp_id,time_t tim
 	//
 	// 	retroshare://chat?time_stamp=3243242&private_data=[radix64 string]
 
-	uint32_t header_size = DISTANT_CHAT_AES_KEY_SIZE + DISTANT_CHAT_HASH_SIZE + KEY_ID_SIZE;
+	uint32_t header_size = DISTANT_CHAT_AES_KEY_SIZE + DISTANT_CHAT_HASH_SIZE + PGP_KEY_ID_SIZE;
     unsigned char *data = new unsigned char[header_size+800] ;
 
 	PGPIdType OwnId(AuthGPG::getAuthGPG()->getGPGOwnId());
 
 	memcpy(data                                                 ,hash_bytes         ,DISTANT_CHAT_HASH_SIZE) ;
 	memcpy(data+DISTANT_CHAT_HASH_SIZE                          ,invite.aes_key     ,DISTANT_CHAT_AES_KEY_SIZE) ;
-	memcpy(data+DISTANT_CHAT_HASH_SIZE+DISTANT_CHAT_AES_KEY_SIZE,OwnId.toByteArray(),KEY_ID_SIZE) ;
+	memcpy(data+DISTANT_CHAT_HASH_SIZE+DISTANT_CHAT_AES_KEY_SIZE,OwnId.toByteArray(),PGP_KEY_ID_SIZE) ;
 
 #ifdef DEBUG_DISTANT_CHAT
 	std::cerr << "Performing signature " << std::endl;
@@ -3575,7 +3586,7 @@ bool p3ChatService::initiateDistantChatConnexion(const std::string& encrypted_st
 	std::cerr << "Chat invite was successfuly decrypted!" << std::endl;
 #endif
 
-	uint32_t header_size = DISTANT_CHAT_HASH_SIZE + DISTANT_CHAT_AES_KEY_SIZE + KEY_ID_SIZE ;
+	uint32_t header_size = DISTANT_CHAT_HASH_SIZE + DISTANT_CHAT_AES_KEY_SIZE + PGP_KEY_ID_SIZE ;
 
 	PGPIdType pgp_id( data + DISTANT_CHAT_HASH_SIZE + DISTANT_CHAT_AES_KEY_SIZE ) ;
 

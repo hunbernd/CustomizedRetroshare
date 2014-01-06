@@ -32,6 +32,7 @@
 
 #include "util/rsdir.h"
 #include "util/rsstring.h"
+#include "util/rsrandom.h"
 #include "pqi/pqinotify.h"
 #include "retroshare/rstypes.h"
 #include "rsthreads.h"
@@ -156,6 +157,23 @@ bool RsDirUtil::crc32File(FILE *fd, uint64_t file_size,uint32_t chunk_size, CRC3
 		return false ;
 	}
 	return true ;
+}
+
+const char *RsDirUtil::scanf_string_for_uint(int bytes)
+{
+	const char *strgs[3] = { "%u","%lu","%llu" } ;
+
+	std::cerr << "RsDirUtil::scanf_string_for_uint(): returning for bytes=" << bytes << std::endl;
+
+	if(sizeof(unsigned int) == bytes)
+		return strgs[0] ;
+	if(sizeof(long unsigned int) == bytes)
+		return strgs[1] ;
+	if(sizeof(long long unsigned int) == bytes)
+		return strgs[2] ;
+
+	std::cerr << "RsDirUtil::scanf_string_for_uint(): no corresponding scan string for "<< bytes << " bytes. This will probably cause inconsistencies." << std::endl;
+	return strgs[0] ;
 }
 
 void RsDirUtil::removeTopDir(const std::string& dir, std::string& path)
@@ -799,6 +817,15 @@ bool Sha1CheckSum::operator<(const Sha1CheckSum& s) const
 
 	return false ;
 }
+Sha1CheckSum Sha1CheckSum::random()
+{
+	Sha1CheckSum s ;
+	for(int i=0;i<5;++i)
+		s.fourbytes[i] = RSRandom::random_u32() ;
+
+	return s;
+}
+
 std::string Sha1CheckSum::toStdString() const
 {
 	static const char outl[16] = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' } ;

@@ -42,6 +42,7 @@ class RsTurtle ;
 class RsDht ;
 class RsDisc ;
 class RsMsgs ;
+class RsForums;
 class p3LinkMgr ;
 class MainPage ;
 class QIcon ;
@@ -55,9 +56,10 @@ class ftServer ;
 class ConfigPage ;
 class RsPQIService ;
 class RsAutoUpdatePage ;
-class PopupChatDialog ;
 class SoundEvents;
 class FeedNotify;
+class ChatWidget;
+class ChatWidgetHolder;
 
 // Plugin API version. Not used yet, but will be in the future the
 // main value that decides for compatibility.
@@ -97,6 +99,7 @@ public:
     RsTurtle *mTurtle;
     RsDisc   *mDisc;
     RsDht    *mDht;
+    RsForums *mForums;
 };
 
 class RsPlugin
@@ -143,9 +146,8 @@ class RsPlugin
 		virtual std::string   		 qt_transfers_tab_name()const	{ return "Tab" ; } // Tab name
 		virtual void         		 qt_sound_events(SoundEvents &/*events*/) const	{ } // Sound events
 
-		// Any derived class of PopupChatDialog to be used for chat.
-		//
-		virtual PopupChatDialog    *qt_allocate_new_popup_chat_dialog() const { return NULL ; }
+		// Provide buttons for the ChatWidget
+		virtual ChatWidgetHolder    *qt_get_chat_widget_holder(ChatWidget */*chatWidget*/) const { return NULL ; }
 
 		virtual QTranslator    *qt_translator(QApplication * /* app */, const QString& /* languageCode */, const QString& /* externalDir */ ) const	{ return NULL ; }
 

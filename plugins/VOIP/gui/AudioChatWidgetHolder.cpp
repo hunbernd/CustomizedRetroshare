@@ -1,11 +1,15 @@
 #include <QToolButton>
 #include <QPropertyAnimation>
 #include <QIcon>
-#include "AudioPopupChatDialog.h"
+
+#include "AudioChatWidgetHolder.h"
+#include <gui/audiodevicehelper.h>
 #include "interface/rsvoip.h"
 #include "gui/SoundManager.h"
 #include "util/HandleRichText.h"
 #include "gui/common/StatusDefs.h"
+#include "gui/chat/ChatWidget.h"
+
 #include <retroshare/rsstatus.h>
 
 #define CALL_START ":/images/call-start-22.png"
@@ -13,8 +17,8 @@
 #define CALL_HOLD  ":/images/call-hold-22.png"
 
 
-AudioPopupChatDialog::AudioPopupChatDialog(QWidget *parent)
-	: PopupChatDialog(parent)
+AudioChatWidgetHolder::AudioChatWidgetHolder(ChatWidget *chatWidget)
+	: QObject(), ChatWidgetHolder(chatWidget)
 {
 	audioListenToggleButton = new QToolButton ;
 	audioListenToggleButton->setMinimumSize(QSize(28,28)) ;
@@ -22,7 +26,7 @@ AudioPopupChatDialog::AudioPopupChatDialog(QWidget *parent)
 	audioListenToggleButton->setText(QString()) ;
 	audioListenToggleButton->setToolTip(tr("Mute yourself"));
 
-	std::cerr << "****** VOIPLugin: Creating new AudioPopupChatDialog !!" << std::endl;
+	std::cerr << "****** VOIPLugin: Creating new AudioChatWidgetHolder !!" << std::endl;
 
 	QIcon icon ;
 	icon.addPixmap(QPixmap(":/images/audio-volume-muted-22.png")) ;
@@ -68,11 +72,9 @@ AudioPopupChatDialog::AudioPopupChatDialog(QWidget *parent)
 	connect(audioMuteCaptureToggleButton, SIGNAL(clicked()), this , SLOT(toggleAudioMuteCapture()));
 	connect(hangupButton, SIGNAL(clicked()), this , SLOT(hangupCall()));
 
-	addChatBarWidget(audioListenToggleButton) ;
-	addChatBarWidget(audioMuteCaptureToggleButton) ;
-	addChatBarWidget(hangupButton) ;
-
-	//ui.chatWidget->resetStatusBar();
+	mChatWidget->addChatBarWidget(audioListenToggleButton) ;
+	mChatWidget->addChatBarWidget(audioMuteCaptureToggleButton) ;
+	mChatWidget->addChatBarWidget(hangupButton) ;
 
 	outputProcessor = NULL ;
 	outputDevice = NULL ;
@@ -80,7 +82,13 @@ AudioPopupChatDialog::AudioPopupChatDialog(QWidget *parent)
 	inputDevice = NULL ;
 }
 
-void AudioPopupChatDialog::toggleAudioListen() 
+AudioChatWidgetHolder::~AudioChatWidgetHolder()
+{
+	if(inputDevice != NULL)
+		inputDevice->stop() ;
+}
+
+void AudioChatWidgetHolder::toggleAudioListen()
 {
 	std::cerr << "******** VOIPLugin: Toggling audio listen!" << std::endl;
     if (audioListenToggleButton->isChecked()) {
@@ -94,7 +102,7 @@ void AudioPopupChatDialog::toggleAudioListen()
     }
 }
 
-void AudioPopupChatDialog::hangupCall() 
+void AudioChatWidgetHolder::hangupCall()
 {
 	std::cerr << "******** VOIPLugin: Hangup call!" << std::endl;
 
@@ -109,15 +117,13 @@ void AudioPopupChatDialog::hangupCall()
         audioMuteCaptureToggleButton->setChecked(false);
 }
 
-void AudioPopupChatDialog::toggleAudioMuteCapture() 
+void AudioChatWidgetHolder::toggleAudioMuteCapture()
 {
 	std::cerr << "******** VOIPLugin: Toggling audio mute capture!" << std::endl;
     if (audioMuteCaptureToggleButton->isChecked()) {
         //activate audio output
         audioListenToggleButton->setChecked(true);
         audioMuteCaptureToggleButton->setToolTip(tr("Hold Call"));
-                
-        ChatWidget *cw = getChatWidget();
 
         //activate audio input
         if (!inputProcessor) {
@@ -133,8 +139,8 @@ void AudioPopupChatDialog::toggleAudioMuteCapture()
         connect(inputProcessor, SIGNAL(networkPacketReady()), this, SLOT(sendAudioData()));
         inputDevice->start(inputProcessor);
         
-        if (cw) {
-         cw->addChatMsg(true, tr("VoIP Status"), QDateTime::currentDateTime(), QDateTime::currentDateTime(), tr("Outgoing Call is started..."), ChatWidget::TYPE_SYSTEM);
+        if (mChatWidget) {
+         mChatWidget->addChatMsg(true, tr("VoIP Status"), QDateTime::currentDateTime(), QDateTime::currentDateTime(), tr("Outgoing Call is started..."), ChatWidget::MSGTYPE_SYSTEM);
         }
         
     } else {
@@ -143,13 +149,10 @@ void AudioPopupChatDialog::toggleAudioMuteCapture()
             inputDevice->stop();
         }
         audioMuteCaptureToggleButton->setToolTip(tr("Resume Call"));
-        
-
     }
-
 }
 
-void AudioPopupChatDialog::addAudioData(const QString name, QByteArray* array) 
+void AudioChatWidgetHolder::addAudioData(const QString name, QByteArray* array)
 {
     if (!audioMuteCaptureToggleButton->isChecked()) {
         //launch an animation. Don't launch it if already animating
@@ -208,30 +211,28 @@ void AudioPopupChatDialog::addAudioData(const QString name, QByteArray* array)
     }
 }
 
-void AudioPopupChatDialog::sendAudioData() {
+void AudioChatWidgetHolder::sendAudioData()
+{
     while(inputProcessor && inputProcessor->hasPendingPackets()) {
         QByteArray qbarray = inputProcessor->getNetworkPacket();
         RsVoipDataChunk chunk;
         chunk.size = qbarray.size();
         chunk.data = (void*)qbarray.constData();
-        rsVoip->sendVoipData(peerId,chunk);
+        rsVoip->sendVoipData(mChatWidget->getPeerId(),chunk);
     }
 }
 
-void AudioPopupChatDialog::updateStatus(int status)
+void AudioChatWidgetHolder::updateStatus(int status)
 {
 	audioListenToggleButton->setEnabled(true);
 	audioMuteCaptureToggleButton->setEnabled(true);
-	hangupButton->setEnabled(true);	
+	hangupButton->setEnabled(true);
 	
 	switch (status) {
-		case RS_STATUS_OFFLINE:
-			audioListenToggleButton->setEnabled(false);
-      audioMuteCaptureToggleButton->setEnabled(false);	
-      hangupButton->setEnabled(false);	
+	case RS_STATUS_OFFLINE:
+		audioListenToggleButton->setEnabled(false);
+		audioMuteCaptureToggleButton->setEnabled(false);
+		hangupButton->setEnabled(false);
 		break;
-		}
-
-	PopupChatDialog::updateStatus(status) ;
+	}
 }
-

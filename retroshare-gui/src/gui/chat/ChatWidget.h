@@ -37,23 +37,42 @@
 class QAction;
 class QTextEdit;
 class QPushButton;
+class ChatWidget;
 class QMenu;
 
 namespace Ui {
 class ChatWidget;
 }
 
+// a Container for the logic behind buttons in a PopupChatDialog
+// Plugins can implement this interface to provide their own buttons
+class ChatWidgetHolder
+{
+public:
+	ChatWidgetHolder(ChatWidget *chatWidget) : mChatWidget(chatWidget) {}
+	virtual ~ChatWidgetHolder() {}
+
+	// status comes from notifyPeerStatusChanged
+	// see rststaus.h for possible values
+	virtual void updateStatus(int /*status*/) {}
+
+protected:
+	ChatWidget *mChatWidget;
+};
+
 class ChatWidget : public QWidget
 {
 	Q_OBJECT
 
 public:
-	enum enumChatType { TYPE_NORMAL, TYPE_HISTORY, TYPE_OFFLINE, TYPE_SYSTEM };
+	enum MsgType { MSGTYPE_NORMAL, MSGTYPE_HISTORY, MSGTYPE_OFFLINE, MSGTYPE_SYSTEM };
+	enum ChatType { CHATTYPE_UNKNOWN, CHATTYPE_PRIVATE, CHATTYPE_LOBBY, CHATTYPE_DISTANT };
 
 	explicit ChatWidget(QWidget *parent = 0);
 	~ChatWidget();
 
 	void init(const std::string &peerId, const QString &title);
+	ChatType chatType() { return mChatType; }
 
 	bool hasNewMessages() { return newMessages; }
 	bool isTyping() { return typing; }
@@ -63,7 +82,7 @@ public:
 	void removeFromParent(QWidget *oldParent);
 
 	void setWelcomeMessage(QString &text);
-	void addChatMsg(bool incoming, const QString &name, const QDateTime &sendTime, const QDateTime &recvTime, const QString &message, enumChatType chatType);
+	void addChatMsg(bool incoming, const QString &name, const QDateTime &sendTime, const QDateTime &recvTime, const QString &message, MsgType chatType);
 	void updateStatusString(const QString &statusMask, const QString &statusString);
 
 	void addToolsAction(QAction *action);
@@ -82,8 +101,11 @@ public:
 	void setDefaultExtraFileFlags(TransferRequestFlags f) ;
 	void pasteText(const QString&);
 
+	const QList<ChatWidgetHolder*> &chatWidgetHolderList() { return mChatWidgetHolder; }
+
 public slots:
 	void updateStatus(const QString &peer_id, int status);
+
 private slots:
 	void pasteCreateMsgLink() ;
 	void clearChatHistory();
@@ -108,9 +130,6 @@ protected:
 	void updateTitle();
 
 private slots:
-	void pasteLink();
-	void pasteOwnCertificateLink();
-	void contextMenu(QPoint);
 	void contextMenuTextBrowser(QPoint);
 	void contextMenuSearchButton(QPoint);
 	void chatCharFormatChanged();
@@ -174,7 +193,7 @@ private:
 	bool newMessages;
 	bool typing;
 	int peerStatus;
-	bool isChatLobby;
+	ChatType mChatType;
 
 	time_t lastStatusSendTime;
 
@@ -202,6 +221,8 @@ private:
 	QDate lastMsgDate ;
 
     QCompleter *completer;
+
+	QList<ChatWidgetHolder*> mChatWidgetHolder;
 
 	Ui::ChatWidget *ui;
 };

@@ -53,8 +53,6 @@ PopupChatDialog::PopupChatDialog(QWidget *parent, Qt::WindowFlags flags)
 
 void PopupChatDialog::init(const std::string &peerId, const QString &title)
 {
-	connect(ui.chatWidget, SIGNAL(statusChanged(int)), this, SLOT(statusChanged(int)));
-
 	ChatDialog::init(peerId, title);
 
 	/* Hide or show the avatar frames */
@@ -77,8 +75,8 @@ void PopupChatDialog::init(const std::string &peerId, const QString &title)
 		window->addDialog(this);
 	}
 
-    // load settings
-    processSettings(true);
+	// load settings
+	processSettings(true);
 }
 
 /** Destructor. */
@@ -137,13 +135,8 @@ void PopupChatDialog::addIncomingChatMsg(const ChatInfo& info)
 		QString message = QString::fromStdWString(info.msg);
 		QString name = getPeerName(info.rsid) ;
 
-		cw->addChatMsg(true, name, sendTime, recvTime, message, ChatWidget::TYPE_NORMAL);
+		cw->addChatMsg(true, name, sendTime, recvTime, message, ChatWidget::MSGTYPE_NORMAL);
 	}
-}
-
-void PopupChatDialog::addChatBarWidget(QWidget *w)
-{
-	getChatWidget()->addChatBarWidget(w) ;
 }
 
 void PopupChatDialog::onChatChanged(int list, int type)
@@ -178,7 +171,7 @@ void PopupChatDialog::onChatChanged(int list, int type)
 						QDateTime recvTime = QDateTime::fromTime_t(it->recvTime);
 						QString message = QString::fromStdWString(it->msg);
 
-						ui.chatWidget->addChatMsg(false, name, sendTime, recvTime, message, ChatWidget::TYPE_OFFLINE);
+						ui.chatWidget->addChatMsg(false, name, sendTime, recvTime, message, ChatWidget::MSGTYPE_OFFLINE);
 					}
 				}
 
@@ -197,7 +190,7 @@ void PopupChatDialog::onChatChanged(int list, int type)
 						QDateTime recvTime = QDateTime::fromTime_t(it->recvTime);
 						QString message = QString::fromStdWString(it->msg);
 
-						ui.chatWidget->addChatMsg(false, name, sendTime, recvTime, message, ChatWidget::TYPE_NORMAL);
+						ui.chatWidget->addChatMsg(false, name, sendTime, recvTime, message, ChatWidget::MSGTYPE_NORMAL);
 					}
 				}
 
@@ -234,9 +227,4 @@ void PopupChatDialog::clearOfflineMessages()
 	manualDelete = true;
 	rsMsgs->clearPrivateChatQueue(false, peerId);
 	manualDelete = false;
-}
-
-void PopupChatDialog::statusChanged(int status)
-{
-	updateStatus(status);
 }
