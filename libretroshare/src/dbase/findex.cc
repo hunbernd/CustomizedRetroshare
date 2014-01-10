@@ -261,6 +261,8 @@ int  DirEntry::removeOldEntries(time_t old, bool recursive)
 		}
 	}
 
+	int count = removeList.size();
+
 	/* now remove the old entries */
 	std::list<DirEntry *>::iterator rit;
 	for(rit = removeList.begin(); rit != removeList.end(); rit++)
@@ -273,7 +275,7 @@ int  DirEntry::removeOldEntries(time_t old, bool recursive)
 		/* now handle children */
 		for(it = subdirs.begin(); it != subdirs.end(); it++)
 		{
-			(it->second)->removeOldEntries(old, recursive);
+			count += (it->second)->removeOldEntries(old, recursive);
 		}
 	}
 
@@ -288,6 +290,8 @@ int  DirEntry::removeOldEntries(time_t old, bool recursive)
 		}
 	}
 
+	count += removeFileList.size();
+
 	/* now remove the old entries */
 	std::list<FileEntry *>::iterator rfit;
 	for(rfit = removeFileList.begin(); rfit != removeFileList.end(); rfit++)
@@ -295,7 +299,7 @@ int  DirEntry::removeOldEntries(time_t old, bool recursive)
 		removeFile((*rfit)->name);
 	}
 
-	return 1;
+	return count;
 }
 
 
@@ -553,7 +557,7 @@ int	FileIndex::setRootDirectories(const std::list<std::string> &inlist, time_t u
 	}
 
 	/* remove all dirs with zero time (non recursive) */
-	root->removeOldEntries(utime, false);
+	int cleanedCount = root->removeOldEntries(utime, false);
 
 	/* now flag remaining directories with correct update time */
 	for(it = root->subdirs.begin(); it != root->subdirs.end(); it++)
@@ -565,7 +569,7 @@ int	FileIndex::setRootDirectories(const std::list<std::string> &inlist, time_t u
 	
 	updateHashIndex() ;
 
-	return 1;
+	return cleanedCount;
 }
 
 void FileIndex::updateHashIndex() 
@@ -722,12 +726,14 @@ int  	FileIndex::removeOldDirectory(const std::string& fpath, const std::string&
 
 int	FileIndex::cleanOldEntries(time_t old)  /* removes entries older than old */
 {
+	int count = 0;
+
 	std::map<std::string, DirEntry *>::iterator it;
 	for(it = root->subdirs.begin(); it != root->subdirs.end(); it++)
 	{
-		(it->second)->removeOldEntries(old, true);
+		count += (it->second)->removeOldEntries(old, true);
 	}
-	return 1;
+	return count;
 }
 
 

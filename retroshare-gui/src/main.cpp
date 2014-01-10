@@ -155,8 +155,12 @@ int main(int argc, char *argv[])
 
 	Q_INIT_RESOURCE(images);
 
+	// This is needed to allocate rsNotify, so that it can be used to ask for PGP passphrase
+	//
+	RsControl::earlyInitNotificationSystem() ;
+
 	NotifyQt *notify = NotifyQt::Create();
-	createRsControl(*notify);
+	rsNotify->registerNotifyClient(notify);
 
 	/* RetroShare Core Objects */
 	RsInit::InitRsConfig();
@@ -303,7 +307,7 @@ int main(int argc, char *argv[])
 	splashScreen.showMessage(rshare.translate("SplashScreen", "Load configuration"), Qt::AlignHCenter | Qt::AlignBottom);
 
 	/* stop Retroshare if startup fails */
-	if (!rsicontrol->StartupRetroShare())
+	if (!RsControl::instance()->StartupRetroShare())
 	{
 		std::cerr << "libretroshare failed to startup!" << std::endl;
 		return 1;
@@ -372,10 +376,6 @@ int main(int argc, char *argv[])
 	QObject::connect(notify,SIGNAL(deferredSignatureHandlingRequested()),notify,SLOT(handleSignatureEvent()),Qt::QueuedConnection) ;
 	QObject::connect(notify,SIGNAL(chatLobbyTimeShift(int)),notify,SLOT(handleChatLobbyTimeShift(int)),Qt::QueuedConnection) ;
 	QObject::connect(notify,SIGNAL(diskFull(int,int))						,w                   		,SLOT(displayDiskSpaceWarning(int,int))) ;
-	QObject::connect(notify,SIGNAL(filesPreModChanged(bool))          ,w->transfersDialog->localSharedFiles			,SLOT(preModDirectories(bool)          )) ;
-	QObject::connect(notify,SIGNAL(filesPreModChanged(bool))          ,w->transfersDialog->remoteSharedFiles		,SLOT(preModDirectories(bool)          )) ;
-	QObject::connect(notify,SIGNAL(filesPostModChanged(bool))         ,w->transfersDialog->localSharedFiles			,SLOT(postModDirectories(bool)         )) ;
-	QObject::connect(notify,SIGNAL(filesPostModChanged(bool))         ,w->transfersDialog->remoteSharedFiles		,SLOT(postModDirectories(bool)         )) ;
 	QObject::connect(notify,SIGNAL(filesPostModChanged(bool))         ,w                         ,SLOT(postModDirectories(bool)         )) ;
 	QObject::connect(notify,SIGNAL(transfersChanged())                ,w->transfersDialog  		,SLOT(insertTransfers()                )) ;
 	QObject::connect(notify,SIGNAL(publicChatChanged(int))            ,w->friendsDialog      		,SLOT(publicChatChanged(int)           ));
@@ -423,7 +423,7 @@ int main(int argc, char *argv[])
 	RsGxsUpdateBroadcast::cleanup();
 #endif
 
-	rsicontrol->rsGlobalShutDown();
+	RsControl::instance()->rsGlobalShutDown();
 
 	delete(soundManager);
 	soundManager = NULL;

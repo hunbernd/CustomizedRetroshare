@@ -26,11 +26,12 @@
 #include "util/rswin.h"
 #endif
 
+#include "rsserver/p3face.h"
 #include "dbase/fimonitor.h"
 #include "util/rsdir.h"
 #include "serialiser/rsserviceids.h"
 #include "retroshare/rsiface.h"
-#include "retroshare/rsnotify.h"
+#include "pqi/p3notify.h"
 #include "retroshare/rspeers.h"
 #include "util/folderiterator.h"
 #include <errno.h>
@@ -51,10 +52,10 @@
 //#define FIM_DEBUG 1
 // ***********/
 
-FileIndexMonitor::FileIndexMonitor(CacheStrapper *cs, NotifyBase *cb_in,std::string cachedir, std::string pid,const std::string& config_dir)
+FileIndexMonitor::FileIndexMonitor(CacheStrapper *cs, std::string cachedir, std::string pid,const std::string& config_dir)
 	:CacheSource(RS_SERVICE_TYPE_FILE_INDEX, false, cs, cachedir), fiMutex("FileIndexMonitor"), fi(pid),
 		pendingDirs(false), pendingForceCacheWrite(false),
-		mForceCheck(false), mInCheck(false),cb(cb_in), hashCache(config_dir+"/" + "file_cache.lst"),useHashCache(true)
+		mForceCheck(false), mInCheck(false), hashCache(config_dir+"/" + "file_cache.lst"),useHashCache(true)
 
 {
 	updatePeriod = 15 * 60; // 15 minutes
@@ -604,7 +605,7 @@ void 	FileIndexMonitor::updateCycle()
 		mInCheck = true;
 	}
 
-	cb->notifyHashingInfo(NOTIFY_HASHTYPE_EXAMINING_FILES, "") ;
+	RsServer::notify()->notifyHashingInfo(NOTIFY_HASHTYPE_EXAMINING_FILES, "") ;
 
 	std::vector<DirContentToHash> to_hash ;
 
@@ -857,7 +858,9 @@ void 	FileIndexMonitor::updateCycle()
 	if(isRunning() && !to_hash.empty())
 		hashFiles(to_hash) ;
 
-	cb->notifyHashingInfo(NOTIFY_HASHTYPE_FINISH, "") ;
+	RsServer::notify()->notifyHashingInfo(NOTIFY_HASHTYPE_FINISH, "") ;
+
+	int cleanedCount = 0;
 
 	{ /* LOCKED DIRS */
 		RsStackMutex stack(fiMutex); /**** LOCKED DIRS ****/
@@ -866,7 +869,7 @@ void 	FileIndexMonitor::updateCycle()
 		 * have not had their timestamps updated.
 		 */
 
-		fi.cleanOldEntries(startstamp) ;
+		cleanedCount = fi.cleanOldEntries(startstamp) ;
 
 #ifdef FIM_DEBUG
 		/* print out the new directory structure */
@@ -901,6 +904,10 @@ void 	FileIndexMonitor::updateCycle()
 			hashCache.save() ;
 		}
 	}
+
+	if (cleanedCount > 0) {
+		RsServer::notify()->notifyListChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
+	}
 }
 
 static std::string friendlyUnit(uint64_t val) 
@@ -929,7 +936,7 @@ void FileIndexMonitor::hashFiles(const std::vector<DirContentToHash>& to_hash)
 	// Size interval at which we save the file lists
 	static const uint64_t MAX_SIZE_WITHOUT_SAVING = 10737418240ull ; // 10 GB
 
-	cb->notifyListPreChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
+	RsServer::notify()->notifyListPreChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
 
 	time_t stamp = time(NULL);
 
@@ -993,7 +1000,7 @@ void FileIndexMonitor::hashFiles(const std::vector<DirContentToHash>& to_hash)
 			std::string tmpout;
 			rs_sprintf(tmpout, "%lu/%lu (%s - %d%%) : %s", cnt+1, n_files, friendlyUnit(size).c_str(), int(size/double(total_size)*100.0), fe.name.c_str()) ;
 
-			cb->notifyHashingInfo(NOTIFY_HASHTYPE_HASH_FILE, tmpout) ;
+			RsServer::notify()->notifyHashingInfo(NOTIFY_HASHTYPE_HASH_FILE, tmpout) ;
 
 			std::string real_path = RsDirUtil::makePath(to_hash[i].realpath, fe.name);
 
@@ -1057,7 +1064,7 @@ void FileIndexMonitor::hashFiles(const std::vector<DirContentToHash>& to_hash)
 
 			if(hashed_size > last_save_size + MAX_SIZE_WITHOUT_SAVING)
 			{
-				cb->notifyHashingInfo(NOTIFY_HASHTYPE_SAVE_FILE_INDEX, "") ;
+				RsServer::notify()->notifyHashingInfo(NOTIFY_HASHTYPE_SAVE_FILE_INDEX, "") ;
 #ifdef WINDOWS_SYS
 				Sleep(1000) ;
 #else
@@ -1078,7 +1085,7 @@ void FileIndexMonitor::hashFiles(const std::vector<DirContentToHash>& to_hash)
 
 	fi.updateHashIndex() ;
 
-	cb->notifyListChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
+	RsServer::notify()->notifyListChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
 }
 
 
@@ -1281,7 +1288,7 @@ bool FileIndexMonitor::cachesAvailable(RsPeerId pid,std::map<CacheId, RsCacheDat
 
 void    FileIndexMonitor::updateShareFlags(const SharedDirInfo& dir)
 {
-	cb->notifyListPreChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
+	RsServer::notify()->notifyListPreChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
 
 	bool fimods = false ;
 #ifdef FIM_DEBUG
@@ -1328,12 +1335,12 @@ void    FileIndexMonitor::updateShareFlags(const SharedDirInfo& dir)
 		RsStackMutex stack(fiMutex) ;	/* LOCKED DIRS */
 		locked_saveFileIndexes(true) ;
 	}
-	cb->notifyListChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
+	RsServer::notify()->notifyListChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
 }
 	/* interface */
 void    FileIndexMonitor::setSharedDirectories(const std::list<SharedDirInfo>& dirs)
 {
-	cb->notifyListPreChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
+	RsServer::notify()->notifyListPreChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
 
 	std::list<SharedDirInfo> checkeddirs;
 
@@ -1379,7 +1386,7 @@ void    FileIndexMonitor::setSharedDirectories(const std::list<SharedDirInfo>& d
 		pendingDirList = checkeddirs;
 	}
 
-	cb->notifyListChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
+	RsServer::notify()->notifyListChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
 }
 
 	/* interface */
@@ -1429,75 +1436,87 @@ bool    FileIndexMonitor::inDirectoryCheck()
 bool    FileIndexMonitor::internal_setSharedDirectories()
 {
 	int i;
-	RsStackMutex stack(fiMutex) ; /* LOCKED DIRS */
+	bool changed = false;
 
-	if (!pendingDirs)
 	{
-		if (mForceCheck)
+		RsStackMutex stack(fiMutex) ; /* LOCKED DIRS */
+
+		if (!pendingDirs)
 		{
-			mForceCheck = false;
-			return true;
-		}
-
-		return false;
-	}
-
-	mForceCheck = false;
-	pendingDirs = false;
-	pendingForceCacheWrite = true;
-
-	/* clear old directories */
-	directoryMap.clear();
-
-	/* iterate through the directories */
-	std::list<SharedDirInfo>::iterator it;
-	std::map<std::string, SharedDirInfo>::const_iterator cit;
-	for(it = pendingDirList.begin(); it != pendingDirList.end(); it++)
-	{
-		/* get the head directory */
-		std::string root_dir = (*it).filename;
-		std::string top_dir  = it->virtualname;
-		if (top_dir.empty()) {
-			top_dir = RsDirUtil::getTopDir(root_dir);
-		}
-
-		/* if unique -> add, else add modifier  */
-		bool unique = false;
-		for(i = 0; !unique; i++)
-		{
-			std::string tst_dir = top_dir;
-			if (i > 0)
+			if (mForceCheck)
 			{
-				rs_sprintf_append(tst_dir, "-%d", i);
+				mForceCheck = false;
+				return true;
 			}
-			if (directoryMap.end()== (cit=directoryMap.find(tst_dir)))
+
+			return false;
+		}
+
+		mForceCheck = false;
+		pendingDirs = false;
+		pendingForceCacheWrite = true;
+
+		/* clear old directories */
+		directoryMap.clear();
+
+		/* iterate through the directories */
+		std::list<SharedDirInfo>::iterator it;
+		std::map<std::string, SharedDirInfo>::const_iterator cit;
+		for(it = pendingDirList.begin(); it != pendingDirList.end(); it++)
+		{
+			/* get the head directory */
+			std::string root_dir = (*it).filename;
+			std::string top_dir  = it->virtualname;
+			if (top_dir.empty()) {
+				top_dir = RsDirUtil::getTopDir(root_dir);
+			}
+
+			/* if unique -> add, else add modifier  */
+			bool unique = false;
+			for(i = 0; !unique; i++)
 			{
-				unique = true;
-				/* store calculated name */
-				it->virtualname = tst_dir;
-				/* add it! */
-				directoryMap[tst_dir.c_str()] = *it;
+				std::string tst_dir = top_dir;
+				if (i > 0)
+				{
+					rs_sprintf_append(tst_dir, "-%d", i);
+				}
+				if (directoryMap.end()== (cit=directoryMap.find(tst_dir)))
+				{
+					unique = true;
+					/* store calculated name */
+					it->virtualname = tst_dir;
+					/* add it! */
+					directoryMap[tst_dir.c_str()] = *it;
 #ifdef FIM_DEBUG
-				std::cerr << "Added [" << tst_dir << "] => " << root_dir << std::endl;
+					std::cerr << "Added [" << tst_dir << "] => " << root_dir << std::endl;
 #endif
+				}
 			}
 		}
+
+		pendingDirList.clear();
+
+		/* now we've decided on the 'root' dirs set them to the
+		 * fileIndex
+		 */
+		std::list<std::string> topdirs;
+		for(cit = directoryMap.begin(); cit != directoryMap.end(); cit++)
+		{
+			topdirs.push_back(cit->first);
+		}
+
+		if (fi.setRootDirectories(topdirs, 0) > 0)
+		{
+			changed = true;
+		}
+
+		locked_saveFileIndexes(true) ;
 	}
 
-	pendingDirList.clear();
-
-	/* now we've decided on the 'root' dirs set them to the
-	 * fileIndex
-	 */
-	std::list<std::string> topdirs;
-	for(cit = directoryMap.begin(); cit != directoryMap.end(); cit++)
+	if (changed)
 	{
-		topdirs.push_back(cit->first);
+		RsServer::notify()->notifyListChange(NOTIFY_LIST_DIRLIST_LOCAL, 0);
 	}
-
-	fi.setRootDirectories(topdirs, 0);
-
-	locked_saveFileIndexes(true) ;
 
 	return true;
 }
