@@ -18,7 +18,6 @@ Hozzáadott dolgok:
 -fájl találati lista rendezése a források száma szerint (Phenom)
 -PaintChat kiegészítõ (electron128)
 -ExportImport kiegészítõ
--JumpingCube kiegészítõ(chozabu)(középsõ kattintással ki tudod másolni a rajzodat, aztán beilleszteni a csetbe)
 
 ----------------------------------
 Telepítési útmutató:
