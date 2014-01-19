@@ -3,8 +3,9 @@ TEMPLATE = subdirs
 SUBDIRS += \
 		LinksCloud \
 		VOIP \
-                FeedReader \
-                ExportImport \
-                PaintChat \
-#		JumpingCube \
-#		WebScriptRS \
+		FeedReader \
+		ExportImport \
+		PaintChat \
+		FriendMap \
+		JumpingCube \
+		WebScriptRS \

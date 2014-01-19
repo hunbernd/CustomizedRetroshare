@@ -1,0 +1,3 @@
+[submodule "plugins/FriendMap"]
+	path = plugins/FriendMap
+	url = https://github.com/chozabu/FriendMap.git
