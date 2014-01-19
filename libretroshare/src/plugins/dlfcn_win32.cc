@@ -178,7 +178,8 @@ void *dlopen( const char *file, int mode )
     current_error = NULL;
 
     /* Do not let Windows display the critical-error-handler message box */
-    uMode = SetErrorMode( SEM_FAILCRITICALERRORS );
+    //uMode = SetErrorMode( SEM_FAILCRITICALERRORS );
+    uMode = SetErrorMode( 0 );
 
     if( file == 0 )
     {
