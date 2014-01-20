@@ -452,10 +452,6 @@ p, li { white-space: pre-wrap; }
         <translation>Piirit</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>Kuvan jakaminen</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Lähetetyt linkit</translation>
     </message>
@@ -474,6 +470,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>The Wire</source>
         <translation>Lennätin</translation>
+    </message>
+    <message>
+        <source>Photos</source>
+        <translation>Valokuvat</translation>
     </message>
 </context>
 <context>
@@ -1031,6 +1031,18 @@ p, li { white-space: pre-wrap; }
         <source>Hide</source>
         <translation>Piilota</translation>
     </message>
+    <message>
+        <source>Open</source>
+        <translation>Avaa</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Avaa tiedosto</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Toista media</translation>
+    </message>
 </context>
 <context>
     <name>ChanNewItem</name>
@@ -1111,7 +1123,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Kohdehakemisto</translation>
     </message>
 </context>
 <context>
@@ -1241,7 +1253,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Post</source>
-        <translation type="unfinished"/>
+        <translation>Viesti</translation>
     </message>
     <message>
         <source>Subscribed</source>
@@ -1348,7 +1360,7 @@ Ole hyvä ja valitse niistä yksi keskustellaksesi.</translation>
     </message>
     <message>
         <source>Right click to mute/unmute participants&lt;br/&gt;Double click to address this person&lt;br/&gt;</source>
-        <translation>Käytä hiiren oikeaa painiketta mykistääksesi osanottajan tai päinvastoin&lt;br/&gt;Kaksoisnapauta kohdistaaksesi viestisi tietylle henkilölle&lt;br/&gt;</translation>
+        <translation>Käytä hiiren oikeaa painiketta mykistääksesi osanottajan tai päinvastoin&lt;br/&gt;Tuplaklikkaa kohdistaaksesi viestisi tietylle henkilölle&lt;br/&gt;</translation>
     </message>
     <message>
         <source>This participant is not active since:</source>
@@ -1422,7 +1434,7 @@ Ole hyvä ja valitse niistä yksi keskustellaksesi.</translation>
     </message>
     <message>
         <source>You&apos;re not subscribed to this lobby; Double click-it to enter and chat.</source>
-        <translation>Et ole tilannut aulaa: kaksoisnapauta siirtyäksesi keskustelemaan</translation>
+        <translation>Et ole tilannut aulaa: tuplaklikkaa siirtyäksesi keskustelemaan</translation>
     </message>
     <message>
         <source>Invitation to chat lobby</source>
@@ -1506,7 +1518,7 @@ Select lobbies at left to show details.
 Double click lobbies to enter and chat.</source>
         <translation>Aulaa ei valittuna. 
 Valitse auloja vasemmalta nähdäksesi tietoja.
-Kaksoisnapauta auloja siirtyäksesi keskustelemaan.</translation>
+Tuplaklikkaa auloja siirtyäksesi keskustelemaan.</translation>
     </message>
     <message>
         <source>Private Subscribed Lobbies</source>
@@ -1917,14 +1929,6 @@ Kaksoisnapauta auloja siirtyäksesi keskustelemaan.</translation>
     <message>
         <source>Reset font to default</source>
         <translation>Palauta oletuskirjasin</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Liitä RetroShare-linkki</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Liitä varmennelinkkini</translation>
     </message>
     <message>
         <source>is typing...</source>
@@ -2339,11 +2343,11 @@ Jotkut palvelut (etsintä, nimetön reititys) voi kytkeä pois yleisellä tasoll
     </message>
     <message>
         <source>Location ID</source>
-        <translation type="unfinished"/>
+        <translation>Sijaintitunniste</translation>
     </message>
     <message>
         <source>PGP fingerprint</source>
-        <translation type="unfinished"/>
+        <translation>PGP-sormenjälki</translation>
     </message>
 </context>
 <context>
@@ -3793,14 +3797,6 @@ p, li { white-space: pre-wrap; }
         <translation>Tunnisteet</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt; Lisää</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt; Poista</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>Tiedetyt henkilöllisyydet</translation>
     </message>
@@ -3863,6 +3859,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New External Circle</source>
         <translation>Luo uusi ulkoinen piiri</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Lisää</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation>Poista</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Etsi</translation>
     </message>
 </context>
 <context>
@@ -3963,10 +3971,6 @@ p, li { white-space: pre-wrap; }
         <translation>Allekirjoita viesti</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Liitä RetroShare-linkki</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Foorumiviesti</translation>
     </message>
@@ -3981,14 +3985,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Aloita uusi viestiketju</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Liitä kokonainen RetroShare-linkki</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Liitä varmennelinkkini</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4180,10 +4176,6 @@ p, li { white-space: pre-wrap; }
         <translation>Allekirjoita viesti</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Liitä RetroShare-linkki</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Foorumiviesti</translation>
     </message>
@@ -4198,14 +4190,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Aloita uusi viestiketju</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Liitä kokonainen RetroShare-linkki</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Liitä varmennelinkkini</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -5388,6 +5372,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS -rom-tiedosto</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation>Patch-tiedosto</translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation>C++</translation>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation>Header-tiedosto</translation>
+    </message>
+    <message>
+        <source>C </source>
+        <translation>C</translation>
     </message>
 </context>
 <context>
@@ -7314,6 +7314,10 @@ p, li { white-space: pre-wrap; }
         <source>Select Channel Admins</source>
         <translation>Valitse ylläpitäjiä kanavalle</translation>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Luo kanava</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7517,6 +7521,10 @@ kuin voit kommentoida</translation>
     <message>
         <source>Edit Forum</source>
         <translation>Muokkaa foorumia</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Luo foorumi</translation>
     </message>
 </context>
 <context>
@@ -7925,10 +7933,6 @@ kuin voit kommentoida</translation>
     <message>
         <source>Contacts:</source>
         <translation>Kontaktit:</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>Luo ryhmä</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -9863,6 +9867,17 @@ Haluatko tallentaa viestin?</translation>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>Liitä RetroShare-linkki</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>Liitä varmennelinkkini</translation>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -10249,7 +10264,7 @@ Paina hiiren oikeaa nappia ja valitse &quot;ystävysty&quot; saadaksesi yhteyden
     </message>
     <message>
         <source>Freeze</source>
-        <translation type="unfinished"/>
+        <translation>Pysäytä</translation>
     </message>
 </context>
 <context>
@@ -11079,10 +11094,6 @@ vahingoittamistarkoituksessa tehdyiltä lisäosilta.</translation>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>Luo teksti</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -11122,6 +11133,26 @@ p, li { white-space: pre-wrap; }
         <source>Please create or choose a Signing Id first</source>
         <translation>Luo tai valitse ensin allekirjoitustunniste</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>Lähetä viesti</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation>Olet lähettämässä linkkiä. Lähettämässäsi linkissä tulisi mielellään olla mielenkiintoista sisältöä ja kuvaava otsikko.</translation>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>Lähetä</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation>Lähetä uusi viesti</translation>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation>Ole hyvä ja lisää otsikko</translation>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -11152,6 +11183,10 @@ p, li { white-space: pre-wrap; }
         <source>Edit Topic</source>
         <translation>Muokkaa aihetta</translation>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation>Luo aihe</translation>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -11164,20 +11199,12 @@ p, li { white-space: pre-wrap; }
         <translation>Title this is a very very very very loooooooooooooooonnnnnnnnnnnnnnnnng title dont you think? yes it is and should wrap around I hope</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Päiväys</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>Lähettäjä</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>Sivusto</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>Näytä kommentit</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11188,12 +11215,20 @@ p, li { white-space: pre-wrap; }
         <translation>Kommentti</translation>
     </message>
     <message>
-        <source>I like this</source>
-        <translation>Pidän tästä</translation>
+        <source>Vote up</source>
+        <translation>Äänestä ylös</translation>
     </message>
     <message>
-        <source>I dislike this</source>
-        <translation>En pidä tästä</translation>
+        <source>Vote down</source>
+        <translation>Äänestä alas</translation>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
+        <translation>Lähetetty</translation>
     </message>
 </context>
 <context>
@@ -11233,10 +11268,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This Year</source>
         <translation>Tänä vuonna</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>Lähetä viesti</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11289,6 +11320,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New Topic</source>
         <translation>Luo uusi aihe</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation>Lähetä uusi viesti</translation>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>Tehtävät</translation>
     </message>
 </context>
 <context>
@@ -11927,6 +11966,10 @@ Varmista, että tiedät, kenen kanssa keskustelet.</translation>
     <message>
         <source>Chat connection is unauthenticated</source>
         <translation>Keskusteluyhteys on vahvistamaton</translation>
+    </message>
+    <message>
+        <source>Id: </source>
+        <translation>Tunniste:</translation>
     </message>
 </context>
 <context>
@@ -12691,14 +12734,6 @@ Pienennetäänkö kuva kokoon %1x%2 pikseliä?</translation>
         <translation>Poista kohde</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Peru</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Lähetä</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Nimi:</translation>
     </message>
@@ -12763,8 +12798,20 @@ Pienennetäänkö kuva kokoon %1x%2 pikseliä?</translation>
         <translation>Haluatko poistaa tämän ystävän?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Pikaviesti</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14707,6 +14754,14 @@ Kärsivällisyyttä!</translation>
         <source>Unsubscribe to Group</source>
         <translation>Lopeta ryhmän tilaus</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>Tehtävät</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Muokkaa ryhmää</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14828,6 +14883,10 @@ Kärsivällisyyttä!</translation>
     <message>
         <source>Select Wiki Moderators</source>
         <translation>Valitse wikimoderaattoreita</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Luo ryhmä</translation>
     </message>
 </context>
 <context>

@@ -452,10 +452,6 @@ Kom bara ihåg... all data här, *KOMMER* att förloras när vi uppgraderar prot
         <translation>Cirklar</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>Bilddelning</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Postade länkar</translation>
     </message>
@@ -474,6 +470,10 @@ Kom bara ihåg... all data här, *KOMMER* att förloras när vi uppgraderar prot
     <message>
         <source>The Wire</source>
         <translation>The Wire</translation>
+    </message>
+    <message>
+        <source>Photos</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1030,6 +1030,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hide</source>
         <translation>Dölj</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Öppna</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Öppna fil</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Spela upp media</translation>
     </message>
 </context>
 <context>
@@ -1918,14 +1930,6 @@ Dubbelklicka lobbyer för att chatta.</translation>
     <message>
         <source>Reset font to default</source>
         <translation>Återställ standardteckensnitt</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Klistra in RetroShare-länk</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Klistra in min certifikatlänk</translation>
     </message>
     <message>
         <source>is typing...</source>
@@ -3790,14 +3794,6 @@ p, li { white-space: pre-wrap; }
         <translation>ID</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt;Lägg till</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt;Ta bort</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>Kända identiteter</translation>
     </message>
@@ -3860,6 +3856,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New External Circle</source>
         <translation>Skapa en ny Extern Cirkel</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Lägg till</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Sök</translation>
     </message>
 </context>
 <context>
@@ -3960,10 +3968,6 @@ p, li { white-space: pre-wrap; }
         <translation>Signera meddelande</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Klistra in RetroShare-länk</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Foruminlägg</translation>
     </message>
@@ -3978,14 +3982,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Starta ny tråd</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Klistra in hela RetroShare-länken</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Klistra in min certifikatlänk</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4177,10 +4173,6 @@ p, li { white-space: pre-wrap; }
         <translation>Signera meddelande</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Klistra in RetroShare-länk</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Foruminlägg</translation>
     </message>
@@ -4195,14 +4187,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Starta ny tråd</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Klistra in hela RetroShare-länken</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Klistra in min certifikatlänk</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -5382,6 +5366,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS Rom</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7304,6 +7304,10 @@ p, li { white-space: pre-wrap; }
         <source>Select Channel Admins</source>
         <translation>Välj Kanaladministratörer</translation>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Skapa kanal</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7507,6 +7511,10 @@ innan du kan kommentera</translation>
     <message>
         <source>Edit Forum</source>
         <translation>Redigera forum</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Skapa nytt forum</translation>
     </message>
 </context>
 <context>
@@ -7915,10 +7923,6 @@ innan du kan kommentera</translation>
     <message>
         <source>Contacts:</source>
         <translation>Kontakter:</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>Skapa grupp</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -9841,6 +9845,17 @@ Vill du spara meddelandet?</translation>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>Klistra in RetroShare-länk</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>Klistra in min certifikatlänk</translation>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -11058,10 +11073,6 @@ felaktigt utformade insticksprogram. </translation>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>Skapa inlägg</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -11101,6 +11112,26 @@ p, li { white-space: pre-wrap; }
         <source>Please create or choose a Signing Id first</source>
         <translation>Skapa nytt eller välj ett befintligt signatur-ID först</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>Skicka</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>Skicka</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -11131,6 +11162,10 @@ p, li { white-space: pre-wrap; }
         <source>Edit Topic</source>
         <translation>Redigera Ämne</translation>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -11143,20 +11178,12 @@ p, li { white-space: pre-wrap; }
         <translation>Detta är ett väldigt lååååångt namn, eller hur? Ja, det är det och borde därför radbrytas.</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Datum</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>Från</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>Webbplats</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>Visa kommentarer</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11167,12 +11194,20 @@ p, li { white-space: pre-wrap; }
         <translation>Kommentar</translation>
     </message>
     <message>
-        <source>I like this</source>
-        <translation>Jag gillar detta</translation>
+        <source>Vote up</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>I dislike this</source>
-        <translation>Jag gillar inte detta</translation>
+        <source>Vote down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11212,10 +11247,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This Year</source>
         <translation>Detta år</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>Skicka</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11268,6 +11299,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New Topic</source>
         <translation>Skapa nytt ämne</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>Att göra</translation>
     </message>
 </context>
 <context>
@@ -11900,6 +11939,10 @@ Make sure you know who you&apos;re talking to.</source>
     </message>
     <message>
         <source>Chat connection is unauthenticated</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Id: </source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -12665,14 +12708,6 @@ Vill du krympa bilden till %1x%2 pixlar?</translation>
         <translation>Ta bort objektet</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Avbryt</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Skicka</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Namn:</translation>
     </message>
@@ -12737,8 +12772,20 @@ Vill du krympa bilden till %1x%2 pixlar?</translation>
         <translation>Vill du verkligen ta bort den här kontakten?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Snabbmeddelande</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14681,6 +14728,14 @@ Försök ha tålamod!
         <source>Unsubscribe to Group</source>
         <translation>Avsluta gruppprenumeration</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>Att göra</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Redigera gruppen</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14802,6 +14857,10 @@ Försök ha tålamod!
     <message>
         <source>Select Wiki Moderators</source>
         <translation>Välj Wiki-moderatorer</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Skapa grupp</translation>
     </message>
 </context>
 <context>

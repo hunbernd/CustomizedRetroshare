@@ -436,10 +436,6 @@ p, li { white-space: pre-wrap; }
         <translation>Çevreler</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>Fotoğraf Paylaşımı</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Yayınlanmış İletiler</translation>
     </message>
@@ -457,6 +453,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Wire</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Photos</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1014,6 +1014,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hide</source>
         <translation>Gizleyin</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Aç</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Dosyayi Aç</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Ortamı Oynatın</translation>
     </message>
 </context>
 <context>
@@ -1899,14 +1911,6 @@ Double click lobbies to enter and chat.</source>
     <message>
         <source>Reset font to default</source>
         <translation>Varsayilan yazi tipi sifirlayin</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Yapistir retroshare Link</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Sertifika adresimi yapıştır</translation>
     </message>
     <message>
         <source>is typing...</source>
@@ -3757,14 +3761,6 @@ p, li { white-space: pre-wrap; }
         <translation>Kodlar</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt; Ekle</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt; Kaldır</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>Bilinen Kimlikler</translation>
     </message>
@@ -3827,6 +3823,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New External Circle</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Ekleyin</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Baslat</translation>
     </message>
 </context>
 <context>
@@ -3927,10 +3935,6 @@ p, li { white-space: pre-wrap; }
         <translation>Mesaj imzala</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Yapistir retroshare Link</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Forum İletisi</translation>
     </message>
@@ -3945,14 +3949,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Yeni konu baslat</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Tam RetroShare Linki Yapistir</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Sertifika adresimi yapıştır</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4138,10 +4134,6 @@ p, li { white-space: pre-wrap; }
         <translation>Mesaj imzala</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Yapıştır retroshare Link</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Forum İletisi</translation>
     </message>
@@ -4156,14 +4148,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Yeni konu baslat</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Tam RetroShare Linkı Yapıştır</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Sertifika adresimi yapıştır</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -5343,6 +5327,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS Rom</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7207,6 +7207,10 @@ p, li { white-space: pre-wrap; }
         <source>Select Channel Admins</source>
         <translation>Kanal Yöneticileri seçiniz</translation>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Kanal Oluşturun</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7406,6 +7410,10 @@ bir kimlik oluşturmalısınız</translation>
     <message>
         <source>Edit Forum</source>
         <translation>Forumu Düzenleyin</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Forum olustur</translation>
     </message>
 </context>
 <context>
@@ -7814,10 +7822,6 @@ bir kimlik oluşturmalısınız</translation>
     <message>
         <source>Contacts:</source>
         <translation>Rehber:</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>Grup Oluştur</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -9720,6 +9724,17 @@ mesaji kaydetmek istiyor musunuz?</translation>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>Yapistir retroshare Link</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>Sertifika adresimi yapıştır</translation>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -10911,10 +10926,6 @@ hazırlanmış eklentilerin zararlı davranışlarından korur.</translation>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>Mesaj Yaz</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -10946,6 +10957,26 @@ p, li { white-space: pre-wrap; }
         <source>Please create or choose a Signing Id first</source>
         <translation>Lütfen önce bir imza oluşturun veya seçin</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>İletiyi Gönderin</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>Sun</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -10976,6 +11007,10 @@ p, li { white-space: pre-wrap; }
         <source>Edit Topic</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -10988,20 +11023,12 @@ p, li { white-space: pre-wrap; }
         <translation>Sizce de bu çooooooooooooooooooooooooooookkkkkkkkkkkkkkkkk uzun bir başlık değil mi? Evet öyle ve umarım bir alt satıra geçer</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Tarih</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>Kimden</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>Site</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>Yorumlari Göster</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11012,11 +11039,19 @@ p, li { white-space: pre-wrap; }
         <translation>Yorum yap</translation>
     </message>
     <message>
-        <source>I like this</source>
+        <source>Vote up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I dislike this</source>
+        <source>Vote down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -11057,10 +11092,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This Year</source>
         <translation>Bu Yil</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>İletiyi Gönderin</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11113,6 +11144,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New Topic</source>
         <translation>Yeni Konu Oluştur</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>Yapilacak</translation>
     </message>
 </context>
 <context>
@@ -11606,7 +11645,7 @@ Characters &lt;b&gt;&quot;,|,/,\,&amp;lt;,&amp;gt;,*,?&lt;/b&gt; will be replace
     </message>
     <message>
         <source>Choose between:&lt;br&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Ok&lt;/b&gt; to copy the existing keyring from gnupg (safest bet), or &lt;/li&gt;&lt;li&gt;&lt;b&gt;Close without saving&lt;/b&gt; to start fresh with an empty keyring (you will be asked to create a new PGP key to work with RetroShare, or import a previously saved pgp keypair). &lt;/li&gt;&lt;li&gt;&lt;b&gt;Cancel&lt;/b&gt; to quit and forge a keyring by yourself (needs some PGP skills)&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Birini seçin:&lt;br&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Onaylayın&lt;/b&gt; ve gnupg&apos;den, varolan anahtarlığı kopyalayın (en güvenli yol), ya da &lt;/li&gt;&lt;li&gt;&lt;b&gt;Kaydetmeden kapatın&lt;/b&gt; ve boş anahtarlıkla taze bir başlangıç yapın (RetroShare ile çalışacak yeni PGP anahtarı oluştumanız, ya da önceden kayıtlı bir pgp anahtarçifti edinmeniz istenecektir). &lt;/li&gt;&lt;li&gt;&lt;b&gt;İptal&lt;/b&gt; edin ve çıkıp kendiniz bir anahtarlık oluşturun (biraz PGP bilgisi gerektirir)&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>RetroShare</source>
@@ -11731,6 +11770,10 @@ Make sure you know who you&apos;re talking to.</source>
     </message>
     <message>
         <source>Chat connection is unauthenticated</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Id: </source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -12484,14 +12527,6 @@ Reducing image to %1x%2 pixels?</source>
         <translation>Kaldir</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Iptal</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Gönder</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Isim:</translation>
     </message>
@@ -12556,8 +12591,20 @@ Reducing image to %1x%2 pixels?</source>
         <translation>Bu Arkadasi kaldirmak istiyor musunuz?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Hizli Mesaj</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14452,6 +14499,14 @@ Sabırlı olun!</translation>
         <source>Unsubscribe to Group</source>
         <translation>Grup Aboneliğinden Çık</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>Yapilacak</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Grubu düzenle</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14573,6 +14628,10 @@ Sabırlı olun!</translation>
     <message>
         <source>Select Wiki Moderators</source>
         <translation>Wiki Moderatörleri Seç</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Grup Oluştur</translation>
     </message>
 </context>
 <context>

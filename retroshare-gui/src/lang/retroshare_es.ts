@@ -453,10 +453,6 @@ Pero recuerde: Todos los estos datos *SE PERDERÁN* cuando se actualice los prot
         <translation>Círculos</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>Compartir foto</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Enlaces publicados</translation>
     </message>
@@ -475,6 +471,10 @@ Pero recuerde: Todos los estos datos *SE PERDERÁN* cuando se actualice los prot
     <message>
         <source>The Wire</source>
         <translation>Wire</translation>
+    </message>
+    <message>
+        <source>Photos</source>
+        <translation>Fotos</translation>
     </message>
 </context>
 <context>
@@ -1032,6 +1032,18 @@ p, li { white-space: pre-wrap; }
         <source>Hide</source>
         <translation>Ocultar</translation>
     </message>
+    <message>
+        <source>Open</source>
+        <translation>Abrir</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Abrir archivo</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Reproducir medio</translation>
+    </message>
 </context>
 <context>
     <name>ChanNewItem</name>
@@ -1112,7 +1124,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Directorio de destino</translation>
     </message>
 </context>
 <context>
@@ -1242,7 +1254,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Post</source>
-        <translation type="unfinished"/>
+        <translation>Envío</translation>
     </message>
     <message>
         <source>Subscribed</source>
@@ -1797,7 +1809,7 @@ Haga doble clic en las salas para entrar y charlar.</translation>
     </message>
     <message>
         <source>Authenticated signature</source>
-        <translation type="unfinished"/>
+        <translation>Firma autentificada</translation>
     </message>
 </context>
 <context>
@@ -1918,14 +1930,6 @@ Haga doble clic en las salas para entrar y charlar.</translation>
     <message>
         <source>Reset font to default</source>
         <translation>Restablecer la fuente por defecto</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Pegar enlace de RetroShare</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Pegar el enlace de mi certificado</translation>
     </message>
     <message>
         <source>is typing...</source>
@@ -2341,11 +2345,11 @@ Algunos servicios (Descubrimiento, enrutado anónimo) se pueden desactivar de ma
     </message>
     <message>
         <source>Location ID</source>
-        <translation type="unfinished"/>
+        <translation>Identificador de ubicación</translation>
     </message>
     <message>
         <source>PGP fingerprint</source>
-        <translation type="unfinished"/>
+        <translation>Huella de validación PGP</translation>
     </message>
 </context>
 <context>
@@ -2814,7 +2818,7 @@ Algunos servicios (Descubrimiento, enrutado anónimo) se pueden desactivar de ma
     </message>
     <message>
         <source>Please note that RetroShare will require excessive amounts of bandwidth, memory and CPU if you add to many friends. You can add as many friends as you like, but more than 40 will probably require too much resources.</source>
-        <translation>Por favor observer que RetroShare requerirá cantidades excesivas de ancho de banda, memoria y CPU si añade demasiados amigos. Puede añadir tantos amigos como qujiera, pero más de 40 probablemente requerirán demasiados recursos.</translation>
+        <translation>Por favor observe que si añade demasiados amigos RetroShare requerirá cantidades excesivas de ancho de banda, memoria y CPU. Puede añadir tantos amigos como quiera, pero más de 40 probablemente requerirán demasiados recursos.</translation>
     </message>
     <message>
         <source>Add key to keyring</source>
@@ -2831,7 +2835,7 @@ distant messages to this peer
 even if you don&apos;t make friends.</source>
         <translation>Compruebe esto para añadir la clave a su grupo de claves (&apos;keyring&apos;)
 Esto podría ser útil para enviar
-mensajes distantes a su par
+mensajes distantes a este par (&apos;peer&apos;)
 incluso si no hace amigos.</translation>
     </message>
 </context>
@@ -3795,14 +3799,6 @@ p, li { white-space: pre-wrap; }
         <translation>IDs</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt; Añadir</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt; Quitar</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>Identidades conocidas</translation>
     </message>
@@ -3865,6 +3861,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New External Circle</source>
         <translation>Crear nuevo círculo externo</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Añadir</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation>Eliminar</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Buscar</translation>
     </message>
 </context>
 <context>
@@ -3965,10 +3973,6 @@ p, li { white-space: pre-wrap; }
         <translation>Firmar mensaje</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Pegar enlace de RetroShare</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Mensaje de foro</translation>
     </message>
@@ -3983,14 +3987,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Iniciar nuevo tema</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Pegar el enlace completo de RetroShare</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Pegar el enlace de mi certificado</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4182,10 +4178,6 @@ p, li { white-space: pre-wrap; }
         <translation>Firmar mensaje</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Pegar enlace de RetroShare</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Mensaje de foro</translation>
     </message>
@@ -4200,14 +4192,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Iniciar nuevo tema</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Pegar enlace completo de RetroShare</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Pegar el enlace de mi certificado</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -4484,7 +4468,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>PGP fingerprint:</source>
-        <translation>Huella de validación PGP:</translation>
+        <translation>Huella de validación de clave PGP:</translation>
     </message>
 </context>
 <context>
@@ -5390,6 +5374,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Rom de Nintendo DS</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation>Parchear</translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation>C++</translation>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation>Cabecera</translation>
+    </message>
+    <message>
+        <source>C </source>
+        <translation>C</translation>
     </message>
 </context>
 <context>
@@ -6633,7 +6633,7 @@ la misma identidad (llave PGP).</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished"/>
+        <translation>Las contraseñas no coinciden</translation>
     </message>
 </context>
 <context>
@@ -7269,6 +7269,10 @@ p, li { white-space: pre-wrap; }
         <source>Select Channel Admins</source>
         <translation>Seleccionar administradores del canal</translation>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Crear canal</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7467,6 +7471,10 @@ before you can comment</source>
     <message>
         <source>Edit Forum</source>
         <translation>Editar Foro</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Crear foro</translation>
     </message>
 </context>
 <context>
@@ -7877,10 +7885,6 @@ before you can comment</source>
         <translation>Contactos:</translation>
     </message>
     <message>
-        <source>Create Group</source>
-        <translation>Crear grupo</translation>
-    </message>
-    <message>
         <source>Please add a Name</source>
         <translation>Por favor añadir un nombre</translation>
     </message>
@@ -8139,7 +8143,20 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Swedish: &lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; Daniel Wester&lt;/span&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt; &amp;lt;&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;wester@speedmail.se&lt;/span&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;German: &lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Jan&lt;/span&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Keller&lt;/span&gt; &amp;lt;&lt;span style=&quot; font-size:8pt;&quot;&gt;trilarion@users.sourceforge.net&lt;/span&gt;&amp;gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Polish: &lt;/span&gt;Maciej Mrug&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Traducciones de RetroShare:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://retroshare.sourceforge.net/wiki/index.php/Translation&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://retroshare.sourceforge.net/wiki/index.php/Translation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Traductores del sitio web de RetroShare:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Sueco: &lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; Daniel Wester&lt;/span&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt; &amp;lt;&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;wester@speedmail.se&lt;/span&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Alemán: &lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Jan&lt;/span&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Keller&lt;/span&gt; &amp;lt;&lt;span style=&quot; font-size:8pt;&quot;&gt;trilarion@users.sourceforge.net&lt;/span&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Polaco: &lt;/span&gt;Maciej Mrug&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -9132,11 +9149,11 @@ Do you want to save message ?</source>
     </message>
     <message>
         <source>PGP key unknown</source>
-        <translation type="unfinished"/>
+        <translation>Clave PGP desconocida</translation>
     </message>
     <message>
         <source>You dont have the PGP key of the message sender. So you cannot respond!</source>
-        <translation type="unfinished"/>
+        <translation>No tiene la clave PGP del remitente del mensaje. ¡Así que no puede responder!</translation>
     </message>
 </context>
 <context>
@@ -9356,7 +9373,7 @@ Do you want to save message ?</source>
     </message>
     <message>
         <source>Unknown (needs decryption)</source>
-        <translation type="unfinished"/>
+        <translation>Desconocido (necesita descifrado)</translation>
     </message>
 </context>
 <context>
@@ -9782,7 +9799,7 @@ Do you want to save message ?</source>
     </message>
     <message>
         <source>This message has been successfully decrypted, and is unsigned.</source>
-        <translation type="unfinished"/>
+        <translation>Este mensaje ha sido descifrado con éxito, y no está firmado.</translation>
     </message>
 </context>
 <context>
@@ -9798,6 +9815,17 @@ Do you want to save message ?</source>
     <message>
         <source>Share files for your friends</source>
         <translation>Compartir archivos con sus amigos</translation>
+    </message>
+</context>
+<context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>Pegar enlade de RetroShare</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>Pegar el enlace de mi certificado</translation>
     </message>
 </context>
 <context>
@@ -10186,7 +10214,7 @@ botón derecho y seleccione hacer amigo para conectar.</translation>
     </message>
     <message>
         <source>Freeze</source>
-        <translation type="unfinished"/>
+        <translation>Congelar</translation>
     </message>
 </context>
 <context>
@@ -10371,7 +10399,7 @@ botón derecho y seleccione hacer amigo para conectar.</translation>
     </message>
     <message>
         <source>&lt;h1&gt;&lt;img width=&quot;24&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Notify&lt;/h1&gt; 		  &lt;p&gt;Retroshare will notify you about what happens in your network.         		  Depending on your usage, you may want to enable or disable some of the    		  notifications. This page is designed for that!&lt;/p&gt;                        		  </source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;&lt;img width=&quot;24&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Notify&lt;/h1&gt; 		  &lt;p&gt;Retroshare le notificará sobre lo que sucede en su red.         		  Dependiendo de su uso, puede que quiera habilitar o deshabilitar algunas de las    		  notificaciones. ¡Esta página está diseñada para eso!&lt;/p&gt;                        		  </translation>
     </message>
 </context>
 <context>
@@ -10942,7 +10970,7 @@ de un posible comportamiento malicioso de los plugins.</translation>
     </message>
     <message>
         <source>&lt;h1&gt;&lt;img width=&quot;24&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Plugins&lt;/h1&gt;                   &lt;p&gt;Plugins are loaded from the directories listed in the bottom list.&lt;/p&gt;                       &lt;p&gt;For security reasons, accepted plugins load automatically until                              the main Retroshare executable or the plugin library changes. In                                such a case, the user needs to confirm them again.                                              After the program is started, you can enable a plugin manually by clicking on the               &quot;Enable&quot; button and then restart Retroshare.&lt;/p&gt;                                              &lt;p&gt;If you want to develop your own plugins, contact the developpers team                        they will be happy to help you out!&lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;&lt;img width=&quot;24&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Plugins&lt;/h1&gt;                   &lt;p&gt;Los complementos (plugins) se cargan desde los directorios listados en la lista del fondo.&lt;/p&gt;                       &lt;p&gt;Por razones de seguidad, los complementos aceptados se cargan automáticamente hasta                              que el ejecutable principal de Retroshare, o la librería de complementos, cambien. En                                tal caso, el usuario tiene que confirmarlos de nuevo.                                              Después de que el programa sea iniciado, puede habilitar un complemento manualmente haciendo clic               en el botón &quot;Habilitar&quot;, y reiniciando luego Retroshare.&lt;/p&gt;                                              &lt;p&gt;Si quiere desarrollar sus propios   complementos, contacte con el equipo de desarrolladores                        ¡ellos se alegrarán de ayudarle!&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -11016,10 +11044,6 @@ de un posible comportamiento malicioso de los plugins.</translation>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>Crear entrada</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -11051,6 +11075,26 @@ p, li { white-space: pre-wrap; }
         <source>Please create or choose a Signing Id first</source>
         <translation>Por favor, primero cree o elija una ID de firma</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>Enviar mensaje</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation>Está publicando un enlace. La clave de un envío exitoso es un contenido interesante y un título descriptivo</translation>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>Enviar</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation>Publicar un nuevo envío</translation>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation>Por favor añada un título</translation>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -11081,6 +11125,10 @@ p, li { white-space: pre-wrap; }
         <source>Edit Topic</source>
         <translation>Editar tema</translation>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation>Crear tema</translation>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -11093,20 +11141,12 @@ p, li { white-space: pre-wrap; }
         <translation>Este es un título muy muy muy laaaaaaaaaarrrrgo ¿no le parece? Sí lo es, y debe rehacerlo, espero…</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Fecha</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>De</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>Lugar</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>Ver comentarios</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11117,12 +11157,20 @@ p, li { white-space: pre-wrap; }
         <translation>Comentario</translation>
     </message>
     <message>
-        <source>I like this</source>
-        <translation>Esto me gusta</translation>
+        <source>Vote up</source>
+        <translation>Votar positivo</translation>
     </message>
     <message>
-        <source>I dislike this</source>
-        <translation>Esto no me gusta</translation>
+        <source>Vote down</source>
+        <translation>Votar negativo</translation>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
+        <translation>Publicar</translation>
     </message>
 </context>
 <context>
@@ -11162,10 +11210,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This Year</source>
         <translation>Este año</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>Enviar mensaje</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11218,6 +11262,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New Topic</source>
         <translation>Crear nuevo tema</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation>Publicar un nuevo envío</translation>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>Por hacer</translation>
     </message>
 </context>
 <context>
@@ -11849,11 +11901,16 @@ El error reportado es:
     <message>
         <source>Signature check failed!
 Make sure you know who you&apos;re talking to.</source>
-        <translation type="unfinished"/>
+        <translation>¡Fallo en la comprobación de la firma!
+Asegúrese de que sabe con quién está hablando.</translation>
     </message>
     <message>
         <source>Chat connection is unauthenticated</source>
-        <translation type="unfinished"/>
+        <translation>La conexión de chat no está autentificada</translation>
+    </message>
+    <message>
+        <source>Id: </source>
+        <translation>Identificador:</translation>
     </message>
 </context>
 <context>
@@ -12175,7 +12232,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;h1&gt;&lt;img width=&quot;24&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Relays&lt;/h1&gt;                                 &lt;p&gt;By activating relays, you allow your Retroshare node to act as a bridge between Retroshare  				  users who cannot connect directly, e.g. because they&apos;re firewalled.&lt;/p&gt;                        				  &lt;p&gt;You may choose to act as a relay by checking &lt;i&gt;enable relay connections&lt;/i&gt;, or simply     				  benefit from other peers acting as relay, by checking &lt;i&gt;use relay servers&lt;/i&gt;. For the former,				  you may specify the bandwidth allocated when acting as a relay for friends of you, for friends 				  of your friends, or anyone in the Retroshare network.&lt;/p&gt;                                      				  &lt;p&gt;In any case, a Retroshare node acting as a relay cannot see the relayed traffic, since it   				  is encrypted and authenticated by the two relayed nodes.&lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;&lt;img width=&quot;24&quot; src=&quot;:/images/64px_help.png&quot;&gt;&amp;nbsp;&amp;nbsp;Relays&lt;/h1&gt;                                 &lt;p&gt;Con la activación de la repetición (&apos;relay&apos;), permite a su nodo Retroshare actuar como un puente (&apos;bridge&apos;) entre usuarios de  				  Retroshare que no pueden conectarse directamente, ej. por estar detrás de un cortafuegos (firewall).&lt;/p&gt;                        				  &lt;p&gt;Puede elegir actuar como un repetidor marcando &lt;i&gt;habilitar conexiones de repetidor&lt;/i&gt;, o simplemente     				  beneficiarse de otros pares (&apos;peers&apos;) que actúan como repetidores, al marcar &lt;i&gt;usar servidores repetidor&lt;/i&gt;. Para lo anterior,				  puede especificar el ancho de banda asignado al actuar como repetidor para sus amigos, para amigos 				  de sus amigos, o para cualquiera en la red Retroshare.&lt;/p&gt;                                      				  &lt;p&gt;En cualquier caso, un nodo Retroshare que actúa como un repetidor no puede ver el tráfico repetido, ya que   				  está cifrado y autentificado por los dos nodos para los que se está repitiendo ese tráfico.&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -12611,14 +12668,6 @@ en la red (siempre informar de archivos disponibles)</translation>
         <translation>Quitar objeto</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Cancelar</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Enviar</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Nombre:</translation>
     </message>
@@ -12683,8 +12732,20 @@ en la red (siempre informar de archivos disponibles)</translation>
         <translation>¿Quiere eliminar este amigo?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Mensaje instantáneo</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation>¡¡El certificado tiene una firma errónea!! El par (&apos;peer&apos;) no es quien dice ser.</translation>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation>Certificado SSL para clave perdido/dañado</translation>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation>Certificado perdido/dañado. No es un usuario Retroshare real.</translation>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation>El certificado provocó un error interno.</translation>
     </message>
 </context>
 <context>
@@ -14619,6 +14680,14 @@ bloques defectuosos y los descargará de nuevo.
         <source>Unsubscribe to Group</source>
         <translation>Cancelar la suscripción al grupo</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>Por hacer</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Editar grupo</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14740,6 +14809,10 @@ bloques defectuosos y los descargará de nuevo.
     <message>
         <source>Select Wiki Moderators</source>
         <translation>Seleccionar moderadores del Wiki</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Crear grupo</translation>
     </message>
 </context>
 <context>

@@ -453,10 +453,6 @@ p, li { white-space: pre-wrap; }
         <translation>圈子</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>照片分享</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>已发布链接</translation>
     </message>
@@ -474,6 +470,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Wire</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Photos</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1031,6 +1031,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hide</source>
         <translation>隐藏</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>打开</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>打开文件</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>播放影音</translation>
     </message>
 </context>
 <context>
@@ -1919,14 +1931,6 @@ Double click lobbies to enter and chat.</source>
     <message>
         <source>Reset font to default</source>
         <translation>重置为默认字体</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>粘贴 RetroShare 链接</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>粘贴我的证书链接</translation>
     </message>
     <message>
         <source>is typing...</source>
@@ -3785,14 +3789,6 @@ p, li { white-space: pre-wrap; }
         <translation>ID</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt; 添加</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt; 删除</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>已知身份</translation>
     </message>
@@ -3855,6 +3851,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New External Circle</source>
         <translation>新建公共圈子</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>搜索 </translation>
     </message>
 </context>
 <context>
@@ -3955,10 +3963,6 @@ p, li { white-space: pre-wrap; }
         <translation>为消息签名</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>粘贴 RetroShare 链接</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>论坛贴文</translation>
     </message>
@@ -3973,14 +3977,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>新建主题帖</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>粘贴完整 RetroShare 链接</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>粘贴我的证书链接</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4172,10 +4168,6 @@ p, li { white-space: pre-wrap; }
         <translation>为消息签名</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>粘贴 RetroShare 链接</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>邮件</translation>
     </message>
@@ -4190,14 +4182,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>新建主题帖</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>粘贴完整 RetroShare 链接</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>粘贴我的证书链接</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -5382,6 +5366,22 @@ p, li { white-space：pre-wrap；}
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS ROM</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7305,6 +7305,10 @@ p, li { white-space: pre-wrap; }
         <source>Select Channel Admins</source>
         <translation>选择频道管理员</translation>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>创建频道</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7507,6 +7511,10 @@ before you can comment</source>
     <message>
         <source>Edit Forum</source>
         <translation>编辑论坛</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>新建论坛</translation>
     </message>
 </context>
 <context>
@@ -7915,10 +7923,6 @@ before you can comment</source>
     <message>
         <source>Contacts:</source>
         <translation>联系人:</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>创建小组</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -9841,6 +9845,17 @@ Do you want to save message ?</source>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>粘贴 RetroShare 链接</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>粘贴我的证书链接</translation>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -11056,10 +11071,6 @@ malicious behavior of crafted plugins.</source>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>新建贴文</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -11099,6 +11110,26 @@ p, li { white-space: pre-wrap; }
         <source>Please create or choose a Signing Id first</source>
         <translation>请先创建/选择一个签名用ID</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>提交贴文</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>提交</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -11129,6 +11160,10 @@ p, li { white-space: pre-wrap; }
         <source>Edit Topic</source>
         <translation>编辑话题</translation>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -11141,20 +11176,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Date</source>
-        <translation>日期</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>发信人</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>站点</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>查看评论</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11165,12 +11192,20 @@ p, li { white-space: pre-wrap; }
         <translation>评论</translation>
     </message>
     <message>
-        <source>I like this</source>
-        <translation>赞</translation>
+        <source>Vote up</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>I dislike this</source>
-        <translation>踩</translation>
+        <source>Vote down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11210,10 +11245,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This Year</source>
         <translation>今年</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>提交贴文</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11266,6 +11297,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New Topic</source>
         <translation>创建新话题</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>待办</translation>
     </message>
 </context>
 <context>
@@ -11908,6 +11947,10 @@ Make sure you know who you&apos;re talking to.</source>
     <message>
         <source>Chat connection is unauthenticated</source>
         <translation>聊天连接未进行身份验证</translation>
+    </message>
+    <message>
+        <source>Id: </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -12672,14 +12715,6 @@ Reducing image to %1x%2 pixels?</source>
         <translation>删除项目</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>取消 </translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>发送</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>名称:</translation>
     </message>
@@ -12744,8 +12779,20 @@ Reducing image to %1x%2 pixels?</source>
         <translation>您是否要删除此好友?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>快速消息</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14679,6 +14726,14 @@ RetroShare 将向数据源请求详细的校验
         <source>Unsubscribe to Group</source>
         <translation>退订小组</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>待办</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>编辑分组</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14800,6 +14855,10 @@ RetroShare 将向数据源请求详细的校验
     <message>
         <source>Select Wiki Moderators</source>
         <translation>选择 Wiki 版主</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>创建小组</translation>
     </message>
 </context>
 <context>

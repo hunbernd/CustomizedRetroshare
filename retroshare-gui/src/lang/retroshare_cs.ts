@@ -435,10 +435,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Odeslané odkazy</translation>
     </message>
@@ -457,6 +453,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>The Wire</source>
         <translation>The Wire</translation>
+    </message>
+    <message>
+        <source>Photos</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1013,6 +1013,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hide</source>
         <translation>Skrýt</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Otevřít</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Otevřít soubor</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Přehrát</translation>
     </message>
 </context>
 <context>
@@ -1898,14 +1910,6 @@ Double click lobbies to enter and chat.</source>
     <message>
         <source>Reset font to default</source>
         <translation>Nastavit výchozí font</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Vložit RetroShare odkaz</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>is typing...</source>
@@ -3763,14 +3767,6 @@ p, li { white-space: pre-wrap; }
         <translation>ID</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation type="unfinished"/>
     </message>
@@ -3833,6 +3829,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New External Circle</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Přidat</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Hledat</translation>
     </message>
 </context>
 <context>
@@ -3933,10 +3941,6 @@ p, li { white-space: pre-wrap; }
         <translation>Podepsat zprávu</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Vložit RetroShare odkaz</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Příspěvek fóra</translation>
     </message>
@@ -3951,14 +3955,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Založit nové vlákno</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Vložit úplný RetroShare odkaz</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4144,10 +4140,6 @@ p, li { white-space: pre-wrap; }
         <translation>Podepsat zprávu</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Vložit RetroShare odkaz</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Zpráva</translation>
     </message>
@@ -4162,14 +4154,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Založit nové vlákno</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Vložit úplný RetroShare odkaz</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>No Forum</source>
@@ -5349,6 +5333,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS Rom</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7224,6 +7224,10 @@ Při používání sítě proto pokud možno používejte pouhou přezdívku, ne
         <source>Select Channel Admins</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Vytvořit kanál</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7422,6 +7426,10 @@ before you can comment</source>
     <message>
         <source>Edit Forum</source>
         <translation>Editovat fórum</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Vytvořit fórum</translation>
     </message>
 </context>
 <context>
@@ -7830,10 +7838,6 @@ before you can comment</source>
     <message>
         <source>Contacts:</source>
         <translation>Kontakty:</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>Vytvořit skupinu</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -9731,6 +9735,17 @@ Do you want to save message ?</source>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>Vložit RetroShare odkaz</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -10916,10 +10931,6 @@ malicious behavior of crafted plugins.</source>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -10949,6 +10960,26 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please create or choose a Signing Id first</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add a Title</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -10981,6 +11012,10 @@ p, li { white-space: pre-wrap; }
         <source>Edit Topic</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -10993,19 +11028,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Datum</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>Od</translation>
     </message>
     <message>
         <source>Site</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>View Comments</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -11017,11 +11044,19 @@ p, li { white-space: pre-wrap; }
         <translation>Komentáře</translation>
     </message>
     <message>
-        <source>I like this</source>
+        <source>Vote up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I dislike this</source>
+        <source>Vote down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submitted</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -11061,10 +11096,6 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This Year</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Submit Post</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -11118,6 +11149,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New Topic</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>Udělat</translation>
     </message>
 </context>
 <context>
@@ -11736,6 +11775,10 @@ Make sure you know who you&apos;re talking to.</source>
     </message>
     <message>
         <source>Chat connection is unauthenticated</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Id: </source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -12471,14 +12514,6 @@ Vysoká pravděpodobnost že soubor bude nalezen</translation>
         <translation>Odstranit položku</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Zrušit</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Odeslat</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Jméno:</translation>
     </message>
@@ -12543,8 +12578,20 @@ Vysoká pravděpodobnost že soubor bude nalezen</translation>
         <translation>Opravdu chcete odstranit tento kontakt?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Rychlá zpráva</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14439,6 +14486,14 @@ Try to be patient!</source>
         <source>Unsubscribe to Group</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>Udělat</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Editovat skupinu</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14560,6 +14615,10 @@ Try to be patient!</source>
     <message>
         <source>Select Wiki Moderators</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Vytvořit skupinu</translation>
     </message>
 </context>
 <context>

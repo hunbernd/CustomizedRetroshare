@@ -452,10 +452,6 @@ Maar onthoudt: Elke data hier *ZAL* verloren gaan als de protocollen een update 
         <translation>Cirkels</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>Foto Delen</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Geposte links</translation>
     </message>
@@ -474,6 +470,10 @@ Maar onthoudt: Elke data hier *ZAL* verloren gaan als de protocollen een update 
     <message>
         <source>The Wire</source>
         <translation>De Kabel</translation>
+    </message>
+    <message>
+        <source>Photos</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1030,6 +1030,18 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Hide</source>
         <translation>Verbergen</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Open </translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Open bestand</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Speel media</translation>
     </message>
 </context>
 <context>
@@ -1915,14 +1927,6 @@ Double click lobbies to enter and chat.</source>
     <message>
         <source>Reset font to default</source>
         <translation>Reset lettertype naar standaard</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>PLak RetroShare Link</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>PLak mijn certificaat link</translation>
     </message>
     <message>
         <source>is typing...</source>
@@ -3781,14 +3785,6 @@ p, li { white-space: pre-wrap; }⏎
         <translation>IDs</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt;Toevoegen</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt; Verwijder</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>Bekende Identiteiten</translation>
     </message>
@@ -3851,6 +3847,18 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Create New External Circle</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Toevoegen</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Zoek</translation>
     </message>
 </context>
 <context>
@@ -3951,10 +3959,6 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Onderteken bericht</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>PLak RetroShare Link</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Forum bericht</translation>
     </message>
@@ -3969,14 +3973,6 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Start New Thread</source>
         <translation>Start nieuw draadje</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>PLak volledige RetroShare Link</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>PLak mijn certificaat link</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4168,10 +4164,6 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Onderteken bericht</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>PLak RetroShare Link</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Forum bericht</translation>
     </message>
@@ -4186,14 +4178,6 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Start New Thread</source>
         <translation>Start nieuw draadje</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>PLak volledige RetroShare Link</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>PLak mijn certificaat link</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -5374,6 +5358,22 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS Rom</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7298,6 +7298,10 @@ p, li { white-space: pre-wrap; }⏎
         <source>Select Channel Admins</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Maak een nieuw kanaal</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7501,6 +7505,10 @@ voor je een opmerking kan doen</translation>
     <message>
         <source>Edit Forum</source>
         <translation>Bewerk forum</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Maak een nieuw forum</translation>
     </message>
 </context>
 <context>
@@ -7909,10 +7917,6 @@ voor je een opmerking kan doen</translation>
     <message>
         <source>Contacts:</source>
         <translation>Contacts:</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>Maak groep</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -9834,6 +9838,17 @@ Wil je het bericht bewaren?</translation>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>PLak RetroShare Link</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>PLak mijn certificaat link</translation>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -11048,10 +11063,6 @@ malicious behavior of crafted plugins.</source>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>Maak post</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -11091,6 +11102,26 @@ p, li { white-space: pre-wrap; }⏎
         <source>Please create or choose a Signing Id first</source>
         <translation>Maak of kies eerst een getekende ID</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>Bevestig Bericht</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>Bevestig</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -11121,6 +11152,10 @@ p, li { white-space: pre-wrap; }⏎
         <source>Edit Topic</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -11133,20 +11168,12 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Dit is wel een hele hele hele laaaaaaaaaaaaaaaaaaaaaaaaaaaaange titel denk je niet?  Jawel je kan hem beter inkorten.</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Datum</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>Van</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>Site</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>Toon Opmerkingen</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11157,11 +11184,19 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Opmerking</translation>
     </message>
     <message>
-        <source>I like this</source>
+        <source>Vote up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I dislike this</source>
+        <source>Vote down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -11202,10 +11237,6 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>This Year</source>
         <translation>Dit Jaar</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>Bevestig Bericht</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11258,6 +11289,14 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Create New Topic</source>
         <translation>Maak een nieuw onderwerp</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>Nog te doen</translation>
     </message>
 </context>
 <context>
@@ -11891,6 +11930,10 @@ Make sure you know who you&apos;re talking to.</source>
     </message>
     <message>
         <source>Chat connection is unauthenticated</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Id: </source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -12654,14 +12697,6 @@ Maak het plaatje kleiner tot %1x%2 pixels</translation>
         <translation>Item verwijderen</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Verstuur</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Naam:</translation>
     </message>
@@ -12726,8 +12761,20 @@ Maak het plaatje kleiner tot %1x%2 pixels</translation>
         <translation>Wil je deze vriend verwijderen=</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Korte boodschap</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14664,6 +14711,14 @@ Even geduld a.u.b.!</translation>
         <source>Unsubscribe to Group</source>
         <translation>Uitschrijven bij deze Groep</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>Nog te doen</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Bewerk groep</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14785,6 +14840,10 @@ Even geduld a.u.b.!</translation>
     <message>
         <source>Select Wiki Moderators</source>
         <translation>Selecteer Wiki Moderators</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Maak een groep</translation>
     </message>
 </context>
 <context>

@@ -2866,7 +2866,7 @@ int ops_decrypt_se_data(ops_content_tag_t tag,ops_region_t *region, ops_parse_in
       }
 
 
-      r=ops_parse(pinfo);
+      r=ops_parse(pinfo,ops_false);
 
       ops_reader_pop_decrypt(pinfo);
    }
@@ -2904,7 +2904,7 @@ int ops_decrypt_se_ip_data(ops_content_tag_t tag,ops_region_t *region,
       ops_reader_push_decrypt(pinfo,decrypt,region);
       ops_reader_push_se_ip_data(pinfo,decrypt,region);
 
-      r=ops_parse(pinfo);
+      r=ops_parse(pinfo,ops_false);
 
       ops_reader_pop_se_ip_data(pinfo);
       ops_reader_pop_decrypt(pinfo);
@@ -3228,20 +3228,27 @@ void example()
  * \endcode
  */
 
-int ops_parse(ops_parse_info_t *pinfo)
-    {
-    int r;
-    unsigned long pktlen;
+int ops_parse(ops_parse_info_t *pinfo,ops_boolean_t limit_packets)
+{
+   int r;
+   unsigned long pktlen;
+   int n_packets = 0 ;
 
-    do
-        // Parse until we get a return code of 0 (error) or -1 (EOF)
-	{
-	r=ops_parse_one_packet(pinfo,&pktlen);
-	} while (r > 0);
+   do
+      // Parse until we get a return code of 0 (error) or -1 (EOF)
+   {
+      r=ops_parse_one_packet(pinfo,&pktlen);
 
-    return pinfo->errors ? 0 : 1;
-    return r == -1 ? 0 : 1;
-    }
+      if(++n_packets > 500 && limit_packets)
+      {
+	 fprintf(stderr,"More than 500 packets parsed in a row. This is likely to be a buggy certificate.") ;
+	 return 0 ;
+      }
+   } while (r > 0);
+
+   return pinfo->errors ? 0 : 1;
+   return r == -1 ? 0 : 1;
+}
 
 /**
 \ingroup Core_ReadPackets
@@ -3254,7 +3261,7 @@ int ops_parse(ops_parse_info_t *pinfo)
 
 int ops_parse_and_print_errors(ops_parse_info_t *pinfo)
 {
-   ops_parse(pinfo);
+   ops_parse(pinfo,ops_false);
    ops_print_errors(pinfo->errors);
    return pinfo->errors ? 0 : 1;
 }

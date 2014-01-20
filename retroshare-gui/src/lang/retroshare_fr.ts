@@ -453,10 +453,6 @@ Mais rappelez-vous : Toutes les données *SERONT* perdus quand nous mettrons à 
         <translation>Cercles</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>PhotoShare</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Liens publiés</translation>
     </message>
@@ -475,6 +471,10 @@ Mais rappelez-vous : Toutes les données *SERONT* perdus quand nous mettrons à 
     <message>
         <source>The Wire</source>
         <translation>The Wire</translation>
+    </message>
+    <message>
+        <source>Photos</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1031,6 +1031,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hide</source>
         <translation>Cacher</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Ouvrir</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Ouvrir le fichier</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Lecture</translation>
     </message>
 </context>
 <context>
@@ -1918,14 +1930,6 @@ Double cliquer sur le salon pour y accéder et discuter.</translation>
     <message>
         <source>Reset font to default</source>
         <translation>Réinitialiser à la valeur par défaut</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Coller le lien Retroshare</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Collez le lien de votre certificat</translation>
     </message>
     <message>
         <source>is typing...</source>
@@ -3793,14 +3797,6 @@ p, li { white-space: pre-wrap; }
         <translation>IDs</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt; Ajouter</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt; Supprimer</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>Identités connues</translation>
     </message>
@@ -3863,6 +3859,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New External Circle</source>
         <translation>Créer un nouveau cercle extérieur</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Ajouter</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Rechercher</translation>
     </message>
 </context>
 <context>
@@ -3963,10 +3971,6 @@ p, li { white-space: pre-wrap; }
         <translation>Signer le message</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Coller le lien Retroshare</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Message</translation>
     </message>
@@ -3981,14 +3985,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Lancer un nouveau fil</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Coller le lien Retroshare entier</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Collez le lien de votre certificat</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4180,10 +4176,6 @@ p, li { white-space: pre-wrap; }
         <translation>Signer le message</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Coller le lien Retroshare</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Message</translation>
     </message>
@@ -4198,14 +4190,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Lancer un nouveau fil</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Coller le lien Retroshare entier</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Collez le lien de votre certificat</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -5388,6 +5372,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS Rom</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7312,6 +7312,10 @@ p, li { white-space: pre-wrap; }
         <source>Select Channel Admins</source>
         <translation>Sélectionner les admins de la chaîne</translation>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Créer une chaîne</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7515,6 +7519,10 @@ avant de pouvoir commenter</translation>
     <message>
         <source>Edit Forum</source>
         <translation>Modifier le forum</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Créer un forum</translation>
     </message>
 </context>
 <context>
@@ -7923,10 +7931,6 @@ avant de pouvoir commenter</translation>
     <message>
         <source>Contacts:</source>
         <translation>Contacts :</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>Créer un groupe</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -9857,6 +9861,17 @@ Voulez-vous enregistrer votre message ?</translation>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>Coller le lien Retroshare</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>Collez le lien de votre certificat</translation>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -11075,10 +11090,6 @@ comportements malveillants des extensions.</translation>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>Créer un article</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -11118,6 +11129,26 @@ p, li { white-space: pre-wrap; }
         <source>Please create or choose a Signing Id first</source>
         <translation>S&apos;il vous plaît créer ou choisir une Signing Id en premier</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>Soumettre l&apos;article</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>Soumettre</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -11148,6 +11179,10 @@ p, li { white-space: pre-wrap; }
         <source>Edit Topic</source>
         <translation>Éditer le sujet</translation>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -11160,20 +11195,12 @@ p, li { white-space: pre-wrap; }
         <translation>Ce titre est une très très très très loooooooooooooooonnnnnnnnnnnnnnnnng n&apos;est-ce pas ? oui il l&apos;est et il doit être envelopper j&apos;espère</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Date</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>De</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>Site</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>Afficher les commentaires</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11184,12 +11211,20 @@ p, li { white-space: pre-wrap; }
         <translation>Commentaire</translation>
     </message>
     <message>
-        <source>I like this</source>
-        <translation>J&apos;aime ça</translation>
+        <source>Vote up</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>I dislike this</source>
-        <translation>Je n&apos;aime pas ça</translation>
+        <source>Vote down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11229,10 +11264,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This Year</source>
         <translation>Cette année</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>Soumettre l&apos;article</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11285,6 +11316,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New Topic</source>
         <translation>Créer un nouveau sujet</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>À faire</translation>
     </message>
 </context>
 <context>
@@ -11922,6 +11961,10 @@ Assurez-vous que vous savez à qui vous parlez.</translation>
     <message>
         <source>Chat connection is unauthenticated</source>
         <translation>La connexion au chat n&apos;est pas authentifiée</translation>
+    </message>
+    <message>
+        <source>Id: </source>
+        <translation>Id: </translation>
     </message>
 </context>
 <context>
@@ -12686,14 +12729,6 @@ Réduire l&apos;image par %1x%2 pixels ?</translation>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Annuler</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Envoyer</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Nom :</translation>
     </message>
@@ -12758,8 +12793,20 @@ Réduire l&apos;image par %1x%2 pixels ?</translation>
         <translation>Désirez-vous supprimer cet ami ?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Message instantané</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14693,6 +14740,14 @@ Essayez d&apos;être patient !</translation>
         <source>Unsubscribe to Group</source>
         <translation>Se désabonner du groupe</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>À faire</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Modifier le groupe</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14814,6 +14869,10 @@ Essayez d&apos;être patient !</translation>
     <message>
         <source>Select Wiki Moderators</source>
         <translation>Selectionner des modérateurs du Wiki</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Créer un groupe</translation>
     </message>
 </context>
 <context>

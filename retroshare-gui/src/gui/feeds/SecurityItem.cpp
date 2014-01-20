@@ -52,8 +52,6 @@ SecurityItem::SecurityItem(FeedHolder *parent, uint32_t feedId, const std::strin
     /* Invoke the Qt Designer generated object setup routine */
     setupUi(this);
   
-    messageframe->setVisible(false);
-    sendmsgButton->setEnabled(false);
     quickmsgButton->hide();
     chatButton->hide();
     removeFriendButton->setEnabled(false);
@@ -69,10 +67,6 @@ SecurityItem::SecurityItem(FeedHolder *parent, uint32_t feedId, const std::strin
 
     /* specific ones */
     connect( chatButton, SIGNAL( clicked( void ) ), this, SLOT( openChat ( void ) ) );
-//    connect( actionNew_Message, SIGNAL( triggered( ) ), this, SLOT( sendMsg ( void ) ) );
-
-//    connect( quickmsgButton, SIGNAL( clicked( ) ), this, SLOT( togglequickmessage() ) );
-//    connect( cancelButton, SIGNAL( clicked( ) ), this, SLOT( togglequickmessage() ) );
 
     connect( quickmsgButton, SIGNAL( clicked( ) ), this, SLOT( sendMsg() ) );
 
@@ -83,9 +77,6 @@ SecurityItem::SecurityItem(FeedHolder *parent, uint32_t feedId, const std::strin
 
     connect(NotifyQt::getInstance(), SIGNAL(friendsChanged()), this, SLOT(updateItem()));
 
-    //QMenu *msgmenu = new QMenu();
-    //msgmenu->addAction(actionNew_Message);
-    //quickmsgButton->setMenu(msgmenu);
 
     avatar->setId(mSslId, false);
 
@@ -120,23 +111,41 @@ void SecurityItem::updateItemStatic()
 
 	switch(mType)
 	{
-		case SEC_TYPE_CONNECT_ATTEMPT:
+		case RS_FEED_ITEM_SEC_CONNECT_ATTEMPT:
 			title = tr("Connect Attempt");
 			requestLabel->show();
 			avatar->setDefaultAvatar(":images/avatar_request.png");
 			break;
-		case SEC_TYPE_AUTH_DENIED:
+		case RS_FEED_ITEM_SEC_AUTH_DENIED:
 			title = tr("Connection refused by remote peer");
 			requestLabel->hide();
 			avatar->setDefaultAvatar(":images/avatar_refused.png");
 			break;
-		case SEC_TYPE_UNKNOWN_IN:
+		case RS_FEED_ITEM_SEC_UNKNOWN_IN:
 			title = tr("Unknown (Incoming) Connect Attempt");
 			requestLabel->hide();
 			avatar->setDefaultAvatar(":images/avatar_request_unknown.png");
 			break;
-		case SEC_TYPE_UNKNOWN_OUT:
+		case RS_FEED_ITEM_SEC_UNKNOWN_OUT:
 			title = tr("Unknown (Outgoing) Connect Attempt");
+			requestLabel->hide();
+			break;
+		case RS_FEED_ITEM_SEC_WRONG_SIGNATURE:
+			title = tr("Certificate has wrong signature!! This peer is not who he claims to be.");
+			requestLabel->hide();
+			break;
+		case RS_FEED_ITEM_SEC_BAD_CERTIFICATE:
+			{
+			RsPeerDetails details ;
+			if(rsPeers->getPeerDetails(mGpgId, details))
+				title = tr("Missing/Damaged SSL certificate for key ") + QString::fromStdString(mGpgId) ;
+			else
+				title = tr("Missing/Damaged certificate. Not a real Retroshare user.");
+			requestLabel->hide();
+			}
+			break;
+		case RS_FEED_ITEM_SEC_INTERNAL_ERROR:
+			title = tr("Certificate caused an internal error.");
 			requestLabel->hide();
 			break;
 		default:
@@ -395,46 +404,6 @@ void SecurityItem::openChat()
 		mParent->openChat(mGpgId);
 	}
 }
-
-void SecurityItem::togglequickmessage()
-{
-	if (messageframe->isHidden())
-	{
-		messageframe->setVisible(true);
-	}
-	else
-	{
-		messageframe->setVisible(false);
-	}
-}
-
-void SecurityItem::sendMessage()
-{
-	/* construct a message */
-	MessageInfo mi;
-
-	mi.title = tr("Quick Message").toStdWString();
-	mi.msg =   quickmsgText->toHtml().toStdWString();
-	mi.msgto.push_back(mGpgId);
-
-	rsMsgs->MessageSend(mi);
-
-	quickmsgText->clear();
-	messageframe->setVisible(false);
-}
-
-void SecurityItem::on_quickmsgText_textChanged()
-{
-	if (quickmsgText->toPlainText().isEmpty())
-	{
-		sendmsgButton->setEnabled(false);
-	}
-	else
-	{
-		sendmsgButton->setEnabled(true);
-	}
-}
-
 void SecurityItem::checkIp()
 {
     QDesktopServices::openUrl(QString("http://geoip.flagfox.net/?ip=%1").arg(QString::fromStdString(mIP)));

@@ -452,10 +452,6 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Κύκλοι</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>Μοιρασμα φωτογραφίας</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Δημοσιεύθηκε συνδέσεις</translation>
     </message>
@@ -474,6 +470,10 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>The Wire</source>
         <translation>Το σύρμα</translation>
+    </message>
+    <message>
+        <source>Photos</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1004,6 +1004,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hide</source>
         <translation>Αποκρυψη</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Ανοιχτα</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Άνοιγμα αρχείου</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Παιξιμο πολυμεσων</translation>
     </message>
 </context>
 <context>
@@ -1890,14 +1902,6 @@ Double click lobbies to enter and chat.</source>
         <translation>Επαναφορα της προεπιλεγμενης γραμματοσειρας</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Επικολληση του Λινκ</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Επικόλληση συνδέσμου πιστοποιητικό</translation>
-    </message>
-    <message>
         <source>is typing...</source>
         <translation>γραφετε...</translation>
     </message>
@@ -2022,7 +2026,7 @@ Double click lobbies to enter and chat.</source>
     </message>
     <message>
         <source>Todo</source>
-        <translation type="unfinished"/>
+        <translation>Todo</translation>
     </message>
     <message>
         <source>Friends Of Friends</source>
@@ -3742,14 +3746,6 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Ταυτότητες</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt; Προσθηκη</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt; Μετακινηση</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>Γνωστές ταυτότητες</translation>
     </message>
@@ -3812,6 +3808,18 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Create New External Circle</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Προσθηκη</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Αναζητηση</translation>
     </message>
 </context>
 <context>
@@ -3912,10 +3920,6 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Υπογραφη μήνυματος</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Επικολληση του Λινκ</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Ποσταρισμα στο φορουμ</translation>
     </message>
@@ -3930,14 +3934,6 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Start New Thread</source>
         <translation>Έναρξη νέας μηνυματοσειράς</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Επικολληση ολοκληρωμενου λινκ</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Επικόλληση συνδέσμου πιστοποιητικό</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4129,10 +4125,6 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Υπογραφη μήνυματος</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>Επικολληση του Λινκ</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Ποσταρισμα στο φορουμ</translation>
     </message>
@@ -4147,14 +4139,6 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Start New Thread</source>
         <translation>Έναρξη νέας μηνυματοσειράς</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Επικολληση ολοκληρωμενου λινκ</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Επικόλληση συνδέσμου πιστοποιητικό</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -5335,6 +5319,22 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS Rom</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7224,7 +7224,7 @@ p, li { white-space: pre-wrap; }⏎
     </message>
     <message>
         <source>Todo</source>
-        <translation type="unfinished"/>
+        <translation>Todo</translation>
     </message>
 </context>
 <context>
@@ -7248,6 +7248,10 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Select Channel Admins</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Δημιουργια καναλιου</translation>
     </message>
 </context>
 <context>
@@ -7451,6 +7455,10 @@ before you can comment</source>
     <message>
         <source>Edit Forum</source>
         <translation>Επεξεργασια του φόρουμ</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Δημιουργια του φορουμ</translation>
     </message>
 </context>
 <context>
@@ -7740,7 +7748,7 @@ before you can comment</source>
     </message>
     <message>
         <source>Todo</source>
-        <translation type="unfinished"/>
+        <translation>Todo</translation>
     </message>
 </context>
 <context>
@@ -7859,10 +7867,6 @@ before you can comment</source>
     <message>
         <source>Contacts:</source>
         <translation>Επαφες:</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>Δημιουργία ομάδας</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -8274,7 +8278,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Todo</source>
-        <translation type="unfinished"/>
+        <translation>Todo</translation>
     </message>
     <message>
         <source>Show:</source>
@@ -8282,7 +8286,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Αναζητηση</translation>
     </message>
     <message>
         <source>PGP Linked Id</source>
@@ -9786,6 +9790,17 @@ Do you want to save message ?</source>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>Επικολληση του Λινκ</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>Επικόλληση συνδέσμου πιστοποιητικό</translation>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -10999,10 +11014,6 @@ malicious behavior of crafted plugins.</source>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>Δημιουργία Post</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -11042,6 +11053,26 @@ p, li { white-space: pre-wrap; }⏎
         <source>Please create or choose a Signing Id first</source>
         <translation>Δημιουργήστε ή επιλέξτε ένα Id υπογραφής πρώτα</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>Υποβάλει θέσης</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>Υποβολη</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -11072,6 +11103,10 @@ p, li { white-space: pre-wrap; }⏎
         <source>Edit Topic</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -11084,20 +11119,12 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Αυτό είναι ένα πολύ πολύ πολύ πολύ μεγαλος τίτλος. Ναι είναι και πρέπει να τυλίξετε γύρω εγώ ελπίζω</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Ημερομηνία</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>Απο</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>Τοποθεσία</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>Εμφανιση σχολιων</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11108,11 +11135,19 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Σχόλιο</translation>
     </message>
     <message>
-        <source>I like this</source>
+        <source>Vote up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I dislike this</source>
+        <source>Vote down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -11153,10 +11188,6 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>This Year</source>
         <translation>Φέτος</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>Υποβάλει θέσης</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11209,6 +11240,14 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <source>Create New Topic</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>Todo</translation>
     </message>
 </context>
 <context>
@@ -11827,6 +11866,10 @@ Make sure you know who you&apos;re talking to.</source>
     </message>
     <message>
         <source>Chat connection is unauthenticated</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Id: </source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -12585,14 +12628,6 @@ Reducing image to %1x%2 pixels?</source>
         <translation>Απομακρυνση στοιχειου</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Διακοπη</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Αποστολη</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Ονομα:</translation>
     </message>
@@ -12657,8 +12692,20 @@ Reducing image to %1x%2 pixels?</source>
         <translation>Θέλετε να διαγραψετε αυτόν τον φίλο?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Συντομο μυνημα</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14578,6 +14625,14 @@ Try to be patient!</source>
         <source>Unsubscribe to Group</source>
         <translation>Διαγραφείτε από την ομάδα</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>Todo</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Επεξεργασια ομαδας</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14699,6 +14754,10 @@ Try to be patient!</source>
     <message>
         <source>Select Wiki Moderators</source>
         <translation>Επιλέξτε τους μεσολαβητές Wiki</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Δημιουργία ομάδας</translation>
     </message>
 </context>
 <context>

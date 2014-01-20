@@ -427,24 +427,23 @@ PeerItem QLabel#peerNameLabel {
 }
 
 MsgItem > QFrame#frame {
-	border: 2px solid blue; 
+	border: 2px solid #3EA2FF; 
 	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2291E0, stop: 1 #3EB3FF);
 	border-radius: 10px;
 }
 
 MsgItem QWidget#avatar {
-	border: 2px solid blue;
 	background-color: #2291E0;
 }
 
 SecurityItem > QFrame#frame {
-	border: 2px solid red;
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #FDBF7D, stop: 1 #643C35);
+	border: 2px solid #FF9412; 
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #FFE8A4, stop: 1 #FFB252);
 	border-radius: 10px;
 }
 
 SecurityItem QLabel#peerNameLabel, SecurityItem QLabel#requestLabel {
-	color: #990033
+	color: black;
 }
 
 SubFileItem > QFrame#frame {
@@ -540,6 +539,7 @@ MessageWidget QFrame#decryptFrame {
 	background: #CCFFCC;
 	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #CCFFCC, stop:1 #AAFFAA);
 }
+
 /* Posted Links */
 
 PostedCreatePostDialog QLabel#info_label {
@@ -547,4 +547,15 @@ PostedCreatePostDialog QLabel#info_label {
 	border-radius: 6px;
 	background: #FFFFD7;
 	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FFFFD7, stop:1 #FFFFB2);
+}
+
+PostedItem QFrame#frame {
+  border: 2px solid #CCCCCC;
+  background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #EEEEEE, stop: 1 #CCCCCC);
+  border-radius: 10px
+}
+
+PostedItem QLabel#notes {
+  border: 2px solid #CCCCCC;
+  border-radius: 10px
 }

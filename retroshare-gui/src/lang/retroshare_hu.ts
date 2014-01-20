@@ -452,10 +452,6 @@ p, li { white-space: pre-wrap; }
         <translation>Körök</translation>
     </message>
     <message>
-        <source>Photo Share</source>
-        <translation>Fénykép megosztása</translation>
-    </message>
-    <message>
         <source>Posted Links</source>
         <translation>Közzétett hivatkozások</translation>
     </message>
@@ -474,6 +470,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>The Wire</source>
         <translation>The Wire</translation>
+    </message>
+    <message>
+        <source>Photos</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1030,6 +1030,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hide</source>
         <translation>Elrejt</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Megnyitás</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Fájl megnyitása</translation>
+    </message>
+    <message>
+        <source>Play Media</source>
+        <translation>Média lejátszása</translation>
     </message>
 </context>
 <context>
@@ -1919,14 +1931,6 @@ Kattints duplán a csevegőszobára, hogy belépj és beszélgethess.</translati
     <message>
         <source>Reset font to default</source>
         <translation>Alapértelmezett betűtípus visszaállítása</translation>
-    </message>
-    <message>
-        <source>Paste RetroShare Link</source>
-        <translation>RetroShare link beillesztése</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Tanúsítvány beillesztése</translation>
     </message>
     <message>
         <source>is typing...</source>
@@ -3785,14 +3789,6 @@ p, li { white-space: pre-wrap; }
         <translation>ID</translation>
     </message>
     <message>
-        <source>&lt;&lt; Add</source>
-        <translation>&lt;&lt; Hozzáadás</translation>
-    </message>
-    <message>
-        <source>&gt;&gt; Remove </source>
-        <translation>&gt;&gt; Eltávolítás</translation>
-    </message>
-    <message>
         <source>Known Identities</source>
         <translation>Ismert személyazonosságok</translation>
     </message>
@@ -3855,6 +3851,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New External Circle</source>
         <translation>Külső kör létrehozása</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Hozzáadás</translation>
+    </message>
+    <message>
+        <source>Remove </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Keresés</translation>
     </message>
 </context>
 <context>
@@ -3955,10 +3963,6 @@ p, li { white-space: pre-wrap; }
         <translation>Üzenet aláírása</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>RetroShare hivatkozás beillesztése</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Fórum üzenet</translation>
     </message>
@@ -3973,14 +3977,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Új szál indítása</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Teljes RetroShare hivatkozás beillesztése</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Tanúsítványom beillesztése</translation>
     </message>
     <message>
         <source>In Reply to</source>
@@ -4172,10 +4168,6 @@ p, li { white-space: pre-wrap; }
         <translation>Üzenet aláírása</translation>
     </message>
     <message>
-        <source>Paste RetroShare Link</source>
-        <translation>RetroShare hivatkozás beillesztése</translation>
-    </message>
-    <message>
         <source>Forum Post</source>
         <translation>Fórum hozzászólás</translation>
     </message>
@@ -4190,14 +4182,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Start New Thread</source>
         <translation>Új szál indítása</translation>
-    </message>
-    <message>
-        <source>Paste full RetroShare Link</source>
-        <translation>Teljes RetroShare hivatkozás beillesztése</translation>
-    </message>
-    <message>
-        <source>Paste my certificate link</source>
-        <translation>Tanúsítvány beillesztése</translation>
     </message>
     <message>
         <source>No Forum</source>
@@ -5379,6 +5363,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Nintendo DS Rom</source>
         <translation>Nintendo DS Rom</translation>
+    </message>
+    <message>
+        <source>Patch</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Header</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>C </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7301,6 +7301,10 @@ p, li { white-space: pre-wrap; }
         <source>Select Channel Admins</source>
         <translation>Csatorna adminok kiválasztása</translation>
     </message>
+    <message>
+        <source>Create Channel</source>
+        <translation>Csatorna létrehozása</translation>
+    </message>
 </context>
 <context>
     <name>GxsChannelPostItem</name>
@@ -7504,6 +7508,10 @@ mielőtt hozzászólhatsz</translation>
     <message>
         <source>Edit Forum</source>
         <translation>Fórum szerkesztése</translation>
+    </message>
+    <message>
+        <source>Create Forum</source>
+        <translation>Fórum létrehozása</translation>
     </message>
 </context>
 <context>
@@ -7912,10 +7920,6 @@ mielőtt hozzászólhatsz</translation>
     <message>
         <source>Contacts:</source>
         <translation>Kapcsolatok:</translation>
-    </message>
-    <message>
-        <source>Create Group</source>
-        <translation>Csoport létrehozása</translation>
     </message>
     <message>
         <source>Please add a Name</source>
@@ -9838,6 +9842,17 @@ Szeretnéd menteni az üzenetet?</translation>
     </message>
 </context>
 <context>
+    <name>MimeTextEdit</name>
+    <message>
+        <source>Paste RetroShare Link</source>
+        <translation>RetroShare hivatkozás beillesztése</translation>
+    </message>
+    <message>
+        <source>Paste my certificate link</source>
+        <translation>Tanúsítvány beillesztése</translation>
+    </message>
+</context>
+<context>
     <name>MsgItem</name>
     <message>
         <source>Reply to Message</source>
@@ -11053,10 +11068,6 @@ a kártevőként működő beépülők használatától.</translation>
 <context>
     <name>PostedCreatePostDialog</name>
     <message>
-        <source>Create Post</source>
-        <translation>Üzenet írása</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -11096,6 +11107,26 @@ p, li { white-space: pre-wrap; }
         <source>Please create or choose a Signing Id first</source>
         <translation>Kérlek, először hozz létre vagy válassz ki egy aláírás Id-t.</translation>
     </message>
+    <message>
+        <source>Submit Post</source>
+        <translation>Beküldés</translation>
+    </message>
+    <message>
+        <source>You are submitting a link. The key to a successful submission is interesting content and a descriptive title.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Submit</source>
+        <translation>Jóváhagyás</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add a Title</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedDialog</name>
@@ -11126,6 +11157,10 @@ p, li { white-space: pre-wrap; }
         <source>Edit Topic</source>
         <translation>Téma szerkesztése</translation>
     </message>
+    <message>
+        <source>Create Topic</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>PostedItem</name>
@@ -11138,20 +11173,12 @@ p, li { white-space: pre-wrap; }
         <translation>Ez egy nagyon nagyon nagyon nagyon hoooooooooooooooooooooooosszú cím, nem gondolod? Igen, az és remélem le lesz belőle vágva.</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>Dátum</translation>
-    </message>
-    <message>
         <source>From</source>
         <translation>Feladó</translation>
     </message>
     <message>
         <source>Site</source>
         <translation>Oldal</translation>
-    </message>
-    <message>
-        <source>View Comments</source>
-        <translation>Hozzászólások megjelenítése</translation>
     </message>
     <message>
         <source>Comments</source>
@@ -11162,12 +11189,20 @@ p, li { white-space: pre-wrap; }
         <translation>Hozzászólás</translation>
     </message>
     <message>
-        <source>I like this</source>
-        <translation>Tetszik</translation>
+        <source>Vote up</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>I dislike this</source>
-        <translation>Nem tetszik</translation>
+        <source>Vote down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>\/</source>
+        <translation>\/</translation>
+    </message>
+    <message>
+        <source>Submitted</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11207,10 +11242,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This Year</source>
         <translation>Az évben</translation>
-    </message>
-    <message>
-        <source>Submit Post</source>
-        <translation>Beküldés</translation>
     </message>
     <message>
         <source>Showing 1-100</source>
@@ -11263,6 +11294,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Create New Topic</source>
         <translation>Új téma létrehozása</translation>
+    </message>
+    <message>
+        <source>Submit a new Post</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Todo</source>
+        <translation>Tennivaló</translation>
     </message>
 </context>
 <context>
@@ -11890,6 +11929,10 @@ Bizonyosodj meg róla, hogy jó emberrel beszélsz.</translation>
     <message>
         <source>Chat connection is unauthenticated</source>
         <translation>A csevegési kapcsolat nem hitelesített</translation>
+    </message>
+    <message>
+        <source>Id: </source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -12652,14 +12695,6 @@ Lecsökkented a méretét %1x%2 pixelre?</translation>
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Mégse</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Küldés</translation>
-    </message>
-    <message>
         <source>Name:</source>
         <translation>Név:</translation>
     </message>
@@ -12724,8 +12759,20 @@ Lecsökkented a méretét %1x%2 pixelre?</translation>
         <translation>El szeretnéd távolítani ezt a barátot?</translation>
     </message>
     <message>
-        <source>Quick Message</source>
-        <translation>Gyors üzenet</translation>
+        <source>Certificate has wrong signature!! This peer is not who he claims to be.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged SSL certificate for key </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing/Damaged certificate. Not a real Retroshare user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate caused an internal error.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -14643,6 +14690,14 @@ Kérlek, légy türelmes!</translation>
         <source>Unsubscribe to Group</source>
         <translation>Leíratkozás a csoportból</translation>
     </message>
+    <message>
+        <source>Todo</source>
+        <translation>Tennivaló</translation>
+    </message>
+    <message>
+        <source>Edit Group</source>
+        <translation>Csoport szerkesztése</translation>
+    </message>
 </context>
 <context>
     <name>WikiEditDialog</name>
@@ -14764,6 +14819,10 @@ Kérlek, légy türelmes!</translation>
     <message>
         <source>Select Wiki Moderators</source>
         <translation>Wiki moderátorok kiválasztása</translation>
+    </message>
+    <message>
+        <source>Create Group</source>
+        <translation>Csoport létrehozása</translation>
     </message>
 </context>
 <context>
