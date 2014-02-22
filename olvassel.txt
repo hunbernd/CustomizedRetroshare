@@ -16,8 +16,9 @@ Hozzáadott dolgok:
 -rscollection szerkesztõ (Phenom)
 -megjelölés és keresés a cset ablakban (Phenom)
 -fájl találati lista rendezése a források száma szerint (Phenom)
--PaintChat kiegészítõ (electron128)
+-PaintChat kiegészítõ
 -ExportImport kiegészítõ
+-FriendMap kiegészítõ
 
 ----------------------------------
 Telepítési útmutató:

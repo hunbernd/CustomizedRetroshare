@@ -16,8 +16,9 @@ What are the additional features:
 -rscollecton editor (from Phenom)
 -search and mark on chatwidget (from Phenom)
 -sort found files by count of sources (from Phenom)
--PaintChat plugin (from electron128)
--ExportImport plugin (from unknown)
+-PaintChat plugin
+-ExportImport plugin
+-FriendMap plugin
 
 ----------------------------------
 Installation instructions:
