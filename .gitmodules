@@ -1,3 +1,22 @@
+[submodule "plugins/PaintChat"]
+	path = plugins/PaintChat
+	url = https://github.com/electron128/Retroshare-Paintchat-Plugin.git
+[submodule "plugins/WebUI"]
+	path = plugins/WebUI
+	url = https://git.gitorious.org/rswebui/rswebui.git
+[submodule "plugins/WebScriptRS"]
+	path = plugins/WebScriptRS
+	url = https://github.com/chozabu/WebScriptRS.git
 [submodule "plugins/FriendMap"]
 	path = plugins/FriendMap
 	url = https://github.com/chozabu/FriendMap.git
+[submodule "plugins/ZeroReserve"]
+	path = plugins/ZeroReserve
+	url = https://github.com/zeroreserve/ZeroReserve.git
+[submodule "plugins/ExportImport"]
+	path = plugins/ExportImport
+	url = https://github.com/hunbernd/ExportImport.git
+[submodule "plugins/JumpingCube"]
+	path = plugins/JumpingCube
+	url = https://github.com/chozabu/JumpingCube.git
+

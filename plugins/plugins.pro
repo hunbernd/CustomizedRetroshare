@@ -1,11 +1,14 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-		LinksCloud \
 		VOIP \
 		FeedReader \
-		ExportImport \
+		LinksCloud \
 		PaintChat \
-		FriendMap \
-		JumpingCube \
+#		WebUI \
 		WebScriptRS \
+		FriendMap \
+#		ZeroReserve \
+		ExportImport \
+		JumpingCube \
+		
