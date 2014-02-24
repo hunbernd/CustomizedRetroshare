@@ -610,12 +610,12 @@
    <class>LineEditClear</class>
    <extends>QLineEdit</extends>
    <header location="global">gui/common/LineEditClear.h</header>
-  </customwidget>
-  <customwidget>
-   <class>ElidedLabel</class>
-   <extends>QLabel</extends>
-   <header location="global">gui/common/ElidedLabel.h</header>
-  </customwidget>
+</customwidget>
+<customwidget>
+	<class>ElidedLabel</class>
+	<extends>QLabel</extends>
+	<header location="global">gui/common/ElidedLabel.h</header>
+</customwidget>
  </customwidgets>
  <resources>
   <include location="images.qrc"/>

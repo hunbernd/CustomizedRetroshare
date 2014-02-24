@@ -426,6 +426,7 @@ HEADERS +=  rshare.h \
             gui/toaster/GroupChatToaster.h \
             gui/toaster/ChatLobbyToaster.h \
             gui/toaster/FriendRequestToaster.h \
+            gui/common/ElidedLabel.h \
             gui/common/vmessagebox.h \
             gui/common/RsUrlHandler.h \
             gui/common/RsCollectionFile.h \
@@ -456,7 +457,6 @@ HEADERS +=  rshare.h \
             gui/common/FriendSelectionDialog.h \
             gui/common/HashBox.h \
             gui/common/LineEditClear.h \
-            gui/common/ElidedLabel.h \
             gui/common/DropLineEdit.h \
             gui/common/RSTextBrowser.h \
             gui/common/RSImageBlockWidget.h \
@@ -709,6 +709,7 @@ SOURCES +=  main.cpp \
             gui/msgs/MessageWindow.cpp \
             gui/msgs/TagsMenu.cpp \
             gui/msgs/MessageUserNotify.cpp \
+            gui/common/ElidedLabel.cpp \
             gui/common/vmessagebox.cpp \
             gui/common/RsCollectionFile.cpp \
             gui/common/RsCollectionDialog.cpp \
@@ -739,7 +740,6 @@ SOURCES +=  main.cpp \
             gui/common/FriendSelectionDialog.cpp \
             gui/common/HashBox.cpp \
             gui/common/LineEditClear.cpp \
-            gui/common/ElidedLabel.cpp \
             gui/common/DropLineEdit.cpp \
             gui/common/RSTextBrowser.cpp \
             gui/common/RSImageBlockWidget.cpp \

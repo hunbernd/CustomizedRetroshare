@@ -139,7 +139,9 @@ ForumsDialog::ForumsDialog(QWidget *parent)
     connect(ui.filterLineEdit, SIGNAL(filterChanged(int)), this, SLOT(filterColumnChanged(int)));
 
     connect(NotifyQt::getInstance(), SIGNAL(forumMsgReadSatusChanged(QString,QString,int)), this, SLOT(forumMsgReadSatusChanged(QString,QString,int)));
-    connect(ui.threadTitle, SIGNAL(elisionChanged(bool)), this, SLOT(threadTitle_elisionChanged(bool)));
+
+	connect(ui.threadTitle, SIGNAL(elisionChanged(bool)), this, SLOT(threadTitle_elisionChanged(bool)));
+
 
     ui.imageBlockWidget->addButtonAction(tr("Load images always for this message"), this, SLOT(loadImagesAlways()), true);
     ui.postText->setImageBlockWidget(ui.imageBlockWidget);
@@ -2145,3 +2147,4 @@ void ForumsDialog::threadTitle_elisionChanged(bool elided)
 {
 	ui.threadTitle->setToolTip(elided?ui.threadTitle->text():"");
 }
+
