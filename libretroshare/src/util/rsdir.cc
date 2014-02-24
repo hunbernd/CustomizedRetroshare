@@ -162,7 +162,7 @@ const char *RsDirUtil::scanf_string_for_uint(int bytes)
 {
 	const char *strgs[3] = { "%u","%lu","%llu" } ;
 
-	std::cerr << "RsDirUtil::scanf_string_for_uint(): returning for bytes=" << bytes << std::endl;
+	//std::cerr << "RsDirUtil::scanf_string_for_uint(): returning for bytes=" << bytes << std::endl;
 
 	if(sizeof(unsigned int) == bytes)
 		return strgs[0] ;
@@ -911,9 +911,9 @@ bool RsDirUtil::renameFile(const std::string& from, const std::string& to)
 			/* set errno? */
 			return false ;
 #ifdef WIN32
-		Sleep(100000);				/* us */
+		Sleep(200);				/* 200 milliseconds */
 #else
-		usleep(100000);				/* us */
+		usleep(100000);		/* 100000 microseconds */
 #endif
 
 		if (loops >= 30)
