@@ -890,7 +890,16 @@ bool ftController::completeFile(std::string hash)
 		/* switch map */
 		if (!(fc->mFlags & RS_FILE_REQ_CACHE)) /* clean up completed cache files automatically */
 		{
-			mCompleted[fc->mHash] = fc;
+			std::map<std::string,ftFileControl*>::iterator it = mCompleted.find(fc->mHash) ;
+
+			if(it != mCompleted.end())
+			{
+				delete it->second ;
+				it->second = fc ;
+			}
+			else
+				mCompleted[fc->mHash] = fc;
+
 			completeCount = mCompleted.size();
 		} else
 			delete fc ;
@@ -973,7 +982,9 @@ bool ftController::completeFile(std::string hash)
 		rsFiles->ForceDirectoryCheck() ;
 	}
 
-	IndicateConfigChanged(); /* completed transfer -> save */
+	if(!(flags & RS_FILE_REQ_CACHE))
+		IndicateConfigChanged(); /* completed transfer -> save config */
+
 	return true;
 }
 
@@ -1327,7 +1338,9 @@ bool 	ftController::FileRequest(const std::string& fname, const std::string& has
 		mDownloads[hash] = ftfc;
 	}
 
-	IndicateConfigChanged(); /* completed transfer -> save */
+	if(!(flags & RS_FILE_REQ_CACHE))
+		IndicateConfigChanged(); /* completed transfer -> save */
+
 	return true;
 }
 
@@ -1386,6 +1399,8 @@ bool 	ftController::FileCancel(const std::string& hash)
 	std::cerr << "ftController::FileCancel" << std::endl;
 #endif
 	/*check if the file in the download map*/
+	TransferRequestFlags flags ;
+	
 
 	{
 		RsStackMutex mtx(ctrlMutex) ;
@@ -1398,6 +1413,7 @@ bool 	ftController::FileCancel(const std::string& hash)
 #endif
 			return false;
 		}
+		flags = mit->second->mFlags ;
 
 		/* check if finished */
 		if ((mit->second)->mCreator->finished())
@@ -1457,7 +1473,9 @@ bool 	ftController::FileCancel(const std::string& hash)
 		mDownloads.erase(mit);
 	}
 
-	IndicateConfigChanged(); /* completed transfer -> save */
+	if(! (flags & RS_FILE_REQ_CACHE) )
+	   IndicateConfigChanged(); /* completed transfer -> save */
+
 	return true;
 }
 
