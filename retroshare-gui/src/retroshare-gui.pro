@@ -159,7 +159,7 @@ win32-x-g++ {
 win32 {
 	debug {
 		# show console output
-		CONFIG += console
+                #CONFIG += console
 	}
 
 	# Switch on extra warnings
