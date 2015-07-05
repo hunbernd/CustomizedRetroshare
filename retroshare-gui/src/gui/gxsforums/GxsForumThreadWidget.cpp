@@ -157,7 +157,7 @@ GxsForumThreadWidget::GxsForumThreadWidget(const RsGxsGroupId &forumId, QWidget 
 
 	/* Set header resize modes and initial section sizes */
 	QHeaderView * ttheader = ui->threadTreeWidget->header () ;
-	QHeaderView_setSectionResizeMode(ttheader, COLUMN_THREAD_TITLE, QHeaderView::Interactive);
+	QHeaderView_setSectionResizeModeColumn(ttheader, COLUMN_THREAD_TITLE, QHeaderView::Interactive);
 	ttheader->resizeSection (COLUMN_THREAD_DATE,  140);
 	ttheader->resizeSection (COLUMN_THREAD_TITLE, 440);
 	ttheader->resizeSection (COLUMN_THREAD_AUTHOR, 150);
@@ -183,7 +183,7 @@ GxsForumThreadWidget::GxsForumThreadWidget(const RsGxsGroupId &forumId, QWidget 
 
 	/* Set header sizes for the fixed columns and resize modes, must be set after processSettings */
 	ttheader->resizeSection (COLUMN_THREAD_READ,  24);
-	QHeaderView_setSectionResizeMode(ttheader, COLUMN_THREAD_READ, QHeaderView::Fixed);
+	QHeaderView_setSectionResizeModeColumn(ttheader, COLUMN_THREAD_READ, QHeaderView::Fixed);
 	ttheader->hideSection (COLUMN_THREAD_CONTENT);
 
 	ui->progressBar->hide();
@@ -770,6 +770,8 @@ void GxsForumThreadWidget::fillThreadFinished()
 			mStateHelper->setActive(mTokenTypeInsertThreads, true);
 			ui->threadTreeWidget->setSortingEnabled(false);
 
+			GxsIdDetails::enableProcess(false);
+
 			/* add all messages in! */
 			if (mLastViewType != thread->mViewType || mLastForumID != groupId()) {
 				ui->threadTreeWidget->clear();
@@ -785,6 +787,27 @@ void GxsForumThreadWidget::fillThreadFinished()
 				// cleanup list
 				cleanupItems(thread->mItems);
 			}
+
+			/* Move value from ROLE_THREAD_AUTHOR to GxsIdRSTreeWidgetItem::setId */
+			QTreeWidgetItemIterator itemIterator(ui->threadTreeWidget);
+			QTreeWidgetItem *item = NULL;
+			while ((item = *itemIterator) != NULL) {
+				++itemIterator;
+
+				QString gxsId = item->data(COLUMN_THREAD_DATA, ROLE_THREAD_AUTHOR).toString();
+				if (gxsId.isEmpty()) {
+					continue;
+				}
+
+				item->setData(COLUMN_THREAD_DATA, ROLE_THREAD_AUTHOR, QVariant());
+
+				GxsIdRSTreeWidgetItem *gxsIdItem = dynamic_cast<GxsIdRSTreeWidgetItem*>(item);
+				if (gxsIdItem) {
+					gxsIdItem->setId(RsGxsId(gxsId.toStdString()), COLUMN_THREAD_AUTHOR, false);
+				}
+			}
+
+			GxsIdDetails::enableProcess(true);
 
 			ui->threadTreeWidget->setSortingEnabled(true);
 
@@ -880,7 +903,7 @@ QTreeWidgetItem *GxsForumThreadWidget::convertMsgToThreadWidget(const RsGxsForum
 	item->setText(COLUMN_THREAD_DATE, text);
 	item->setData(COLUMN_THREAD_DATE, ROLE_THREAD_SORT, sort);
 
-	item->setId(msg.mMeta.mAuthorId, COLUMN_THREAD_AUTHOR, false);
+	// Set later with GxsIdRSTreeWidgetItem::setId
 	item->setData(COLUMN_THREAD_DATA, ROLE_THREAD_AUTHOR, QString::fromStdString(msg.mMeta.mAuthorId.toStdString()));
 //#TODO
 #if 0
@@ -1035,20 +1058,7 @@ static void copyItem(QTreeWidgetItem *item, const QTreeWidgetItem *newItem)
 {
 	int i;
 	for (i = 0; i < COLUMN_THREAD_COUNT; ++i) {
-		if (i == COLUMN_THREAD_AUTHOR) {
-			QString authorId = newItem->data(COLUMN_THREAD_DATA, ROLE_THREAD_AUTHOR).toString();
-			if (authorId != item->data(COLUMN_THREAD_DATA, ROLE_THREAD_AUTHOR).toString()) {
-				/* Author has changed? */
-				GxsIdRSTreeWidgetItem *gxsIdItem = dynamic_cast<GxsIdRSTreeWidgetItem*>(item);
-				if (gxsIdItem) {
-					/* Set new gxs id */
-					gxsIdItem->setId(RsGxsId(authorId.toStdString()), i, false);
-				} else {
-					/* Copy text */
-					item->setText(i, newItem->text(i));
-				}
-			}
-		} else {
+		if (i != COLUMN_THREAD_AUTHOR) {
 			/* Copy text */
 			item->setText(i, newItem->text(i));
 		}

@@ -21,6 +21,7 @@
 
 #include "DhtWindow.h"
 #include "ui_DhtWindow.h"
+#include "util/QtVersion.h"
 
 #include <QTimer>
 #include <QDateTime>
@@ -75,6 +76,10 @@ void DhtWindow::updateDisplay()
 	updateRelays();
 
 	RsAutoUpdatePage::unlockAllEvents() ;
+
+	QHeaderView_setSectionResizeMode(ui.peerTreeWidget->header(), QHeaderView::ResizeToContents);
+	QHeaderView_setSectionResizeMode(ui.dhtTreeWidget->header(), QHeaderView::ResizeToContents);
+	QHeaderView_setSectionResizeMode(ui.relayTreeWidget->header(), QHeaderView::ResizeToContents);
 }
 
 

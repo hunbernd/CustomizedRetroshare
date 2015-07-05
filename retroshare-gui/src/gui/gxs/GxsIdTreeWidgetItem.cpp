@@ -52,7 +52,6 @@ static void fillGxsIdRSTreeWidgetItemCallback(GxsIdDetailsType type, const RsIde
 		return;
 	}
 
-	QString toolTip;
 	QList<QIcon> icons;
 
 	switch (type) {
@@ -73,29 +72,19 @@ static void fillGxsIdRSTreeWidgetItemCallback(GxsIdDetailsType type, const RsIde
 		item->processResult(true);
 		break;
 	}
-	toolTip = GxsIdDetails::getComment(details);
 
 	int column = item->idColumn();
+	item->setToolTip(column, GxsIdDetails::getComment(details));
 
 	item->setText(column, GxsIdDetails::getNameForType(type, details));
 	item->setData(column, Qt::UserRole, QString::fromStdString(details.mId.toStdString()));
 
 	QPixmap combinedPixmap;
 	if (!icons.empty()) {
-		GxsIdDetails::GenerateCombinedPixmap(combinedPixmap, icons, 16);
+        GxsIdDetails::GenerateCombinedPixmap(combinedPixmap, icons, QFontMetricsF(item->font(item->idColumn())).height()*1.1);
 	}
 	item->setData(column, Qt::DecorationRole, combinedPixmap);
-	QImage pix ;
-
-	if(details.mAvatar.mSize == 0 || !pix.loadFromData(details.mAvatar.mData, details.mAvatar.mSize, "PNG"))
-		pix = GxsIdDetails::makeDefaultIcon(details.mId);
-
-	QString embeddedImage ;
-
-	if(RsHtml::makeEmbeddedImage(pix.scaled(QSize(64,64),Qt::KeepAspectRatio,Qt::SmoothTransformation),embeddedImage,128*128))
-		toolTip = "<table><tr><td>"+embeddedImage+"</td><td>" +toolTip+ "</td></table>" ;
-
-	item->setToolTip(column, toolTip);
+	item->setAvatar(details.mAvatar);
 }
 
 void GxsIdRSTreeWidgetItem::setId(const RsGxsId &id, int column, bool retryWhenFailed)
@@ -141,4 +130,37 @@ void GxsIdRSTreeWidgetItem::processResult(bool success)
 		/* Try again */
 		connect(rApp, SIGNAL(minuteTick()), this, SLOT(startProcess()));
 	}
+}
+
+void GxsIdRSTreeWidgetItem::setAvatar(const RsGxsImage &avatar)
+{
+	mAvatar = avatar;
+}
+
+QVariant GxsIdRSTreeWidgetItem::data(int column, int role) const
+{
+	if (column == idColumn()) {
+		switch (role) {
+		case Qt::ToolTipRole:
+			{
+				QString t = RSTreeWidgetItem::data(column, role).toString();
+
+				QImage pix;
+				if (mAvatar.mSize == 0 || !pix.loadFromData(mAvatar.mData, mAvatar.mSize, "PNG")) {
+					pix = GxsIdDetails::makeDefaultIcon(mId);
+				}
+
+                        int S = QFontMetricsF(font(column)).height();
+
+				QString embeddedImage;
+                if (RsHtml::makeEmbeddedImage(pix.scaled(QSize(4*S,4*S), Qt::KeepAspectRatio, Qt::SmoothTransformation), embeddedImage, 8*S * 8*S)) {
+					t = "<table><tr><td>" + embeddedImage + "</td><td>" + t + "</td></table>";
+				}
+
+				return t;
+			}
+		}
+	}
+
+	return RSTreeWidgetItem::data(column, role);
 }

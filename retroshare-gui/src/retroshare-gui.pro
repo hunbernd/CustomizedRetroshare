@@ -341,7 +341,7 @@ HEADERS +=  rshare.h \
             gui/SharedFilesDialog.h \
             gui/ShareManager.h \
             gui/ShareDialog.h \
-            gui/SFListDelegate.h \
+#            gui/SFListDelegate.h \
             gui/SoundManager.h \
             gui/HelpDialog.h \
             gui/LogoBar.h \
@@ -700,7 +700,7 @@ SOURCES +=  main.cpp \
             gui/SharedFilesDialog.cpp \
             gui/ShareManager.cpp \
             gui/ShareDialog.cpp \
-            gui/SFListDelegate.cpp \
+#            gui/SFListDelegate.cpp \
             gui/SoundManager.cpp \
             gui/MessagesDialog.cpp \
             gui/im_history/ImHistoryBrowser.cpp \
@@ -911,7 +911,7 @@ SOURCES +=  main.cpp \
 #            gui/feeds/ChanNewItem.cpp \
 #            gui/feeds/ChanMsgItem.cpp \
 
-RESOURCES += gui/images.qrc lang/lang.qrc gui/help/content/content.qrc
+RESOURCES += gui/images.qrc gui/icons.qrc lang/lang.qrc gui/help/content/content.qrc
 
 TRANSLATIONS +=  \
             lang/retroshare_ca_ES.ts \

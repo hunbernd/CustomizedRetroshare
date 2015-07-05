@@ -232,19 +232,19 @@ TransfersDialog::TransfersDialog(QWidget *parent)
 
     /* Set header resize modes and initial section sizes Downloads TreeView*/
     QHeaderView * _header = ui.downloadList->header () ;
-    QHeaderView_setSectionResizeMode(_header, COLUMN_NAME, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_SIZE, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_COMPLETED, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_DLSPEED, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_PROGRESS, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_SOURCES, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_STATUS, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_PRIORITY, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_REMAINING, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_DOWNLOADTIME, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_ID, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_LASTDL, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_PATH, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_NAME, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_SIZE, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_COMPLETED, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_DLSPEED, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_PROGRESS, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_SOURCES, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_STATUS, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_PRIORITY, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_REMAINING, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_DOWNLOADTIME, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_ID, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_LASTDL, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_PATH, QHeaderView::Interactive);
 
     _header->resizeSection ( COLUMN_NAME, 170 );
     _header->resizeSection ( COLUMN_SIZE, 70 );
@@ -295,13 +295,13 @@ TransfersDialog::TransfersDialog(QWidget *parent)
 
     /* Set header resize modes and initial section sizes Uploads TreeView*/
     QHeaderView * upheader = ui.uploadsList->header () ;
-    QHeaderView_setSectionResizeMode(upheader, COLUMN_UNAME, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(upheader, COLUMN_USIZE, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(upheader, COLUMN_UTRANSFERRED, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(upheader, COLUMN_ULSPEED, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(upheader, COLUMN_UPROGRESS, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(upheader, COLUMN_USTATUS, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(upheader, COLUMN_USERNAME, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(upheader, COLUMN_UNAME, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(upheader, COLUMN_USIZE, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(upheader, COLUMN_UTRANSFERRED, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(upheader, COLUMN_ULSPEED, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(upheader, COLUMN_UPROGRESS, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(upheader, COLUMN_USTATUS, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(upheader, COLUMN_USERNAME, QHeaderView::Interactive);
 
     upheader->resizeSection ( COLUMN_UNAME, 260 );
     upheader->resizeSection ( COLUMN_USIZE, 70 );
@@ -478,17 +478,18 @@ TransfersDialog::TransfersDialog(QWidget *parent)
     // load settings
     processSettings(true);
 
+    int S = QFontMetricsF(font()).height();
   QString help_str = tr(
-    " <h1><img width=\"32\" src=\":/images/64px_help.png\">&nbsp;&nbsp;File Transfer</h1>                                                         \
+    " <h1><img width=\"%1\" src=\":/icons/help_64.png\">&nbsp;&nbsp;File Transfer</h1>                                                         \
     <p>Retroshare brings two ways of transferring files: direct transfers from your friends, and                                     \
     distant anonymous tunnelled transfers. In addition, file transfer is multi-source and allows swarming                                      \
     (you can be a source while downloading)</p>                                     \
-    <p>You can share files using the <img src=\":/images/directoryadd_24x24_shadow.png\" width=16 /> icon from the left side bar. \
+    <p>You can share files using the <img src=\":/images/directoryadd_24x24_shadow.png\" width=%2 /> icon from the left side bar. \
     These files will be listed in the My Files tab. You can decide for each friend group whether they can or not see these files \
     in their Friends Files tab</p>\
     <p>The search tab reports files from your friends' file lists, and distant files that can be reached \
     anonymously using the multi-hop tunnelling system.</p> \
-    ") ;
+    ").arg(QString::number(2*S)).arg(QString::number(S)) ;
 
 
 	 registerHelpButton(ui.helpButton,help_str) ;

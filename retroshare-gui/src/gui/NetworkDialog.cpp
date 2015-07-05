@@ -97,12 +97,12 @@ NetworkDialog::NetworkDialog(QWidget *parent)
 
     /* Set header resize modes and initial section sizes */
     QHeaderView * _header = ui.connectTreeWidget->header () ;
-    QHeaderView_setSectionResizeMode(_header, COLUMN_CHECK, QHeaderView::Custom);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_PEERNAME, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_I_AUTH_PEER, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_PEER_AUTH_ME, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_PEERID, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(_header, COLUMN_LAST_USED, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_CHECK, QHeaderView::Custom);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_PEERNAME, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_I_AUTH_PEER, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_PEER_AUTH_ME, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_PEERID, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(_header, COLUMN_LAST_USED, QHeaderView::Interactive);
 
     _header->model()->setHeaderData(COLUMN_CHECK, Qt::Horizontal, tr(""));
     _header->model()->setHeaderData(COLUMN_PEERNAME, Qt::Horizontal, tr("Name"));
@@ -439,7 +439,9 @@ void NetworkDialog::insertConnect()
 #endif
 				item = new RSTreeWidgetItem(NULL, 0);
 				item -> setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
-                item -> setSizeHint(COLUMN_CHECK, QSize( 18,18 ) );
+
+				int S = QFontMetricsF(font()).height() ;
+                item -> setSizeHint(COLUMN_CHECK, QSize( S,S ) );
 
 				/* (1) Person */
 				item -> setText(COLUMN_PEERNAME, QString::fromUtf8(detail.name.c_str()));

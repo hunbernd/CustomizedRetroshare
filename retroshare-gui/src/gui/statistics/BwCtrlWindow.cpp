@@ -22,6 +22,7 @@
 #include "BwCtrlWindow.h"
 #include "gui/common/RSGraphWidget.h"
 #include "ui_BwCtrlWindow.h"
+#include "util/QtVersion.h"
 #include <QTimer>
 #include <QDateTime>
 
@@ -35,6 +36,7 @@
 #include "retroshare/rspeers.h"
 
 #include <QModelIndex>
+#include <QHeaderView>
 #include <QPainter>
 #include <limits>
 
@@ -166,9 +168,15 @@ void BWListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & opti
 	painter->restore();
 }
 
-QSize BWListDelegate::sizeHint(const QStyleOptionViewItem & /*option*/, const QModelIndex & /*index*/) const
+QSize BWListDelegate::sizeHint(const QStyleOptionViewItem & option/*option*/, const QModelIndex & index) const
 {
-	return QSize(50,17);
+    float FS = QFontMetricsF(option.font).height();
+    float fact = FS/14.0 ;
+
+    float w = QFontMetricsF(option.font).width(index.data(Qt::DisplayRole).toString());
+
+    return QSize(w,FS*1.2);
+    //return QSize(50*fact,17*fact);
 }
 
 BwCtrlWindow::BwCtrlWindow(QWidget *parent) 
@@ -179,9 +187,13 @@ BwCtrlWindow::BwCtrlWindow(QWidget *parent)
     BWDelegate = new BWListDelegate();
     bwTreeWidget->setItemDelegate(BWDelegate);
     
+    float FS = QFontMetricsF(font()).height();
+    float fact = FS/14.0 ;
+
     /* Set header resize modes and initial section sizes Peer TreeView*/
     QHeaderView * _header = bwTreeWidget->header () ;
-    _header->resizeSection ( COLUMN_RSNAME, 170 );
+//    _header->resizeSection ( COLUMN_RSNAME, 170*fact );
+    QHeaderView_setSectionResizeMode(_header, QHeaderView::ResizeToContents);
 }
 
 BwCtrlWindow::~BwCtrlWindow()

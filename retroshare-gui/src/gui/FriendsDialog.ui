@@ -69,7 +69,7 @@
         </property>
         <property name="icon">
          <iconset resource="images.qrc">
-          <normaloff>:/images/64px_help.png</normaloff>:/images/64px_help.png</iconset>
+          <normaloff>:/icons/help_64.png</normaloff>:/icons/help_64.png</iconset>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -94,18 +94,6 @@
        </property>
        <item>
         <widget class="QFrame" name="headFrame">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>70</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>70</height>
-          </size>
-         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
@@ -151,12 +139,6 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>16777215</height>
-             </size>
             </property>
             <property name="toolTip">
              <string>Edit status message</string>

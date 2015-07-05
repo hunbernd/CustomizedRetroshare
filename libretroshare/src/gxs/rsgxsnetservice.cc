@@ -61,13 +61,13 @@ RsGxsNetService::RsGxsNetService(uint16_t servType, RsGeneralDataService *gds,
                                  RsNxsNetMgr *netMgr, RsNxsObserver *nxsObs, 
 				const RsServiceInfo serviceInfo,
 				RsGixsReputation* reputations, RsGcxs* circles, 
-				PgpAuxUtils *pgpUtils, bool grpAutoSync)
+                PgpAuxUtils *pgpUtils, bool grpAutoSync,bool msgAutoSync)
                                      : p3ThreadedService(), p3Config(), mTransactionN(0),
                                        mObserver(nxsObs), mDataStore(gds), mServType(servType),
                                        mTransactionTimeOut(TRANSAC_TIMEOUT), mNetMgr(netMgr), mNxsMutex("RsGxsNetService"),
                                        mSyncTs(0), mLastKeyPublishTs(0), mSYNC_PERIOD(SYNC_PERIOD), mCircles(circles), mReputations(reputations),
 					mPgpUtils(pgpUtils),
-					mGrpAutoSync(grpAutoSync), mGrpServerUpdateItem(NULL),
+                    mGrpAutoSync(grpAutoSync),mAllowMsgSync(msgAutoSync), mGrpServerUpdateItem(NULL),
 					mServiceInfo(serviceInfo)
 
 {
@@ -136,7 +136,7 @@ public:
 
         // compute time(NULL) in msecs, for a more accurate bw estimate.
 
-        uint64_t now = tv.tv_sec * 1000 + tv.tv_usec/1000 ;
+        uint64_t now = (uint64_t) tv.tv_sec * 1000 + tv.tv_usec/1000 ;
 
         total_record += bw ;
         ++total_events ;
@@ -263,6 +263,9 @@ void RsGxsNetService::syncWithPeers()
 #endif
         sendItem(grp);
     }
+
+    if(!mAllowMsgSync)
+        return ;
 
 #ifndef GXS_DISABLE_SYNC_MSGS
 

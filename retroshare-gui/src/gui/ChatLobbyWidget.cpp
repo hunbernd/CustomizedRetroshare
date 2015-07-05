@@ -89,10 +89,10 @@ ChatLobbyWidget::ChatLobbyWidget(QWidget *parent, Qt::WindowFlags flags)
 	headerItem->setTextAlignment(COLUMN_SUBSCRIBED, Qt::AlignHCenter | Qt::AlignVCenter);
 
 	QHeaderView *header = ui.lobbyTreeWidget->header();
-	QHeaderView_setSectionResizeMode(header, COLUMN_NAME, QHeaderView::Interactive);
-	QHeaderView_setSectionResizeMode(header, COLUMN_USER_COUNT, QHeaderView::Interactive);
-	QHeaderView_setSectionResizeMode(header, COLUMN_TOPIC, QHeaderView::Interactive);
-    QHeaderView_setSectionResizeMode(header, COLUMN_SUBSCRIBED, QHeaderView::Interactive);
+	QHeaderView_setSectionResizeModeColumn(header, COLUMN_NAME, QHeaderView::Interactive);
+	QHeaderView_setSectionResizeModeColumn(header, COLUMN_USER_COUNT, QHeaderView::Interactive);
+	QHeaderView_setSectionResizeModeColumn(header, COLUMN_TOPIC, QHeaderView::Interactive);
+    QHeaderView_setSectionResizeModeColumn(header, COLUMN_SUBSCRIBED, QHeaderView::Interactive);
 
     privateSubLobbyItem = new RSTreeWidgetItem(compareRole, TYPE_FOLDER);
     privateSubLobbyItem->setText(COLUMN_NAME, tr("Private Subscribed Lobbies"));
@@ -163,12 +163,13 @@ ChatLobbyWidget::ChatLobbyWidget(QWidget *parent, Qt::WindowFlags flags)
 	// load settings
 	processSettings(true);
 
-	QString help_str = tr("\
-	                      <h1><img width=\"32\" src=\":/images/64px_help.png\">&nbsp;&nbsp;Chat Lobbies</h1>                              \
+    int S = QFontMetricsF(font()).height();
+    QString help_str = tr("\
+                          <h1><img width=\"%1\" src=\":/icons/help_64.png\">&nbsp;&nbsp;Chat Lobbies</h1>                              \
 	                      <p>Chat lobbies are distributed chat rooms, and work pretty much like IRC.                                      \
 	                      They allow you to talk anonymously with tons of people without the need to make friends.</p>                    \
 	                      <p>A chat lobby can be public (your friends see it) or private (your friends can't see it, unless you           \
-	                      invite them with <img src=\":/images/add_24x24.png\" width=12/>). \
+                          invite them with <img src=\":/images/add_24x24.png\" width=%2/>). \
 	                      Once you have been invited to a private lobby, you will be able to see it when your friends   \
 	                      are using it.</p>                                                                                               \
 	                      <p>The list at left shows                                                                                     \
@@ -180,7 +181,7 @@ ChatLobbyWidget::ChatLobbyWidget(QWidget *parent, Qt::WindowFlags flags)
 	                      Note: For the chat lobbies to work properly, your computer needs be on time.  So check your system clock!\
 	                      </p>                                      \
 	                      "
-	                      ) ;
+                          ).arg(QString::number(2*S)).arg(QString::number(S)) ;
 	    registerHelpButton(ui.helpButton,help_str) ;
 }
 
