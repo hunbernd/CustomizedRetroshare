@@ -176,7 +176,12 @@ Rshare::~Rshare()
 
 QString Rshare::retroshareVersion(bool withRevision)
 {
-	QString version = QString("%1.%2.%3%4").arg(RS_MAJOR_VERSION).arg(RS_MINOR_VERSION).arg(RS_BUILD_NUMBER).arg(RS_BUILD_NUMBER_ADD);
+    QString version;
+#ifdef RS_MODNAME
+    version = QString("%1.%2.%3%4 %5").arg(RS_MAJOR_VERSION).arg(RS_MINOR_VERSION).arg(RS_BUILD_NUMBER).arg(RS_BUILD_NUMBER_ADD).arg(RS_MODNAME);
+#else
+    version = QString("%1.%2.%3%4").arg(RS_MAJOR_VERSION).arg(RS_MINOR_VERSION).arg(RS_BUILD_NUMBER).arg(RS_BUILD_NUMBER_ADD);
+#endif
 	if (withRevision) {
 		version += QString(" %1 %2").arg(tr("Revision")).arg(RS_REVISION_NUMBER);
 	}

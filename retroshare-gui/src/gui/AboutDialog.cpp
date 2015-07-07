@@ -27,6 +27,7 @@
 #include <retroshare/rsdisc.h>
 #include <retroshare/rspeers.h>
 #include "settings/rsharesettings.h"
+#include "retroshare/rsversion.h"
 
 #include <QHBoxLayout>
 #include <QPainter>
@@ -171,10 +172,15 @@ AWidget::AWidget() {
     p.setFont(font);
 
     /* Draw RetroShare version */
-    p.drawText(QRect(10, 10, width()-10, 60), QString("%1 : \n%2").arg(tr("RetroShare version"), Rshare::retroshareVersion(true)));
+    p.drawText(QRect(10, 10, width()-10, 60), QString("%1: %2").arg(tr("RetroShare version"), Rshare::retroshareVersion(true)));
 
     /* Draw Qt's version number */
-    p.drawText(QRect(10, 50, width()-10, 60), QString("Qt %1 : \n%2").arg(tr("version"), QT_VERSION_STR));
+    p.drawText(QRect(10, 30, width()-10, 60), QString("Qt %1: %2").arg(tr("version"), QT_VERSION_STR));
+
+    /* Draw git info */
+#ifdef GIT_BRANCH
+    p.drawText(QRect(10, 50, width()-10, 60), QString("%1 : %2\n%3: %4").arg(tr("Git branch"), GIT_BRANCH, tr("Git commit"), GIT_COMMIT_ID));
+#endif
 
     p.end();
 
